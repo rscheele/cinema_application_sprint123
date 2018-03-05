@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Domain.Abstract;
+using Domain.Concrete;
 using Ninject;
 
 namespace Sprint123.WebUI.Infrastructure
@@ -23,7 +25,8 @@ namespace Sprint123.WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            // put bindings here
+            kernel.Bind<IShowRepository>().To<ShowRepository>();
+            kernel.Bind<IMovieOverviewRepository>().To<MovieOverviewRepository>();
         }
     }
 }

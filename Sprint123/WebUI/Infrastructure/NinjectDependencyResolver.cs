@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
+
 namespace Sprint123.WebUI.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver

@@ -8,28 +8,22 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Show
+    public class Seat
     {
-
-        public Show()
+        public Seat()
         {
 
         }
-
         [Key]
-        public int ShowID { get; set; }
-
-        public DateTime BeginTime { get; set; }
-        public DateTime EndTime { get; set; }
-
-        public int? MovieID { get; set; }
-
-        [ForeignKey("MovieID")]
-        public virtual Movie Movie { get; set; }
+        public int SeatID { get; set; }
+        public int RowX { get; set; }
+        public int RowY { get; set; }
+        public int SeatNumber { get; set; }
 
         public int? RoomID { get; set; }
-
+        
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
+
     }
 }

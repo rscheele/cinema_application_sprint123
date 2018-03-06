@@ -70,14 +70,20 @@
   <ItemGroup>
     <Compile Include="Abstract\IMovieOverviewRepository.cs" />
     <Compile Include="Abstract\IShowRepository.cs" />
+    <Compile Include="Abstract\ITicketRepository.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Concrete\CinemaInitializer.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\MovieOverviewRepository.cs" />
     <Compile Include="Concrete\ShowRepository.cs" />
+    <Compile Include="Concrete\TicketRepository.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Room.cs" />
+    <Compile Include="Entities\RoomLayout.cs" />
+    <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Show.cs" />
+    <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

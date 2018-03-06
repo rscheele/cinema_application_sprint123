@@ -13,19 +13,22 @@ namespace WebUI.Controllers
     {
         private IMovieOverviewRepository movieRepository;
         private IShowRepository showRepository;
+        private ITicketRepository ticketRepository;
+        //need ticketRepo for secret movie;
 
-        public UpcomingShowController(IMovieOverviewRepository movieRepository, IShowRepository showRepository)
+        public UpcomingShowController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
+            this.ticketRepository = ticketRepository;
         }
 
         // GET: UpcomingShow
-        public ActionResult UpcomingShows()
+        public ActionResult Upcoming()
         {
 
             DateTime now = DateTime.Now;
-            DateTime EndOfDay = DateTime.Today.AddDays(1).AddHours(2); //needs a change  
+            DateTime EndOfDay = DateTime.Today.AddDays(1) +new TimeSpan(02,00,00); //probably correct 
         
             List<Show> allShows = showRepository.GetShows().ToList();
 
@@ -33,23 +36,16 @@ namespace WebUI.Controllers
             List<Show> ShowsFromNow = allShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
 
-
+            //List<Show> secretMovie = allShows.ToEnumerable().OrderBy(s => )
 
             //Order by show date -> newest first
             List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
                 .OrderBy(s => s.BeginTime).ToList();
 
             //takes shows form current workday
-            List<Show> ShowsFromNowOrderedTillEndDayByDate = ShowsFromNow.ToEnumerable()
+            List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < EndOfDay).ToList();
             
-
-            List<Movie> ShowsMovies = new List<Movie>();
-
-            foreach (Show s in ShowsFromNowOrderedTillEndDayByDate)
-            {
-                ShowsMovies.Add(s.Movie);
-            }
 
             DateTime today = DateTime.Now;
             string DayOfWeek = today.DayOfWeek.ToString();
@@ -57,18 +53,14 @@ namespace WebUI.Controllers
             DateTime time = DateTime.Now;
             string HourOfDay = time.Hour.ToString();
             string MinuteOfDay = time.Minute.ToString();
-
-            ViewBag.Movies = ShowsMovies;
-            ViewBag.Shows = ShowsFromNowOrderedTillEndDayByDate;
+            string Location = "Cinemapolis";
+            
             ViewBag.DayOfWeek = DayOfWeek;
             ViewBag.HourOfDay = HourOfDay;
             ViewBag.MinuteOfDay = MinuteOfDay;
-
-            //TempData["model"] = model;
-
-            //return View(model);
-
-            return View();
+            ViewBag.Location = Location;
+            //will become upcomingShows
+            return View(allShows);
         }
     }
 }

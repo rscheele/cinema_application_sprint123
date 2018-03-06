@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Domain.Entities.Show>
+
+@{
+    ViewBag.Title = "Overzicht van eerstkomende films";
+}
+<div class="text-center">
+    <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
+    <h3>Huidige tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
+    <hr />
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            <p>Naam film:</p>
+        </th>
+        <th>
+            <p>3D:</p>
+        </th>
+        <th>
+            <p>Taal:</p>
+        </th>
+        <th>
+            <p>Ondertiteling:</p>
+        </th>
+        <th>
+            <p>Lengte:</p>
+        </th>
+        <th>
+            <p>Zaal:</p>
+        </th>
+        <th>
+            <p>Aanvangtijd:</p>
+        </th>
+        <th>
+            <p>Eindtijd:</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.Is3D)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.Language)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.LanguageSub)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.RoomID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.ActionLink("Bestel", "Bestel", new {id=item.ShowID })
+        </td>
+    </tr>
+}
+
+</table>

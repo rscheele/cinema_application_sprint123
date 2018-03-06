@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("Location")]
     public class Location
     {
 
@@ -24,9 +23,9 @@ namespace Domain.Entities
         public string City { get; set; }
         public int Rooms { get; set; }
         public decimal TicketPrice { get; set; }
-        public decimal ChildDiscount { get; set; }
-        public decimal StudentDiscount { get; set; }
-        public decimal SeniorDiscount { get; set; }
-        public decimal CJPDiscount { get; set; }
+        //public decimal ChildDiscount { get; set; }
+        //public decimal StudentDiscount { get; set; }
+        //public decimal SeniorDiscount { get; set; }
+        //public decimal CJPDiscount { get; set; }
     }
 }

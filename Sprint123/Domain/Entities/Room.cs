@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("Room")]
     public class Room
     {
 
@@ -17,13 +16,13 @@ namespace Domain.Entities
         }
 
         [Key]
-        public int RoomID { get; set; }
-        public int RoomNumber { get; set; }
+        public int? RoomID { get; set; }
+        public int? RoomNumber { get; set; }
         public int LayoutID { get; set; }
         public int LocationID { get; set; }
 
-        ///[ForeignKey("LayoutID")]
-        //public virtual RoomLayout Layout { get; set; }
+        [ForeignKey("LayoutID")]
+        public virtual RoomLayout Layout { get; set; }
 
         [ForeignKey("LocationID")]
         public virtual Location Location { get; set; }

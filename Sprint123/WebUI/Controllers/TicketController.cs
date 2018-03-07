@@ -96,13 +96,13 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult AddPopcorn(IEnumerable<Ticket> tickets)
         {
-            foreach (var item in tickets)
+            /*foreach (var item in tickets)
             {
                 if (item.Popcorn == true)
                 {
                     item.Price = item.Price + 5;
                 }
-            }
+            }*/
             return RedirectToAction("Payment", "Payment");
         }
 

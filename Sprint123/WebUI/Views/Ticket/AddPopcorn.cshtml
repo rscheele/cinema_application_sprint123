@@ -9,7 +9,7 @@
         <h2>Popcorn!</h2><br />
         <p>Voor €5,- krijg je popcorn + fris! Normaal kost dit €6,-!</p><br />
         <p>Kies de tickets waarvoor je het popcorn arrangement wilt bestellen.</p><br />
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("AddPopcorn", "Ticket", FormMethod.Post))
         {
             <table>
                 <tr>

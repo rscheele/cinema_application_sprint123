@@ -65,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.ActionLink("Bestel", "Bestel", new {id=item.ShowID })
+            @Html.ActionLink("Bestel", "OrderTickets", "Ticket", null, null)
         </td>
     </tr>
 }

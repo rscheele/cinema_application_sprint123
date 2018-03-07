@@ -23,6 +23,7 @@ namespace WebUI.Controllers
             this.ticketRepository = ticketRepository;
         }
 
+        [HttpGet]
         // GET: UpcomingShow
         public ActionResult Upcoming()
         {

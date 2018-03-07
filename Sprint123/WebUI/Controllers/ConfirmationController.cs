@@ -6,14 +6,12 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class ConfirmationController : Controller
     {
-        // GET: Home
-        public ViewResult Index()
+        // GET: Confirmation
+        public ActionResult Confirm()
         {
             return View();
         }
-
-
     }
 }

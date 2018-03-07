@@ -6,14 +6,12 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class SeatSelectionController : Controller
     {
-        // GET: Home
-        public ViewResult Index()
+        [HttpGet]
+        public ActionResult SelectSeats()
         {
             return View();
         }
-
-
     }
 }

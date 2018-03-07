@@ -180,7 +180,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business_Logic\MovieOverview.cs" />
     <Compile Include="Business_Logic\MovieType.cs" />
+    <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\SeatSelectionController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UpcomingShowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +210,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UpcomingShow\Upcoming.cshtml" />
+    <Content Include="Views\Ticket\OrderTickets.cshtml" />
+    <Content Include="Views\Ticket\AddPopcorn.cshtml" />
+    <Content Include="Views\SeatSelection\SelectSeats.cshtml" />
+    <Content Include="Views\Confirmation\Confirm.cshtml" />
+    <Content Include="Views\Payment\Payment.cshtml" />
+    <Content Include="Views\Payment\Succes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -15,7 +15,6 @@ namespace Domain.Entities
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        [Column(Order = 0)]
         public int TicketID { get; set; }
         public decimal Price { get; set; }
         public string TicketType { get; set; }//could be enum

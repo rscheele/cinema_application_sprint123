@@ -31,6 +31,14 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult OrderTickets(Order order)
         {
+            TempData["Order"] = order;
+            return RedirectToAction("AddPopcorn"); ;
+        }
+
+        [HttpGet]
+        public ActionResult AddPopcorn()
+        {
+            Order order = (Order)TempData["Order"];
             Show selectedShow = (Show)TempData["Show"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
             List<Ticket> tickets = new List<Ticket>();
@@ -82,20 +90,20 @@ namespace WebUI.Controllers
                 ticket.TicketType = "Senior";
                 tickets.Add(ticket);
             }
-            //TempData["Tickets"] = tickets;
-            return View("AddPopcorn", tickets); ;
-        }
-
-        [HttpGet]
-        public ActionResult AddPopcorn()
-        {
-            return View("AddPopcorn");
+            return View("AddPopcorn", tickets);
         }
 
         [HttpPost]
-        public ActionResult AddPopcorn(Ticket ticket)
+        public ActionResult AddPopcorn(IEnumerable<Ticket> tickets)
         {
-            return View("AddPopcorn");
+            foreach (var item in tickets)
+            {
+                if (item.Popcorn == true)
+                {
+                    item.Price = item.Price + 5;
+                }
+            }
+            return RedirectToAction("Payment", "Payment");
         }
 
         public List<decimal> calculatePrices(Show show)

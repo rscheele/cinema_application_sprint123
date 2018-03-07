@@ -4,6 +4,39 @@
     ViewBag.Title = "AddPopcorn";
 }
 
-<h2>AddPopcorn</h2>
-
-@Html.ActionLink("Voeg Popcorn toe!", "SelectSeats", "SeatSelection", null, null)
+<body>
+    <div class="text-center">
+        <h2>Popcorn!</h2><br />
+        <p>Voor €5,- krijg je popcorn + fris! Normaal kost dit €6,-!</p><br />
+        <p>Kies de tickets waarvoor je het popcorn arrangement wilt bestellen.</p><br />
+        @using (Html.BeginForm())
+        {
+            <table>
+                <tr>
+                    <th scope="col">TicketID</th>
+                    <th scope="col">Prijs</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Popcorn?</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketType)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(modelItem => item.Popcorn)
+                    </td>
+                </tr>
+                }
+            </table>
+            <input type="submit" value="Voeg toe!" />
+        }
+    </div>
+</body>

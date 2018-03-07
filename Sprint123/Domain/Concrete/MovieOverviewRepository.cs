@@ -14,13 +14,13 @@ namespace Domain.Concrete
 
         public MovieOverviewRepository() { }
 
-        public virtual List<Movie> getMovieList()
+        public virtual List<Entities.Boolean> getMovieList()
         {
-            List<Movie> list = context.Movies.ToList();
+            List<Entities.Boolean> list = context.Movies.ToList();
             List<Show> showsList = context.Shows.ToList();
-            List<Movie> retList = new List<Movie>();
+            List<Entities.Boolean> retList = new List<Entities.Boolean>();
 
-            foreach (Movie f in list)
+            foreach (Entities.Boolean f in list)
             {
                 Show s = showsList.Where(sh => sh.MovieID == f.MovieID && sh.BeginTime >= DateTime.Now).
                     FirstOrDefault();
@@ -75,7 +75,7 @@ namespace Domain.Concrete
             return newDate;
         }
 
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<Entities.Boolean> GetMovies()
         {
             return context.Movies;
         }

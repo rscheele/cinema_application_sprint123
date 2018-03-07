@@ -69,20 +69,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IMovieOverviewRepository.cs" />
-    <Compile Include="Abstract\IPriceRepository.cs" />
     <Compile Include="Abstract\IReservationRepository.cs" />
     <Compile Include="Abstract\IShowRepository.cs" />
     <Compile Include="Abstract\ITicketRepository.cs" />
     <Compile Include="Concrete\CinemaInitializer.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\MovieOverviewRepository.cs" />
-    <Compile Include="Concrete\PriceRepository.cs" />
     <Compile Include="Concrete\ReservationRepository.cs" />
     <Compile Include="Concrete\ShowRepository.cs" />
     <Compile Include="Concrete\TicketRepository.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Location.cs" />
-    <Compile Include="Entities\Price.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\RoomLayout.cs" />

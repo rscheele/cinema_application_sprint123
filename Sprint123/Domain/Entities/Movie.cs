@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Movie
+    public class Boolean
     {
 
-        public Movie()
+        public Boolean()
         {
 
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Domain.Concrete
 {
     public class EFDbContext : DbContext {
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Entities.Boolean> Movies { get; set; }
         public DbSet<Show> Shows { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
@@ -17,7 +17,6 @@ namespace Domain.Concrete
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Price> Prices { get; set; }
 
         public EFDbContext() : base("EFDbContext"){
         

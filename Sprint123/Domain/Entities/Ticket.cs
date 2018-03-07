@@ -14,19 +14,20 @@ namespace Domain.Entities
 
         }
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Column(Order = 0)]
         public int TicketID { get; set; }
         public decimal Price { get; set; }
-        public int TicketType { get; set; }//could be enum
-        public decimal Discount { get; set; }
+        public string TicketType { get; set; }//could be enum
         public bool IsPaid { get; set; }
-
         public int? SeatID { get; set; }
         public int? ShowID { get; set; }
 
         [ForeignKey("SeatID")]
-        public virtual Seat seat { get; set; }
+        public virtual Seat Seat { get; set; }
         [ForeignKey("ShowID")]
-        public virtual Show show { get; set; }
+        public virtual Show Show { get; set; }
+        public bool Popcorn { get; set; }
 
 
     }

@@ -106,7 +106,7 @@ namespace Domain.Concrete
             /* -----------start of table creation------------*/
             var tickets = new List<Ticket>
             {
-            new Ticket{Price=12.00M,TicketType=1,Discount=0.00M,IsPaid=true,SeatID=1,ShowID=1}
+            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,SeatID=1,ShowID=1}
             };
 
             tickets.ForEach(s => context.Tickets.Add(s));

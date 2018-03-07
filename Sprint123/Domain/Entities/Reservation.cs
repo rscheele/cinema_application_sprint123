@@ -16,8 +16,10 @@ namespace Domain.Entities
         }
         
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Column(Order = 0)]
         public int ReservationID { get; set; }
-        public Movie BookedMovie { get; set; }
+        public Show BookedShow { get; set; }
         public List<Ticket> Ticket { get; set; }
         public string Time { get; set; }
 

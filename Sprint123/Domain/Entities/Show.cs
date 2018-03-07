@@ -25,7 +25,7 @@ namespace Domain.Entities
         public int? MovieID { get; set; }
 
         [ForeignKey("MovieID")]
-        public virtual Boolean Movie { get; set; }
+        public virtual Movie Movie { get; set; }
 
         public int? RoomID { get; set; }
 
@@ -35,12 +35,5 @@ namespace Domain.Entities
         public bool ChildDiscount { get; set; }
         public bool StudentDiscount { get; set; }
         public bool SeniorDiscount { get; set; }
-
-        public bool threeD { get; set; }
-
-        public bool Popcorn { get; set; }
-
-        public bool longFilm { get; set; }
-
     }
 }

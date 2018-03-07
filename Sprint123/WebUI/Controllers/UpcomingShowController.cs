@@ -23,7 +23,6 @@ namespace WebUI.Controllers
             this.ticketRepository = ticketRepository;
         }
 
-        [HttpGet]
         // GET: UpcomingShow
         public ActionResult Upcoming()
         {
@@ -62,6 +61,14 @@ namespace WebUI.Controllers
             ViewBag.Location = Location;
             //will become upcomingShows
             return View(allShows);
+        }
+
+        public ActionResult OrderMovie(int id)
+        {
+            List<Show> allShows = showRepository.GetShows().ToList();
+            Show orderedShow = allShows.Find(r => r.ShowID == id);
+            TempData["Show"] = orderedShow;
+            return RedirectToAction("OrderTickets", "Ticket");
         }
     }
 }

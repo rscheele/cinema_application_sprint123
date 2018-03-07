@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.Ticket
+﻿@model IEnumerable<Domain.Entities.Show>
 
 @{
     ViewBag.Title = "OrderTickets";
@@ -6,6 +6,7 @@
 
 <h2>OrderTickets</h2>
 
+Movie name: @ViewBag.movieId </br>
 @Html.ActionLink("Bestellen", "AddPopcorn", "Ticket", null, null)
 
 

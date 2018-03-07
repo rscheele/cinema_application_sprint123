@@ -16,7 +16,7 @@ namespace Domain.Entities
         }
         
         [Key]
-        public string ReservationID { get; set; }
+        public int ReservationID { get; set; }
         public Movie BookedMovie { get; set; }
         public List<Ticket> Ticket { get; set; }
         public string Time { get; set; }

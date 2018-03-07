@@ -8,18 +8,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
-    public class Reservation
+    public class Price
     {
-        public Reservation()
+        public Price()
         {
 
         }
-        
+
         [Key]
-        public string ReservationID { get; set; }
-        public Movie BookedMovie { get; set; }
-        public List<Ticket> Ticket { get; set; }
-        public string Time { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public double Amount { get; set; }
+        public string Description { get; set; }
 
     }
 }

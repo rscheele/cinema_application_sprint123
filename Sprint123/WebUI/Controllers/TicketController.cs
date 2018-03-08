@@ -101,16 +101,13 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        //public ActionResult AddPopcorn(model)
-        public ActionResult AddPopcorn(IEnumerable<Ticket> model)
+        public ActionResult AddPopcorn(List<Ticket> tickets)
         {
-            IEnumerable<Ticket> modelx = (IEnumerable <Ticket>)TempData["tickets"];
-
-            foreach (var item in modelx)
+            foreach (var item in tickets)
             {
                 if (item.Popcorn == true)
                 {
-                    item.Price = item.Price + 5;
+                    item.Price = item.Price + 5M;
                 }
             }
             return RedirectToAction("Payment", "Payment");

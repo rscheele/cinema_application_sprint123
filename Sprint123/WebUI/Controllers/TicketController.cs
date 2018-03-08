@@ -96,23 +96,19 @@ namespace WebUI.Controllers
                 ticket.TicketType = "Senior";
                 tickets.Add(ticket);
             }
-            TempData["tickets"] = tickets;
             return View("AddPopcorn", tickets);
         }
 
         [HttpPost]
-        //public ActionResult AddPopcorn(model)
-        public ActionResult AddPopcorn(IEnumerable<Ticket> model)
+        public ActionResult AddPopcorn(List<Ticket> model)
         {
-            IEnumerable<Ticket> modelx = (IEnumerable <Ticket>)TempData["tickets"];
-
-            foreach (var item in modelx)
+            /*foreach (var item in model)
             {
                 if (item.Popcorn == true)
                 {
                     item.Price = item.Price + 5;
                 }
-            }
+            }*/
             return RedirectToAction("Payment", "Payment");
         }
 

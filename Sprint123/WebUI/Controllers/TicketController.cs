@@ -11,6 +11,12 @@ namespace WebUI.Controllers
 {
     public class TicketController : Controller
     {
+        private ITicketRepository ticketRepository;
+
+        public TicketController(ITicketRepository ticketRepository)
+        {
+            this.ticketRepository = ticketRepository;
+        }
 
         [HttpGet]
         public ActionResult OrderTickets()
@@ -90,19 +96,23 @@ namespace WebUI.Controllers
                 ticket.TicketType = "Senior";
                 tickets.Add(ticket);
             }
+            TempData["tickets"] = tickets;
             return View("AddPopcorn", tickets);
         }
 
         [HttpPost]
-        public ActionResult AddPopcorn(IEnumerable<Ticket> tickets)
+        //public ActionResult AddPopcorn(model)
+        public ActionResult AddPopcorn(IEnumerable<Ticket> model)
         {
-            /*foreach (var item in tickets)
+            IEnumerable<Ticket> modelx = (IEnumerable <Ticket>)TempData["tickets"];
+
+            foreach (var item in modelx)
             {
                 if (item.Popcorn == true)
                 {
                     item.Price = item.Price + 5;
                 }
-            }*/
+            }
             return RedirectToAction("Payment", "Payment");
         }
 
@@ -165,5 +175,6 @@ namespace WebUI.Controllers
             tariffs.Add(senior);
             return tariffs;
         }
+
     }
 }

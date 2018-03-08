@@ -9,6 +9,6 @@ namespace Domain.Abstract
 {
     public interface IReservationRepository
     {
-        IEnumerable<Reservation> GetReservation();
+        IEnumerable<Reservation> GetReservations();
     }
 }

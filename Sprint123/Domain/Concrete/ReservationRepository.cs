@@ -12,9 +12,9 @@ namespace Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Reservation> GetReservation()
+        public IEnumerable<Reservation> GetReservations()
         {
-            throw new NotImplementedException();
+            return context.Reservations;
         }
     }
 }

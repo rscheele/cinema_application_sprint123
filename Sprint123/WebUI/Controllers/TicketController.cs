@@ -11,6 +11,12 @@ namespace WebUI.Controllers
 {
     public class TicketController : Controller
     {
+        private ITicketRepository ticketRepository;
+
+        public TicketController(ITicketRepository ticketRepository)
+        {
+            this.ticketRepository = ticketRepository;
+        }
 
         [HttpGet]
         public ActionResult OrderTickets()
@@ -94,9 +100,9 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPopcorn(IEnumerable<Ticket> tickets)
+        public ActionResult AddPopcorn(List<Ticket> model)
         {
-            /*foreach (var item in tickets)
+            /*foreach (var item in model)
             {
                 if (item.Popcorn == true)
                 {
@@ -165,5 +171,6 @@ namespace WebUI.Controllers
             tariffs.Add(senior);
             return tariffs;
         }
+
     }
 }

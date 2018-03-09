@@ -9,9 +9,9 @@ namespace Domain.Abstract
 {
     public interface IMovieOverviewRepository
     {
-        List<Entities.Movie> getMovieList();
+        List<Movie> getMovieList();
         List<Show> getShowList();
         List<Show> getShowbyId(int id);
-        IEnumerable<Entities.Movie> GetMovies();
+        IEnumerable<Movie> GetMovies();
     }
 }

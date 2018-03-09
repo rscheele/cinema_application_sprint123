@@ -96,20 +96,23 @@ namespace WebUI.Controllers
                 ticket.TicketType = "Senior";
                 tickets.Add(ticket);
             }
+            TempData["Tickets"] = tickets;
             return View("AddPopcorn", tickets);
         }
 
         [HttpPost]
-        public ActionResult AddPopcorn(List<Ticket> model)
+        public ActionResult AddPopcorn(List<Ticket> tickets)
         {
-            /*foreach (var item in model)
+            List<Ticket> ticketList = (List<Ticket>)TempData["Tickets"];
+            for (int i = 0; i < tickets.Count; i++)
             {
-                if (item.Popcorn == true)
+                if (tickets[i].Popcorn == true)
                 {
-                    item.Price = item.Price + 5;
+                    ticketList[i].Price = ticketList[i].Price + 5M;
+                    ticketList[i].Popcorn = true;
                 }
-            }*/
-            return RedirectToAction("Payment", "Payment");
+            }
+            return RedirectToAction("Payment", "Payment", ticketList);
         }
 
         public List<decimal> calculatePrices(Show show)

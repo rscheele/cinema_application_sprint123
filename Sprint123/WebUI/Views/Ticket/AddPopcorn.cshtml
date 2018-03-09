@@ -1,4 +1,4 @@
-﻿@model List<Domain.Entities.Ticket>
+﻿@model  List<Domain.Entities.Ticket>
 
 @{
     ViewBag.Title = "AddPopcorn";
@@ -18,23 +18,24 @@
                     <th scope="col">Type</th>
                     <th scope="col">Popcorn?</th>
                 </tr>
-                @foreach (var item in Model)
+                @for(int i=0; i < Model.Count; i++)
                 {
-                <tr>
+                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TicketID)
+                        @Html.DisplayFor(x => Model[i].TicketID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(x => Model[i].Price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TicketType)
+                        @Html.DisplayFor(x => Model[i].TicketType)
                     </td>
                     <td>
-                        @Html.CheckBoxFor(modelItem => item.Popcorn)
+                        @Html.CheckBoxFor(x => Model[i].Popcorn)
                     </td>
-                </tr>
-                }
+                 </tr>
+               }
+               
             </table>
             <input type="submit" value="Voeg toe!" />
         }

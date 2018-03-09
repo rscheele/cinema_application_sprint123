@@ -10,7 +10,7 @@
         @using (Html.BeginForm())
         {
             <p>Voer je reservatie ID in</p>
-            <input type="number" name="reservationID" />
+            <input type="number" name="reservationID" min="0" max="99999999999999" required/>
             <input type="submit" />
         }
     </div>

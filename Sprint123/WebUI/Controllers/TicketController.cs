@@ -48,15 +48,20 @@ namespace WebUI.Controllers
             Show selectedShow = (Show)TempData["Show"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
             List<Ticket> tickets = new List<Ticket>();
+            // Generate ReservationID for reservation based on date and time
+            DateTime dateTime = DateTime.Now;
+            int year = dateTime.Year;
+            int doy = dateTime.DayOfYear;
+            int hour = dateTime.Hour;
+            int minute = dateTime.Minute;
+            int ms = dateTime.Millisecond;
+            long reservationID = long.Parse(year.ToString() + doy.ToString().PadLeft(3, '0') + hour.ToString().PadLeft(2, '0') + minute.ToString().PadLeft(2, '0') + ms.ToString().PadLeft(3, '0'));
+
             // Add normal tickets
             for (int i = 0; i < order.normalTickets; i++)
             {
                 Ticket ticket = new Ticket();
-                ticket.Show = selectedShow;
                 ticket.Price = tarrifs[0];
-                ticket.IsPaid = false;
-                ticket.Popcorn = false;
-                ticket.SeatID = 0;
                 ticket.TicketType = "Normal";
                 tickets.Add(ticket);
             }
@@ -64,11 +69,7 @@ namespace WebUI.Controllers
             for (int i = 0; i < order.childTickets; i++)
             {
                 Ticket ticket = new Ticket();
-                ticket.Show = selectedShow;
                 ticket.Price = tarrifs[1];
-                ticket.IsPaid = false;
-                ticket.Popcorn = false;
-                ticket.SeatID = 0;
                 ticket.TicketType = "Child";
                 tickets.Add(ticket);
             }
@@ -76,11 +77,7 @@ namespace WebUI.Controllers
             for (int i = 0; i < order.studentTickets; i++)
             {
                 Ticket ticket = new Ticket();
-                ticket.Show = selectedShow;
                 ticket.Price = tarrifs[2];
-                ticket.IsPaid = false;
-                ticket.Popcorn = false;
-                ticket.SeatID = 0;
                 ticket.TicketType = "Student";
                 tickets.Add(ticket);
             }
@@ -88,13 +85,18 @@ namespace WebUI.Controllers
             for (int i = 0; i < order.seniorTickets; i++)
             {
                 Ticket ticket = new Ticket();
-                ticket.Show = selectedShow;
                 ticket.Price = tarrifs[3];
-                ticket.IsPaid = false;
-                ticket.Popcorn = false;
-                ticket.SeatID = 0;
                 ticket.TicketType = "Senior";
                 tickets.Add(ticket);
+            }
+            // Set the other values
+            foreach (var item in tickets)
+            {
+                item.Show = selectedShow;
+                item.IsPaid = false;
+                item.Popcorn = false;
+                item.SeatID = 0;
+                item.ReservationID = reservationID;
             }
             TempData["Tickets"] = tickets;
             return View("AddPopcorn", tickets);

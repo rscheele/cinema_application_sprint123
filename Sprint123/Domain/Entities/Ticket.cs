@@ -16,12 +16,12 @@ namespace Domain.Entities
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int TicketID { get; set; }
+        public long ReservationID { get; set; }
         public decimal Price { get; set; }
         public string TicketType { get; set; }//could be enum
         public bool IsPaid { get; set; }
         public int? SeatID { get; set; }
         public int? ShowID { get; set; }
-
         [ForeignKey("SeatID")]
         public virtual Seat Seat { get; set; }
         [ForeignKey("ShowID")]

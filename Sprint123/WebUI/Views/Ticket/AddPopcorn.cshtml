@@ -20,12 +20,12 @@
                 </tr>
                 @for(int i=0; i < Model.Count; i++)
                 {
-                 <tr>
+                <tr>
                     <td>
                         @Html.DisplayFor(x => Model[i].TicketID)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => Model[i].Price)
+                        €@Html.DisplayFor(x => Model[i].Price)
                     </td>
                     <td>
                         @Html.DisplayFor(x => Model[i].TicketType)
@@ -33,7 +33,10 @@
                     <td>
                         @Html.CheckBoxFor(x => Model[i].Popcorn)
                     </td>
-                 </tr>
+                    <td>
+                        + €5,-
+                    </td>
+                </tr>
                }
                
             </table>

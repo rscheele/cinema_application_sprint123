@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\SeatSelectionController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -226,6 +227,9 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Succes.cshtml" />
     <Content Include="Views\Summary\SummaryView.cshtml" />
+    <Content Include="Views\Reservation\Reservation.cshtml" />
+    <Content Include="Views\Reservation\DisplayReservation.cshtml" />
+    <Content Include="Views\Reservation\NoReservationFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

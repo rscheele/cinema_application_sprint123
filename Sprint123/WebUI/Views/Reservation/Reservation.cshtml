@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Reservation";
+}
+
+<body>
+    <div class="text-center">
+        <h2>Reservation</h2><br />
+        <p>Haal je thuis bestelde tickets op met de reservatie ID!</p>
+        @using (Html.BeginForm())
+        {
+            <p>Voer je reservatie ID in</p>
+            <input type="number" name="reservationID" />
+            <input type="submit" />
+        }
+    </div>
+</body>
+
+

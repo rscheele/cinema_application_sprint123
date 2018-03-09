@@ -12,9 +12,17 @@ namespace Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Ticket> GetTickets()
+        public IEnumerable<Ticket> GetTickets(long reservationID)
         {
-            return context.Tickets;
+            List<Ticket> list = context.Tickets.Where(x => x.ReservationID == reservationID).ToList();
+            if (list != null)
+            {
+                return list;
+            } else
+            {
+                return null;
+            }
+            
         }
     }
         

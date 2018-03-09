@@ -9,6 +9,6 @@ namespace Domain.Abstract
 {
     public interface ITicketRepository
     {
-        IEnumerable<Ticket> GetTickets();
+        IEnumerable<Ticket> GetTickets(long reservationID);
     }
 }

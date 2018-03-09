@@ -1,0 +1,48 @@
+﻿@model  IEnumerable<Domain.Entities.Ticket>
+
+@{
+    ViewBag.Title = "DisplayTicket";
+}
+
+<body>
+    <div class="text-center">
+        <h2>Dit is jullie reservatie!</h2><br />
+        <p>
+            Jullie hebben gereserveert voor @Html.DisplayFor(x => Model.First().Show.Movie.Name)
+            Op datum @Html.DisplayFor(x => Model.First().Show.BeginTime.Date)
+            Deze film begint om @Html.DisplayFor(x => Model.First().Show.BeginTime.TimeOfDay)
+            En eindigt om @Html.DisplayFor(x => Model.First().Show.EndTime.TimeOfDay)
+        </p>
+        <table>
+            <tr>
+                <th scope="col">TicketID</th>
+                <th scope="col">Prijs</th>
+                <th scope="col">Type</th>
+                <th scope="col">Popcorn inbegrepen?</th>
+                <th scope="col">Stoelnummer</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.TicketID)
+                </td>
+                <td>
+                    €@Html.DisplayFor(x => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.TicketType)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Popcorn)
+                </td>
+                <td>
+                    0
+                </td>
+            </tr>
+            }
+        </table>
+        @Html.ActionLink("Klik hier om te printen (NYI)", "Index", "Home", null, null)
+    </div>
+</body>
+

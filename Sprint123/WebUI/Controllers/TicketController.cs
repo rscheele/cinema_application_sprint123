@@ -114,7 +114,8 @@ namespace WebUI.Controllers
                     ticketList[i].Popcorn = true;
                 }
             }
-            return RedirectToAction("Payment", "Payment", ticketList);
+            TempData["TicketList"] = ticketList;
+            return RedirectToAction("SummaryView", "Summary", ticketList);
         }
 
         public List<decimal> calculatePrices(Show show)

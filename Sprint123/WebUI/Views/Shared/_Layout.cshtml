@@ -6,10 +6,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/footer-fixed.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/menu.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,20 +22,37 @@
                 @Html.ActionLink("Avans Cinema", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
-    </div>
+    </div>*@
+    <!--Begin Avans nav bar-->
+    <nav class="nav-avans">
+        <div class="container">
+            @Html.ActionLink("Avans Cinema", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <ul class="global-links">
+                <li>
 
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--End Avans nav bar-->
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - IVH15</p>
-        </footer>
+        </footer>*@
     </div>
-
+    <!-- Begin Footer Avans -->
+    <footer class="social">
+        <div class="container">
+            <p class="copyright">&copy; @DateTime.Now.Year - IVH15</p>
+            <a href="/"><img src="~/Content/footer-logo90x30.png" alt="Avans Hogeschool" class="footerlogo" /></a>
+        </div>
+    </footer>
+    <!-- End Footer Avans-->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

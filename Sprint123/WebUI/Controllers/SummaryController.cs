@@ -15,6 +15,7 @@ namespace WebUI.Controllers
         // GET: Summary
         public ActionResult SummaryView()
         {
+            List<Ticket> ticketList = (List<Ticket>)TempData["TicketList"];
             CinemaViewModel model = (CinemaViewModel)TempData["model"];
 
             var context = new EFDbContext();

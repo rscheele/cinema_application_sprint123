@@ -17,5 +17,11 @@ namespace WebUI.Models
             this.Y = y;
             this.X = x;
         }
+
+        public int GetSeatNumber(RoomLayout layout)
+        {
+            int rowSeats = Y > layout.FrontY - 1 ? layout.BackX : layout.FrontX;
+            return (Y * rowSeats) + X + 1; // + 1 because the first seat is seat 0 in the code and needs to be seat 1
+        }
     }
 }

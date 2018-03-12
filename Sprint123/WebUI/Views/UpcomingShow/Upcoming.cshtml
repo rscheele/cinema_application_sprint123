@@ -4,9 +4,11 @@
     ViewBag.Title = "Overzicht van eerstkomende films";
 }
 <div class="text-center">
-    <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
-    <h3>Huidige tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
-    <hr />
+    <p>
+        <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
+        <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
+        <hr />
+    </p>
 </div>
 
 <table class="table">
@@ -37,7 +39,42 @@
         </th>
         <th></th>
     </tr>
-
+    <tr>
+        <td>
+            <p>?</p>
+        </td>
+        <td>
+            @if (@ViewBag.threed == false)
+        {
+            <input class="check-box" disabled="disabled" type="checkbox" />
+    }
+    else
+    {
+        <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+}
+        </td>
+        <td>
+            <p>@ViewBag.language</p>
+        </td>
+        <td>
+            <p>@ViewBag.sublanguage</p>
+        </td>
+        <td>
+            <p>@ViewBag.length</p>
+        </td>
+        <td>
+            <p>@ViewBag.room</p>
+        </td>
+        <td>
+            <p>@ViewBag.begintime</p>
+        </td>
+        <td>
+            <p>@ViewBag.endtime</p>
+        </td>
+        <td>
+            <a href=@ViewBag.showid>Bestel</a>
+        </td>
+    </tr>
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -65,7 +102,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.ActionLink("Bestel", "OrderMovie", "UpcomingShow", new { id = item.ShowID}, null)
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)'">Bestel</button>
         </td>
     </tr>
 }

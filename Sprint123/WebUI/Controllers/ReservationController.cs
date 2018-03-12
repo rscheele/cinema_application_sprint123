@@ -1,5 +1,7 @@
 ﻿using Domain.Abstract;
+using Domain.Concrete;
 using Domain.Entities;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,12 +45,21 @@ namespace WebUI.Controllers
                     item.Show = orderedShow;
                 }
 
+                TempData["Tickets"] = tickets;
                 return View("DisplayReservation", tickets);
             }
             else
             {
                 return View("NoReservationFound");
             }
+        }
+
+        [HttpGet]
+        public ActionResult PrintTickets()
+        {
+            List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
+            var pdf = new PrintTickets(tickets);
+            return pdf.SendPdf();
         }
     }
 }

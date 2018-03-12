@@ -9,6 +9,12 @@ namespace WebUI.Models
 {
     public class AutomaticSeatSelection
     {
+        public List<String> debug { get; set; }
+
+        public AutomaticSeatSelection()
+        {
+            debug = new List<String>();
+        }
 
         public enum OccupyType
         {

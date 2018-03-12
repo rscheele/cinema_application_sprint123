@@ -1,5 +1,4 @@
 ﻿@model WebUI.Models.CinemaViewModel
-@model IEnumerable<Domain.Entities.Show>
 @using WebUI.Models
 @{
     ViewBag.Title = "SummaryView";
@@ -9,15 +8,71 @@
 <head>
 </head>
 <body>
-    <h2>Overzicht en stoelselectie</h2>
     <div class="container">
-        <div class="row">
+        <div class="row row_padding">
+            @Html.Partial("~/Views/Shared/_FilmImgTitle.cshtml")
+            <div class="col-xs-4">
+
+                <h2><u>@ViewBag.MovieName</u></h2>
+
+            </div>
+            <div class="col-xs-4 text-center" style="margin-top:50px;">
+                <p>O = Vrije stoel, X = Bezette stoel, V = Geselecteerde stoel</p>
+
+                @{
+
+
+                    int x = 0, y = 0;
+                    foreach (List<AutomaticSeatSelection.OccupyType> rowList in Model.SeatSelectionGUI)
+                    {
+
+                        // null means empty row, to seperate front and back rows
+                        if (rowList == null)
+                        {
+                            <p></p>
+                            continue;
+                        }
+
+                        String str = "";
+
+                        foreach (AutomaticSeatSelection.OccupyType ot in rowList)
+                        {
+
+                            switch (ot)
+                            {
+                                case AutomaticSeatSelection.OccupyType.Occupied: <p class="clr_occupied">X</p>; break;
+                                case AutomaticSeatSelection.OccupyType.Selected:
+                                    {
+                                        <p class="clr_selected">V</p>;
+                                        break;
+                                    }
+                                case AutomaticSeatSelection.OccupyType.Unoccupied: <a href="#" onclick="location.href='@Url.Action("SelectSeat", "Summary", new {y = @y, x = @x})'">
+                    <p class="clr_unoccupied">O</p>
+                </a>; break;
+                                default: str += "ERROR"; break;
+                            }
+                            x++;
+                        }
+                        y++;
+                        x = 0;
+                        <p></p>
+                    }
+                }
+            </div>
+
+  
+
+        </div>
+
+        <div class="row text-right button_padding">
+
+            <div class="col-xs-10"></div>
+            <div class="col-xs-2">
+            </div>
         </div>
     </div>
 </body>
 </html>
-
-<h2>SummaryView</h2>
 
 
 

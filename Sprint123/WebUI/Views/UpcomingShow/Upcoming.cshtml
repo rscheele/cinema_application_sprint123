@@ -39,7 +39,42 @@
         </th>
         <th></th>
     </tr>
-
+    <tr>
+        <td>
+            <p>?</p>
+        </td>
+        <td>
+            @if (@ViewBag.threed == false)
+        {
+            <input class="check-box" disabled="disabled" type="checkbox" />
+    }
+    else
+    {
+        <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+}
+        </td>
+        <td>
+            <p>@ViewBag.language</p>
+        </td>
+        <td>
+            <p>@ViewBag.sublanguage</p>
+        </td>
+        <td>
+            <p>@ViewBag.length</p>
+        </td>
+        <td>
+            <p>@ViewBag.room</p>
+        </td>
+        <td>
+            <p>@ViewBag.begintime</p>
+        </td>
+        <td>
+            <p>@ViewBag.endtime</p>
+        </td>
+        <td>
+            <a href=@ViewBag.showid>Bestel</a>
+        </td>
+    </tr>
 @foreach (var item in Model) {
     <tr>
         <td>

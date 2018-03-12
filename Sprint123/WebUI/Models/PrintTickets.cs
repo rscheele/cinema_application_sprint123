@@ -45,7 +45,7 @@ namespace WebUI.Controllers
                 }
                 first = false;
                 // Location
-                addText(location, largeFont);
+                addText("Locatie: " + location, largeFont);
 
                 AddEmptyLine();
                 AddEmptyLine();

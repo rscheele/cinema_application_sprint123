@@ -13,7 +13,7 @@
             Deze film begint om @Html.DisplayFor(x => Model.First().Show.BeginTime.TimeOfDay)
             En eindigt om @Html.DisplayFor(x => Model.First().Show.EndTime.TimeOfDay)
         </p>
-        <table>
+        <table align="center">
             <tr>
                 <th scope="col">TicketID</th>
                 <th scope="col">Prijs</th>
@@ -22,7 +22,7 @@
                 <th scope="col">Stoelnummer</th>
             </tr>
             @foreach (var item in Model)
-            {
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(x => item.TicketID)
@@ -40,9 +40,11 @@
                     0
                 </td>
             </tr>
-            }
+    }
         </table>
-        @Html.ActionLink("Klik hier om te printen (NYI)", "Index", "Home", null, null)
+        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("PrintTickets", "Reservation")'">Print je tickets!</button>
+
+        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Index", "Home")'">Homepage</button>
     </div>
 </body>
 

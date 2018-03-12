@@ -6,41 +6,43 @@
 
 <body>
     <div class="text-center">
-        <h2>Popcorn!</h2><br />
-        <p>Voor €5,- krijg je popcorn + fris! Normaal kost dit €6,-!</p><br />
-        <p>Kies de tickets waarvoor je het popcorn arrangement wilt bestellen.</p><br />
+        <p>
+            <h2>Voeg popcorn toe!</h2><br />
+            <p>Voor €5,- krijg je popcorn + fris! Los kost dit €6,-!</p><br />
+            <p>Kies bij welke tickets je popcorn wilt toevoegen.</p><br />
+        </p>
         @using (Html.BeginForm("AddPopcorn", "Ticket", FormMethod.Post))
+    {
+        <table align="center">
+            <tr>
+                <th scope="col">TicketID</th>
+                <th scope="col">Prijs</th>
+                <th scope="col">Type</th>
+                <th scope="col">Popcorn?</th>
+            </tr>
+            @for (int i = 0; i < Model.Count; i++)
         {
-            <table>
-                <tr>
-                    <th scope="col">TicketID</th>
-                    <th scope="col">Prijs</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Popcorn?</th>
-                </tr>
-                @for(int i=0; i < Model.Count; i++)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(x => Model[i].TicketID)
-                    </td>
-                    <td>
-                        €@Html.DisplayFor(x => Model[i].Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => Model[i].TicketType)
-                    </td>
-                    <td>
-                        @Html.CheckBoxFor(x => Model[i].Popcorn)
-                    </td>
-                    <td>
-                        + €5,-
-                    </td>
-                </tr>
-               }
-               
-            </table>
-            <input type="submit" value="Voeg toe!" />
-        }
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => Model[i].TicketID)
+                </td>
+                <td>
+                    €@Html.DisplayFor(x => Model[i].Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => Model[i].TicketType)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(x => Model[i].Popcorn)
+                </td>
+                <td>
+                    + €5,-
+                </td>
+            </tr>
+    }
+
+        </table> <br />
+        <input type="submit" value="Voeg toe!" />
+}
     </div>
 </body>

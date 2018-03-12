@@ -12,7 +12,7 @@ namespace Domain.Concrete
         protected override void Seed(EFDbContext context)
         {
             //    SEQUENCE:
-            //    0000
+            //
             //    1. location, 
             //    2. movie 
             //    3. roomlayout

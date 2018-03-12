@@ -3,6 +3,7 @@ using Domain.Entities;
 using Ninject.Infrastructure.Language;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +23,6 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
         }
-
         // GET: UpcomingShow
         public ActionResult Upcoming()
         {
@@ -36,8 +36,6 @@ namespace WebUI.Controllers
             List<Show> ShowsFromNow = allShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
 
-            //List<Show> secretMovie = allShows.ToEnumerable().OrderBy(s => )
-
             //Order by show date -> newest first
             List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
                 .OrderBy(s => s.BeginTime).ToList();
@@ -45,7 +43,29 @@ namespace WebUI.Controllers
             //takes shows form current workday
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < EndOfDay).ToList();
-            
+
+            //--secret movie ---
+            IEnumerable<Show> list = showRepository.GetShows();
+            IEnumerable<Show> secretShow = list.OrderBy(s => s.NumberofTickets).Take(1);
+            Show show = secretShow.First();
+            String showid = show.ShowID.ToString();
+            String link = "/UpcomingShow/OrderMovie/" + showid;
+            string begintime = show.BeginTime.ToString();
+            string endtime = show.EndTime.ToString();
+            string language = show.Movie.Language.ToString();
+            string sublanguage = show.Movie.LanguageSub.ToString();
+            string length = show.Movie.Length.ToString();
+            string room = show.RoomID.ToString();
+
+            ViewBag.showid = link;
+            ViewBag.begintime = begintime;
+            ViewBag.endtime = endtime;
+            ViewBag.threed = show.Movie.Is3D;
+            ViewBag.language = language;
+            ViewBag.sublanguage = sublanguage;
+            ViewBag.length = length;
+            ViewBag.room = room;
+            //--secret movie ---
 
             DateTime today = DateTime.Now;
             string DayOfWeek = today.DayOfWeek.ToString();

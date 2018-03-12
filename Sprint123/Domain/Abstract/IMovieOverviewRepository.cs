@@ -13,5 +13,6 @@ namespace Domain.Abstract
         List<Show> getShowList();
         List<Show> getShowbyId(int id);
         IEnumerable<Movie> GetMovies();
+        //IEnumerable<Movie> Movies { get; }
     }
 }

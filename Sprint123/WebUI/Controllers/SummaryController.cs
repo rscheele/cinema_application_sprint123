@@ -43,7 +43,7 @@ namespace WebUI.Controllers
 
             if (model.SeatCoordList.Count == 0)
             {
-                model.SeatCoordList = ass.CalculateSeats(model.SelectedShow.Room, model.GetAllTicketsQuantity(), occupiedSeats);
+                //model.SeatCoordList = ass.CalculateSeats(model.SelectedShow.Room, model.GetAllTicketsQuantity(), occupiedSeats);
             }
 
             model.SeatSelectionGUI = ass.VisualizeSeats(model.SelectedShow.Room, occupiedSeats, model.SeatCoordList);
@@ -53,5 +53,4 @@ namespace WebUI.Controllers
         }
 
     }
-   }
 }

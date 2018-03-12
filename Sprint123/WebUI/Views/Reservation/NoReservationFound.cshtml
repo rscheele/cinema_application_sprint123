@@ -3,6 +3,13 @@
     ViewBag.Title = "NoReservationFound";
 }
 
-<h2>We hebben geen reservatie met deze code kunnen vinden.</h2>
-@Html.ActionLink("Klik hier om terug te gaan", "Reservation", "Reservation", null, null)
+<body>
+    <p>
+        <h2>We hebben geen reservering met deze code kunnen vinden.</h2>
+        <td>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Terug</button>
+        </td>
+    </p>
+</body>
+
 

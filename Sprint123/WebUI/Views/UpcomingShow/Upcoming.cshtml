@@ -4,9 +4,11 @@
     ViewBag.Title = "Overzicht van eerstkomende films";
 }
 <div class="text-center">
-    <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
-    <h3>Huidige tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
-    <hr />
+    <p>
+        <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
+        <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
+        <hr />
+    </p>
 </div>
 
 <table class="table">
@@ -38,72 +40,36 @@
         <th></th>
     </tr>
 
+@foreach (var item in Model) {
     <tr>
         <td>
-            <p>?</p>
+            @Html.DisplayFor(modelItem => item.Movie.Name)
         </td>
         <td>
-            @if (@ViewBag.threed == false)
-            {
-                <input class="check-box" disabled="disabled" type="checkbox" />
-            }
-            else
-            {
-                <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
-            }
+            @Html.DisplayFor(modelItem => item.Movie.Is3D)
         </td>
         <td>
-            <p>@ViewBag.language</p>
+            @Html.DisplayFor(modelItem => item.Movie.Language)
         </td>
         <td>
-            <p>@ViewBag.sublanguage</p>
+            @Html.DisplayFor(modelItem => item.Movie.LanguageSub)
         </td>
         <td>
-            <p>@ViewBag.length</p>
+            @Html.DisplayFor(modelItem => item.Movie.Length)
         </td>
         <td>
-            <p>@ViewBag.room</p>
+            @Html.DisplayFor(modelItem => item.Room.RoomID)
         </td>
         <td>
-            <p>@ViewBag.begintime</p>
+            @Html.DisplayFor(modelItem => item.BeginTime)
         </td>
         <td>
-            <p>@ViewBag.endtime</p>
+            @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            <a href=@ViewBag.showid>Bestel</a>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)'">Bestel</button>
         </td>
     </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Is3D)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Language)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.LanguageSub)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.RoomID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BeginTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.ActionLink("Bestel", "OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)
-            </td>
-        </tr>
-    }
+}
+
 </table>

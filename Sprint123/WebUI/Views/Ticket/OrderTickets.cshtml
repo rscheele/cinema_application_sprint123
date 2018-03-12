@@ -1,16 +1,18 @@
-﻿@Model  WebUI.Models.Order
+﻿@model WebUI.Models.Order
 @{
     ViewBag.Title = "OrderTickets";
 }
 
 <body>
     <div class="text-center">
-        <h2>Je besteld nu tickets voor @ViewBag.MovieName</h2><br />
-        <p>Selecteer het aantal gewenste tickets.</p><br />
-        <p>Let op: Voor het studententarief dient een geldige studentenpas getoont te worden bij de ingang!</p><br />
+        <p>
+            <h2>Je bestelt nu tickets voor @ViewBag.MovieName</h2><br />
+            <p>Selecteer het aantal gewenste tickets.</p><br />
+            <p>Let op: Voor het studententarief dient een geldige studentenpas getoont te worden bij de ingang!</p><br />
+        </p>
         @using (Html.BeginForm())
-        {
-        <table>
+    {
+        <table align="center">
             <tr>
                 <th scope="col">Type ticket</th>
                 <th scope="col">Prijs</th>
@@ -19,28 +21,28 @@
             <tr>
                 <td>Normaal</td>
                 <td>@ViewBag.NormalPrice</td>
-                <td>@Html.TextBox("normalTickets",0, new { @type = "number" , @min = "0"} )</td>
+                <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
             <tr>
                 <td>Child</td>
                 <td>@ViewBag.ChildPrice</td>
-                <td>@Html.TextBox("childTickets",0, new { @type = "number", @min = "0" })</td>            
+                <td>@Html.TextBox("childTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
             <tr>
                 <td>Student</td>
                 <td>@ViewBag.StudentPrice</td>
-                <td>@Html.TextBox("studentTickets",0, new { @type = "number", @min = "0" })</td>            
+                <td>@Html.TextBox("studentTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
             <tr>
                 <td>Senior</td>
                 <td>@ViewBag.SeniorPrice</td>
-                <td>@Html.TextBox("seniorTickets",0, new { @type = "number", @min = "0" })</td>            
+                <td>@Html.TextBox("seniorTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
         </table>
 
-        
-        <input type="submit" value="Bestellen"/>
-        }
+
+        <input type="submit" value="Bestellen" />
+}
     </div>
 </body>
 

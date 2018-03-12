@@ -4,9 +4,11 @@
     ViewBag.Title = "Overzicht van eerstkomende films";
 }
 <div class="text-center">
-    <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
-    <h3>Huidige tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
-    <hr />
+    <p>
+        <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
+        <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
+        <hr />
+    </p>
 </div>
 
 <table class="table">
@@ -65,7 +67,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.ActionLink("Bestel", "OrderMovie", "UpcomingShow", new { id = item.ShowID}, null)
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)'">Bestel</button>
         </td>
     </tr>
 }

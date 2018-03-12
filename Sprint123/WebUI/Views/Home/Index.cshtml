@@ -3,12 +3,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 <body>
     <div>
-        <p>Hello world!</p>
-        <p>@Html.ActionLink("See upcoming shows", "Upcoming", "UpcomingShow")</p> <br />
-        <p>@Html.ActionLink("Print out reservation tickets", "Reservation", "Reservation")</p>
+        <p>
+            <h2>Welkom bij Avans Cinema, maak een keuze.</h2>
+        </p>
+        <p>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Upcoming", "UpcomingShow")'">Alle shows voor vandaag bekijken</button>
+        </p>
+        <p>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Reservering ophallen</button>
+        </p>
     </div>
 </body>
 

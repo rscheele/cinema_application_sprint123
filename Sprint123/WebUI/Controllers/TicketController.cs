@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
+using Domain.Concrete;
 using Domain.Entities;
 using WebUI.Models;
 
@@ -12,10 +13,12 @@ namespace WebUI.Controllers
     public class TicketController : Controller
     {
         private ITicketRepository ticketRepository;
+        private IShowRepository showRepository;
 
-        public TicketController(ITicketRepository ticketRepository)
+        public TicketController(ITicketRepository ticketRepository, IShowRepository showRepository)
         {
             this.ticketRepository = ticketRepository;
+            this.showRepository = showRepository;
         }
 
         [HttpGet]
@@ -48,6 +51,7 @@ namespace WebUI.Controllers
             Show selectedShow = (Show)TempData["Show"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
             List<Ticket> tickets = new List<Ticket>();
+            int numberoftickets = 0;
             // Generate ReservationID for reservation based on date and time
             DateTime dateTime = DateTime.Now;
             int year = dateTime.Year;
@@ -97,7 +101,11 @@ namespace WebUI.Controllers
                 item.Popcorn = false;
                 item.SeatID = 0;
                 item.ReservationID = reservationID;
+                numberoftickets++;
             }
+            selectedShow.NumberofTickets = selectedShow.NumberofTickets + numberoftickets;
+            showRepository.SaveShow(selectedShow);
+
             TempData["Tickets"] = tickets;
             return View("AddPopcorn", tickets);
         }
@@ -105,6 +113,7 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult AddPopcorn(List<Ticket> tickets)
         {
+           
             List<Ticket> ticketList = (List<Ticket>)TempData["Tickets"];
             for (int i = 0; i < tickets.Count; i++)
             {
@@ -113,7 +122,7 @@ namespace WebUI.Controllers
                     ticketList[i].Price = ticketList[i].Price + 5M;
                     ticketList[i].Popcorn = true;
                 }
-            }
+            }           
             TempData["TicketList"] = ticketList;
             return RedirectToAction("SummaryView", "Summary", ticketList);
         }

@@ -38,36 +38,72 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.Name)
+            <p>?</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.Is3D)
+            @if (@ViewBag.threed == false)
+            {
+                <input class="check-box" disabled="disabled" type="checkbox" />
+            }
+            else
+            {
+                <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.Language)
+            <p>@ViewBag.language</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.LanguageSub)
+            <p>@ViewBag.sublanguage</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.Length)
+            <p>@ViewBag.length</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Room.RoomID)
+            <p>@ViewBag.room</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BeginTime)
+            <p>@ViewBag.begintime</p>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
+            <p>@ViewBag.endtime</p>
         </td>
         <td>
-            @Html.ActionLink("Bestel", "OrderMovie", "UpcomingShow", new { id = item.ShowID}, null)
+            <a href=@ViewBag.showid>Bestel</a>
         </td>
     </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Is3D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.LanguageSub)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.RoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Bestel", "OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)
+            </td>
+        </tr>
+    }
 </table>

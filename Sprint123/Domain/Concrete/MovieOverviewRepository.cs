@@ -12,7 +12,9 @@ namespace Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public MovieOverviewRepository() { }
+        public IEnumerable<Movie> Movies{
+            get { return context.Movies; }
+        }
 
         public virtual List<Movie> getMovieList()
         {
@@ -75,9 +77,11 @@ namespace Domain.Concrete
             return newDate;
         }
 
+
+        /* 11-3
         public IEnumerable<Movie> GetMovies()
         {
             return context.Movies;
-        }
+        }*/
     }
 }

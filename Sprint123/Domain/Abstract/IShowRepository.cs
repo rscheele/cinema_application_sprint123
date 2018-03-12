@@ -10,5 +10,6 @@ namespace Domain.Abstract
     public interface IShowRepository
     {
         IEnumerable<Show> GetShows();
+        void SaveShow(Show show);
     }
 }

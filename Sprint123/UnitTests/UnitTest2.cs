@@ -19,7 +19,7 @@ namespace UnitTests
             new Location{LocationID=1, Name="Cinemapolis",City="Breda", Rooms=6,TicketPrice=10.00M},
             };
 
-            Mock<MovieOverviewRepository> mock = new Mock<MovieOverviewRepository>();
+            /*Mock<MovieOverviewRepository> mock = new Mock<MovieOverviewRepository>();
             mock.Setup(f => f.Movies).Returns(new Movie[] {
             new Movie { Name = "Darkest Hour", Language = "Engels", LanguageSub = "Nederlands", Age = 16, MovieType = 2, Length = 120, Is3D = false, LocationID = 1 },
             new Movie { Name = "Red Sparrow", Language = "Engels", LanguageSub = "Nederlands", Age = 16, MovieType = 2, Length = 140, Is3D = false, LocationID = 1 },
@@ -30,7 +30,7 @@ namespace UnitTests
             new Movie { Name = "The Shape of Water", Language = "Engels", LanguageSub = "Nederlands", Age = 16, MovieType = 2, Length = 123, Is3D = false, LocationID = 1 },
             new Movie { Name = "Three BillBoards Outside Ebbing, Missouri", Language = "Engels", LanguageSub = "Nederlands", Age = 16, MovieType = 2, Length = 115, Is3D = false, LocationID = 1 },
             new Movie { Name = "De grote blije kinderfilm", Language = "Nederlands", LanguageSub = "Nederlands", Age = 4, MovieType = 2, Length = 150, Is3D = false, LocationID = 1 }
-            });
+            });*/
             
         
             var roomlayouts = new List<RoomLayout>

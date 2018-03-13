@@ -19,12 +19,12 @@
                 <th scope="col">Aantal</th>
             </tr>
             <tr>
-                <td>Normaal</td>
+                <td>Standaard</td>
                 <td>@ViewBag.NormalPrice</td>
                 <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
             <tr>
-                <td>Child</td>
+                <td>Kind</td>
                 <td>@ViewBag.ChildPrice</td>
                 <td>@Html.TextBox("childTickets", 0, new { @type = "number", @min = "0" })</td>
             </tr>
@@ -41,7 +41,7 @@
         </table>
 
 
-        <input type="submit" value="Bestellen" />
+        <input class="btn btn-success" type="submit" value="Bestellen" />
 }
     </div>
 </body>

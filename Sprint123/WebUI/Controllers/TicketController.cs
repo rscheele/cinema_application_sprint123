@@ -66,7 +66,7 @@ namespace WebUI.Controllers
             {
                 Ticket ticket = new Ticket();
                 ticket.Price = tarrifs[0];
-                ticket.TicketType = "Normal";
+                ticket.TicketType = "Standaard";
                 tickets.Add(ticket);
             }
             // Add child tickets
@@ -74,7 +74,7 @@ namespace WebUI.Controllers
             {
                 Ticket ticket = new Ticket();
                 ticket.Price = tarrifs[1];
-                ticket.TicketType = "Child";
+                ticket.TicketType = "Kind";
                 tickets.Add(ticket);
             }
             // Add student tickets
@@ -106,6 +106,8 @@ namespace WebUI.Controllers
             selectedShow.NumberofTickets = selectedShow.NumberofTickets + numberoftickets;
             showRepository.SaveShow(selectedShow);
 
+            TempData["Order"] = order;
+            TempData["Show"] = selectedShow;
             TempData["Tickets"] = tickets;
             return View("AddPopcorn", tickets);
         }

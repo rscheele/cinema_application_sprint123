@@ -15,16 +15,18 @@
     {
         <table align="center">
             <tr>
-                <th scope="col">TicketID</th>
+                <th scope="col">Ticket Nummer</th>
                 <th scope="col">Prijs</th>
                 <th scope="col">Type</th>
                 <th scope="col">Popcorn?</th>
             </tr>
+            @{ int j = 0;}
             @for (int i = 0; i < Model.Count; i++)
-        {
+            {
+                j++;
             <tr>
                 <td>
-                    @Html.DisplayFor(x => Model[i].TicketID)
+                    @j
                 </td>
                 <td>
                     €@Html.DisplayFor(x => Model[i].Price)
@@ -39,10 +41,10 @@
                     + €5,-
                 </td>
             </tr>
-    }
+            }
 
         </table> <br />
-        <input type="submit" value="Voeg toe!" />
-}
+        <input class="btn btn-success" type="submit" value="Voeg toe!" />
+        }
     </div>
 </body>

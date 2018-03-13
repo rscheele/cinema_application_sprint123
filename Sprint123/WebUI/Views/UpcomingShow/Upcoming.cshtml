@@ -7,6 +7,7 @@
     <p>
         <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
         <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
+        <input action="action" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;"/>
         <hr />
     </p>
 </div>
@@ -41,17 +42,16 @@
     </tr>
     <tr>
         <td>
-            <p>?</p>
+            <p>? - 2,50 euro korting!</p>
         </td>
         <td>
             @if (@ViewBag.threed == false)
         {
             <input class="check-box" disabled="disabled" type="checkbox" />
-    }
-    else
-    {
+
+        }else {
         <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
-}
+        }
         </td>
         <td>
             <p>@ViewBag.language</p>

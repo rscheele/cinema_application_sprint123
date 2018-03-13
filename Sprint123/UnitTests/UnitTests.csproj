@@ -108,6 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestPdf.cs" />
     <Compile Include="TestReservation.cs" />
+    <Compile Include="TestUpcomingShows.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

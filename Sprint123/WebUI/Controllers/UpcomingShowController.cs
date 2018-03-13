@@ -28,19 +28,19 @@ namespace WebUI.Controllers
         {
 
             DateTime now = DateTime.Now;
-            DateTime EndOfDay = DateTime.Today.AddDays(1) +new TimeSpan(02,00,00); //probably correct 
+            DateTime EndOfDay = DateTime.Today.AddDays(1) +new TimeSpan(02,00,00);
         
             List<Show> allShows = showRepository.GetShows().ToList();
 
-            //Filter out showings from the past
+            //Filter out shows from the past
             List<Show> ShowsFromNow = allShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
 
-            //Order by show date -> newest first
+            //Order by show date
             List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
                 .OrderBy(s => s.BeginTime).ToList();
 
-            //takes shows form current workday
+            //take shows form current workday
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < EndOfDay).ToList();
 
@@ -49,7 +49,7 @@ namespace WebUI.Controllers
             IEnumerable<Show> secretShow = list.OrderBy(s => s.NumberofTickets).Take(1);
             Show show = secretShow.First();
             String showid = show.ShowID.ToString();
-            String link = "/UpcomingShow/OrderMovie/" + showid;
+            String link = "/UpcomingShow/OrderSecretMovie/" + showid;
             string begintime = show.BeginTime.ToString();
             string endtime = show.EndTime.ToString();
             string language = show.Movie.Language.ToString();
@@ -65,17 +65,19 @@ namespace WebUI.Controllers
             ViewBag.sublanguage = sublanguage;
             ViewBag.length = length;
             ViewBag.room = room;
-            //--secret movie ---
-
+            //--secret movie ---         
             DateTime today = DateTime.Now;
-            string DayOfWeek = today.DayOfWeek.ToString();
+            var culture = new System.Globalization.CultureInfo("nl-NL");
+            var day = culture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
+
+            string ParsedDayOfWeek = day;
 
             DateTime time = DateTime.Now;
             string HourOfDay = time.Hour.ToString();
             string MinuteOfDay = time.Minute.ToString();
-            string Location = "Cinemapolis";
+            string Location = "Cinema";
             
-            ViewBag.DayOfWeek = DayOfWeek;
+            ViewBag.DayOfWeek = ParsedDayOfWeek;
             ViewBag.HourOfDay = HourOfDay;
             ViewBag.MinuteOfDay = MinuteOfDay;
             ViewBag.Location = Location;

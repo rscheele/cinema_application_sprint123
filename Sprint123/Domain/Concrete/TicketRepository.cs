@@ -29,6 +29,14 @@ namespace Domain.Concrete
             }
             
         }
+        public void SaveTickets(List<Ticket> tickets)
+        {
+            foreach (var item in tickets)
+            {
+                context.Tickets.Add(item);
+            }
+            context.SaveChanges();
+        }
     }
         
 }

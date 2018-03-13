@@ -207,14 +207,14 @@ namespace Domain.Concrete
             var tickets = new List<Ticket>
             {
             // Reservation 20180681426908 20180681426909
-            new Ticket{Price=9.50M,TicketType="Normaal",IsPaid=true,ShowID=1,ReservationID=20180681426909,Popcorn=false},
-            new Ticket{Price=13.00M,TicketType="Child",IsPaid=true,ShowID=1,ReservationID=20180681426909,Popcorn=true},
-            new Ticket{Price=13.00M,TicketType="Child",IsPaid=true,ShowID=1,ReservationID=20180681426909,Popcorn=true},
-            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=15.00M,TicketType="Child",IsPaid=true,ShowID=3,ReservationID=20180681426908,Popcorn=true},
-            new Ticket{Price=10.00M,TicketType="Child",IsPaid=true,ShowID=3,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,ReservationID=20180681426908,Popcorn=false}
+            new Ticket{Price=9.50M,TicketType="Normaal",IsPaid=true,ShowID=1,SeatID=5,ReservationID=20180681426909,Popcorn=false},
+            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=true,ShowID=1,SeatID=6,ReservationID=20180681426909,Popcorn=true},
+            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=true,ShowID=1,SeatID=7,ReservationID=20180681426909,Popcorn=true},
+            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatID=11,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatID=12,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=15.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=13,ReservationID=20180681426908,Popcorn=true},
+            new Ticket{Price=10.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=14,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatID=15,ReservationID=20180681426908,Popcorn=false}
             };
 
             tickets.ForEach(s => context.Tickets.Add(s));

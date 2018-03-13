@@ -6,13 +6,15 @@
 
 <body>
     <div class="text-center">
-        <h2>Dit is jullie reservatie!</h2><br />
-        <p>
-            Jullie hebben gereserveert voor @Html.DisplayFor(x => Model.First().Show.Movie.Name)
-            Op datum @Html.DisplayFor(x => Model.First().Show.BeginTime.Date)
-            Deze film begint om @Html.DisplayFor(x => Model.First().Show.BeginTime.TimeOfDay)
-            En eindigt om @Html.DisplayFor(x => Model.First().Show.EndTime.TimeOfDay)
-        </p>
+        <br />
+        <h2>Dit is jullie reservering!</h2><br />
+                                           <p>
+                                               Jullie hebben gereserveert voor <b>@Html.DisplayFor(x => Model.First().Show.Movie.Name)</b><br />
+                                               Op datum @Html.DisplayFor(x => Model.First().Show.BeginTime.DayOfWeek) @Html.DisplayFor(x => Model.First().Show.BeginTime.Day)-@Html.DisplayFor(x => Model.First().Show.BeginTime.Month)-@Html.DisplayFor(x => Model.First().Show.BeginTime.Year)<br />
+                                               Deze film begint om @Html.DisplayFor(x => Model.First().Show.BeginTime.TimeOfDay)<br />
+                                               En eindigt om @Html.DisplayFor(x => Model.First().Show.EndTime.TimeOfDay)<br />
+                                               De film draait in <b>zaal @Html.DisplayFor(x => Model.First().Show.Room.RoomNumber)</b>
+                                           </p>
         <table align="center">
             <tr>
                 <th scope="col">TicketID</th>
@@ -37,7 +39,7 @@
                     @Html.DisplayFor(x => item.Popcorn)
                 </td>
                 <td>
-                    0
+                    @Html.DisplayFor(x => item.Seat.SeatNumber)
                 </td>
             </tr>
     }

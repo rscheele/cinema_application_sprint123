@@ -65,22 +65,24 @@ namespace WebUI.Controllers
                     sub = t.Show.Movie.LanguageSub;
                 }
 
-                addText("Film: " + t.Show.Movie.Name + "       " + "Taal: " + t.Show.Movie.Language + "       " +
-                        "Ondertiteling: " + sub);
+                addText("Film: " + t.Show.Movie.Name);
+                addText("Taal: " + t.Show.Movie.Language);
+                addText("Ondertiteling: " + sub);
                 addText("Leeftijd: " + t.Show.Movie.Age);
-                addText("Duur: " + t.Show.Movie.Length + " minuten" + "              " + "3D: " +
-                        (t.Show.Movie.Is3D ? "Ja" : "Nee") + "        "
-                        + "Prijs: " + t.Price.ToString());
+                addText("Duur: " + t.Show.Movie.Length + " minuten");
+                addText("3D: " + (t.Show.Movie.Is3D ? "Ja" : "Nee"));
+                addText("Prijs: €" + t.Price.ToString());
 
 
                 /// maandag 1 Februari 2017
                 addText("Datum: " + t.Show.BeginTime.ToString("dddd d MMMM yyyy"), smallFont);
                 // 23:45
-                addText(
-                    "Begintijd: " + t.Show.BeginTime.ToString("HH:mm") + " - " + "Eindtijd: " +
-                    t.Show.EndTime.ToString("HH:mm"), smallFont);
-                addText("Locatie: " + location + "   " + "Zaal: " + t.Show.RoomID, smallFont);
-                addText("Stoelnummer: " + "0" + "   " + "Rijnummer:" + "0");
+                addText("Begintijd: " + t.Show.BeginTime.ToString("HH:mm"), smallFont);
+                addText("Eindtijd: " + t.Show.EndTime.ToString("HH:mm"), smallFont);
+                addText("Locatie: " + location, smallFont);
+                addText("Zaal: " + t.Show.RoomID, smallFont);
+                addText("Stoelnummer: " + t.Seat.SeatNumber, smallFont);
+                addText("Rijnummer: " + t.Seat.RowY, smallFont);
             }
 
             doc.Close();

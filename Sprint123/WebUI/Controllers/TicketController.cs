@@ -136,6 +136,8 @@ namespace WebUI.Controllers
             decimal student;
             decimal senior;
 
+            bool secret = (bool)TempData["Secret"];
+
             // Calculate the base price
             if (show.Movie.Length >= 120)
             {
@@ -143,6 +145,11 @@ namespace WebUI.Controllers
             } else
             {
                 normal = 9.50M;
+            }
+
+            if (secret == true)
+            {
+                normal = normal - 2.50M;
             }
 
             // Calculate wether the movie is in 3D
@@ -186,6 +193,7 @@ namespace WebUI.Controllers
             tariffs.Add(child);
             tariffs.Add(student);
             tariffs.Add(senior);
+            TempData["Secret"] = secret;
             return tariffs;
         }
 

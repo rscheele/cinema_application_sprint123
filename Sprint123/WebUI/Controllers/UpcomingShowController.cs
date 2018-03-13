@@ -23,7 +23,9 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
         }
+
         // GET: UpcomingShow
+        [HttpGet]
         public ActionResult Upcoming()
         {
 
@@ -49,7 +51,7 @@ namespace WebUI.Controllers
             IEnumerable<Show> secretShow = list.OrderBy(s => s.NumberofTickets).Take(1);
             Show show = secretShow.First();
             String showid = show.ShowID.ToString();
-            String link = "/UpcomingShow/OrderMovie/" + showid;
+            //String link = "/UpcomingShow/OrderMovie/" + showid;
             string begintime = show.BeginTime.ToString();
             string endtime = show.EndTime.ToString();
             string language = show.Movie.Language.ToString();
@@ -57,7 +59,7 @@ namespace WebUI.Controllers
             string length = show.Movie.Length.ToString();
             string room = show.RoomID.ToString();
 
-            ViewBag.showid = link;
+            ViewBag.showid = showid;
             ViewBag.begintime = begintime;
             ViewBag.endtime = endtime;
             ViewBag.threed = show.Movie.Is3D;
@@ -83,11 +85,13 @@ namespace WebUI.Controllers
             return View(allShows);
         }
 
-        public ActionResult OrderMovie(int id)
+        [HttpGet]
+        public ActionResult OrderMovie(int id, bool secret)
         {
             List<Show> allShows = showRepository.GetShows().ToList();
             Show orderedShow = allShows.Find(r => r.ShowID == id);
             TempData["Show"] = orderedShow;
+            TempData["Secret"] = secret;
             return RedirectToAction("OrderTickets", "Ticket");
         }
     }

@@ -45,11 +45,11 @@
         </td>
         <td>
             @if (@ViewBag.threed == false)
-        {
+            {
             <input class="check-box" disabled="disabled" type="checkbox" />
-    }
-    else
-    {
+            }
+            else
+            {
         <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
 }
         </td>
@@ -72,7 +72,7 @@
             <p>@ViewBag.endtime</p>
         </td>
         <td>
-            <a class="btn btn-info" href=@ViewBag.showid>Bestel</a>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = ViewBag.showid, secret = true}, null)'">Bestel</button>
         </td>
     </tr>
 @foreach (var item in Model) {
@@ -102,7 +102,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID }, null)'">Bestel</button>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID, secret = false}, null)'">Bestel</button>
         </td>
     </tr>
 }

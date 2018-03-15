@@ -10,7 +10,7 @@ namespace WebUI.Models
 {
     public class CinemaViewModel
     {
-        public List<List<AutomaticSeatSelection.OccupyType>> SeatSelectionGUI;
+        //public List<List<AutomaticSeatSelection.OccupyType>> SeatSelectionGUI;
         public List<SeatCoord> SeatCoordList;
         public Show SelectedShow;
 

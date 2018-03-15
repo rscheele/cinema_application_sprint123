@@ -26,14 +26,25 @@ namespace WebUI.Controllers
         {
             Show selectedShow = (Show)TempData["Show"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
-
-            ViewBag.MovieName = selectedShow.Movie.Name;
+            //hide name if movie is secret ----BEGIN
+            //Boolean IsSecret = (Boolean)TempData["Secret"];
+            bool secret = (bool)TempData["Secret"];
+            if (secret != true)
+            {
+                ViewBag.MovieName = selectedShow.Movie.Name;
+            }
+            else
+            {
+                ViewBag.MovieName = "?";
+            }
+            //hide name if movie is secret ----END
             ViewBag.NormalPrice = tarrifs[0];
             ViewBag.ChildPrice = tarrifs[1];
             ViewBag.StudentPrice = tarrifs[2];
             ViewBag.SeniorPrice = tarrifs[3];
 
             TempData["Show"] = selectedShow;
+            TempData["Secret"] = secret;
             return View("OrderTickets");
         }
 
@@ -100,6 +111,10 @@ namespace WebUI.Controllers
                 item.IsPaid = false;
                 item.Popcorn = false;
                 item.SeatID = 0;
+                //adding seat data ---- BEGIN
+                //item.Seat.SeatNumber =12;
+                //item.Seat.RowY =2;
+                //adding seat data ---- END
                 item.ReservationID = reservationID;
                 numberoftickets++;
             }
@@ -126,7 +141,8 @@ namespace WebUI.Controllers
                 }
             }           
             TempData["TicketList"] = ticketList;
-            return RedirectToAction("SummaryView", "Summary", ticketList);
+            //return RedirectToAction("SummaryView", "Summary", ticketList);
+            return RedirectToAction("Pay", "Pin", ticketList);
         }
 
         public List<decimal> calculatePrices(Show show)

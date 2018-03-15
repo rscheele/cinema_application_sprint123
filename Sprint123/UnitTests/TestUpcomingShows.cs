@@ -13,6 +13,7 @@ namespace UnitTests
     [TestClass]
     public class TestUpcomingShows
     {
+        
         private bool ShowIDIsEqual(List<int> l1, List<int> l2)
         {
             if (l1.Count != l2.Count)
@@ -33,50 +34,23 @@ namespace UnitTests
 
         [TestMethod]
         public void TestForUpcomingShows() {
-            //List<Movie> movieList = new List<Movie>{
-            //    new Movie
-            //    {
-            //        MovieID = 1,
-            //        Name = "Black Panther",
-            //        Language = "Engels",
-            //        LanguageSub = "Nederlands",
-            //        Age = 16,
-            //        MovieType = 1,
-            //        Length = 120,
-            //        Is3D = true,
-            //        LocationID = 1
-            //    },
-            //    new Movie
-            //    {
-            //        MovieID = 2,
-            //        Name="Red Sparrow",
-            //        Language ="Engels",
-            //        LanguageSub ="Nederlands",
-            //        Age = 16,
-            //        MovieType = 2,
-            //        Length = 140,
-            //        Is3D = false,
-            //        LocationID = 1
-            //    },
-            //    new Movie
-            //    {
-            //        MovieID=3,
-            //        Name = "Three BillBoards Outside Ebbing, Missouri",
-            //        Language = "Engels",
-            //        LanguageSub ="Nederlands",
-            //        Age = 16,
-            //        MovieType = 2,
-            //        Length = 115,
-            //        Is3D = false,
-            //        LocationID =1
-            //    }
-            //};
+            //IMPORTANT: test only works before 19:15 hours. !!!
+            //arrange
+            DateTime show1Begintime = DateTime.Today+new TimeSpan(19, 15, 00);
+            DateTime show1Endtime = DateTime.Today + new TimeSpan(21, 15, 00);
+
+            DateTime show2Begintime = DateTime.Today + new TimeSpan(21, 30, 00);
+            DateTime show2Endtime = DateTime.Today + new TimeSpan(22, 30, 00);
+
+            DateTime show3Begintime = DateTime.Today + new TimeSpan(22, 45, 00);
+            DateTime show3Endtime = DateTime.Today.AddDays(1) + new TimeSpan(0, 15, 00);
+
             List<Show> showlist = new List<Show> {
                 new Show //third
                 {
                     ShowID = 1,
-                    BeginTime = new DateTime(2018, 3, 13, 20, 15, 00),
-                    EndTime   = new DateTime(2018, 3, 13, 22, 15, 00),
+                    BeginTime = show3Begintime,
+                    EndTime   = show3Endtime,
                     MovieID = 1,
                     NumberofTickets = 20,
                     ChildDiscount = false,
@@ -86,8 +60,8 @@ namespace UnitTests
                 new Show //second
                 {
                     ShowID = 2,
-                    BeginTime = new DateTime(2018, 3, 13, 17, 30, 00),
-                    EndTime   = new DateTime(2018, 3, 14, 19, 30, 00),
+                    BeginTime = show2Begintime,
+                    EndTime   = show2Endtime,
                     MovieID = 2,
                     NumberofTickets = 10,
                     ChildDiscount = false,
@@ -97,8 +71,8 @@ namespace UnitTests
                 new Show //first
                 {
                     ShowID = 3,
-                    BeginTime = new DateTime(2018, 3, 13, 15, 15, 00),
-                    EndTime   = new DateTime(2018, 3, 14, 17, 15, 00),
+                    BeginTime = show1Endtime,
+                    EndTime   = show1Endtime,
                     MovieID = 3,
                     NumberofTickets = 10,
                     ChildDiscount = false,
@@ -108,19 +82,13 @@ namespace UnitTests
                 }
             };
 
-            //arrange
-
-            //var mockRepo = new Mock<IMovieOverviewRepository>();
-            //var mockRepo2 = new Mock<IShowRepository>();
-            //var mockRepo3 = new Mock<ITicketRepository>();
-            //UpcomingShowController controller = new UpcomingShowController(mockRepo.Object, mockRepo2.Object, mockRepo3.Object);
-
+            
             DateTime now = DateTime.Now;
             DateTime EndOfDay = DateTime.Today.AddDays(1) + new TimeSpan(02, 00, 00);
 
 
             List<Show> allShows = showlist;
-
+            //Act
             //Filter out shows from the past
             List<Show> ShowsFromNow = allShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
@@ -135,16 +103,16 @@ namespace UnitTests
        
             List<int> IdOfShows = new List<int>
             {
-                allShows[0].ShowID,
-                allShows[1].ShowID,
-                allShows[2].ShowID
+                upcomingShows[0].ShowID,
+                upcomingShows[1].ShowID,
+                upcomingShows[2].ShowID
             };
             
             List<int> ExpectedIDsofShows = new List<int>
             {
-                1,
+                3,
                 2,
-                3
+                1
             };
             // Assert -- assert if expected equals given by act.
             Assert.IsTrue(ShowIDIsEqual(IdOfShows, ExpectedIDsofShows));

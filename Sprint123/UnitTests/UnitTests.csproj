@@ -109,6 +109,8 @@
     <Compile Include="TestPdf.cs" />
     <Compile Include="TestReservation.cs" />
     <Compile Include="TestUpcomingShows.cs" />
+    <Compile Include="TestSecretShow.cs" />
+    <Compile Include="TestLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

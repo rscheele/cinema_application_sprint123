@@ -26,14 +26,16 @@ namespace WebUI.Controllers
 
         // GET: UpcomingShow
         [HttpGet]
-        public ActionResult Upcoming()
+        public ActionResult Upcoming(int locationid)
         {
-
+            int Locationid = locationid; 
             DateTime now = DateTime.Now;
             DateTime EndOfDay = DateTime.Today.AddDays(1) +new TimeSpan(02,00,00);
         
             List<Show> allShows = showRepository.GetShows().ToList();
 
+            List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid).ToList();
+            
             //Filter out shows from the past
             List<Show> ShowsFromNow = allShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
@@ -51,7 +53,6 @@ namespace WebUI.Controllers
             IEnumerable<Show> secretShow = list.OrderBy(s => s.NumberofTickets).Take(1);
             Show show = secretShow.First();
             String showid = show.ShowID.ToString();
-            //String link = "/UpcomingShow/OrderMovie/" + showid;
             string begintime = show.BeginTime.ToString();
             string endtime = show.EndTime.ToString();
             string language = show.Movie.Language.ToString();
@@ -77,7 +78,7 @@ namespace WebUI.Controllers
             DateTime time = DateTime.Now;
             string HourOfDay = time.Hour.ToString();
             string MinuteOfDay = time.Minute.ToString();
-            string Location = "Cinema";
+            string Location = show.Movie.Location.Name;//location name
             
             ViewBag.DayOfWeek = ParsedDayOfWeek;
             ViewBag.HourOfDay = HourOfDay;

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -57,7 +58,36 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult PrintTickets()
         {
-            List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
+            PinViewModel model = (PinViewModel)TempData["model"];
+
+            if (model.PinValue == "")
+            {
+                model.IncorrectPinValue = "Vul pincode in";
+
+                TempData["model"] = model;
+                return RedirectToAction("Pay", "Pin");
+            }
+
+            if (model.PinValue == "0000" | model.PinValue.Length <= 3)
+            {
+                model.IncorrectPinValue = "Vul een geldige pincode in";
+
+                TempData["model"] = model;
+                return RedirectToAction("Pay", "Pin");
+            }
+            else
+            {
+                List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                var pdf = new PrintTickets(tickets);
+                return pdf.SendPdf(); 
+            }
+        }
+
+        [HttpGet]
+        public ActionResult PrintReservationTickets()
+        {
+            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["Tickets"];
+            List<Ticket> tickets = ticketss.ToList();
             var pdf = new PrintTickets(tickets);
             return pdf.SendPdf();
         }

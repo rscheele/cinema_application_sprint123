@@ -190,6 +190,8 @@
     <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PinController.cs" />
+    <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\SeatSelectionController.cs" />
@@ -200,7 +202,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\AutomaticSeatSelection.cs" />
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\SeatCoord.cs" />
@@ -230,10 +231,10 @@
     <Content Include="Views\Confirmation\Confirm.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Succes.cshtml" />
-    <Content Include="Views\Summary\SummaryView.cshtml" />
     <Content Include="Views\Reservation\Reservation.cshtml" />
     <Content Include="Views\Reservation\DisplayReservation.cshtml" />
     <Content Include="Views\Reservation\NoReservationFound.cshtml" />
+    <Content Include="Views\Pin\Pay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,6 +245,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Print\" />
+    <Folder Include="Views\Summary\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

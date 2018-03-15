@@ -21,7 +21,7 @@ namespace WebUI.Controllers
             var context = new EFDbContext();
 
             var occupiedSeats = new List<Seat>();
-            var ass = new AutomaticSeatSelection();
+            //var ass = new AutomaticSeatSelection();
 
 
             foreach (Seat s in context.Seats.ToList())
@@ -43,10 +43,10 @@ namespace WebUI.Controllers
 
             if (model.SeatCoordList.Count == 0)
             {
-                model.SeatCoordList = ass.CalculateSeats(model.SelectedShow.Room, 2, occupiedSeats);
+                //model.SeatCoordList = ass.CalculateSeats(model.SelectedShow.Room, 2, occupiedSeats);
             }
 
-            model.SeatSelectionGUI = ass.VisualizeSeats(model.SelectedShow.Room, occupiedSeats, model.SeatCoordList);
+            //model.SeatSelectionGUI = ass.VisualizeSeats(model.SelectedShow.Room, occupiedSeats, model.SeatCoordList);
 
             TempData["model"] = model;
             return View("SummaryView", model);

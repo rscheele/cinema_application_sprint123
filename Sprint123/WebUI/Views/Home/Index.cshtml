@@ -8,12 +8,11 @@
         <p>
             <h2>Welkom bij Avans Cinema, maak een keuze.</h2>
         </p>
-        <p>
-            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Upcoming", "UpcomingShow")'">Alle shows voor vandaag bekijken</button>
-        </p>
-        <p>
-            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Reservering ophalen</button>
-        </p>
+        <p>            
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Upcoming", "UpcomingShow", new {locationid = 1}, null)'">Bioscoop Breda</button>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Upcoming", "UpcomingShow", new {locationid = 2}, null)'">bioscoop Eindhoven</button>
+            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Upcoming", "UpcomingShow", new {locationid = 3}, null)'">Bioscoop Tilburg</button>
+        </p>        
     </div>
 </body>
 

@@ -7,8 +7,8 @@
     <p>
         <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
         <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
-        <input action="action" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;"/>
-        <hr />
+        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Reservering ophalen</button>
+    <hr />
     </p>
 </div>
 

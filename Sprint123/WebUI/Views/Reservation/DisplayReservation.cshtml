@@ -44,9 +44,8 @@
             </tr>
     }
         </table>
-        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("PrintReservationTickets", "Reservation", Model)'">Print je tickets!</button>
-
-        <input action="action" class="btn btn-success" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
+        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("PrintReservationTickets", "Reservation", Model)';disableButton(this)">Print je tickets!</button>
+        <input action="action" class="btn btn-success" type="button" value="Start nieuwe bestelling" onclick="window.history.go(-2); return false;" />
     </div>
 </body>
 

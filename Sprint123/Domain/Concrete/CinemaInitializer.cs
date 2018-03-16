@@ -44,27 +44,27 @@ namespace Domain.Concrete
             new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=1},
             new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=1},
             new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=1},
-            new Movie{Name="De grote blije kinderfilm",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=1},
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=1},
 
             new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false,LocationID=2},
-            new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=2},
+            new Movie{Name="Tomb Raider",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=2},
             new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=2},
             new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false,LocationID=2},
             new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true,LocationID=2},
             new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=2},
             new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=2},
             new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=2},
-            new Movie{Name="De grote blije kinderfilm",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=2},
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=2},
 
             new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false,LocationID=3},
             new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=3},
-            new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=3},
+            new Movie{Name="Pacific Rim Uprising",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=3},
             new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false,LocationID=3},
             new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true,LocationID=3},
             new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=3},
             new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=3},
             new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=3},
-            new Movie{Name="De grote blije kinderfilm",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=3}
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=3}
 
             };
 
@@ -226,15 +226,15 @@ namespace Domain.Concrete
             /* -----------start of table creation------------ */
             var shows = new List<Show>
             {
-            new Show{BeginTime=DateTime.Parse("2018-03-06 16:15:00.000"),EndTime=DateTime.Parse("2018-04-06 18:30:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:00:00.000"),EndTime=DateTime.Parse("2018-04-06 21:00:00.000"),MovieID=1,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:00:00.000"),EndTime=DateTime.Parse("2018-04-06 21:00:00.000"),MovieID=2,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:08:00.000"),EndTime=DateTime.Parse("2018-04-06 21:08:00.000"),MovieID=3,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:11:00.000"),EndTime=DateTime.Parse("2018-04-06 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:00:00.000"),EndTime=DateTime.Parse("2018-04-06 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 19:00:00.000"),EndTime=DateTime.Parse("2018-04-06 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 21:15:00.000"),EndTime=DateTime.Parse("2018-04-06 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-06 21:15:00.000"),EndTime=DateTime.Parse("2018-04-06 22:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true}
+            new Show{BeginTime=DateTime.Parse("2018-03-16 16:15:00.000"),EndTime=DateTime.Parse("2018-03-16 18:30:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:00:00.000"),EndTime=DateTime.Parse("2018-03-16 21:00:00.000"),MovieID=1,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:00:00.000"),EndTime=DateTime.Parse("2018-03-16 21:00:00.000"),MovieID=2,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:08:00.000"),EndTime=DateTime.Parse("2018-03-16 21:08:00.000"),MovieID=3,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:11:00.000"),EndTime=DateTime.Parse("2018-03-16 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:00:00.000"),EndTime=DateTime.Parse("2018-03-16 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 19:00:00.000"),EndTime=DateTime.Parse("2018-03-16 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 21:15:00.000"),EndTime=DateTime.Parse("2018-03-16 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-16 21:15:00.000"),EndTime=DateTime.Parse("2018-03-16 22:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true}
             };
 
             shows.ForEach(s => context.Shows.Add(s));

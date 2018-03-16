@@ -137,6 +137,7 @@
     <Content Include="Content\footer-fixed.css" />
     <Content Include="Content\footer-logo90x30.png" />
     <Content Include="Content\menu.css" />
+    <Content Include="Content\my-javascript.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

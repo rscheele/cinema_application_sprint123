@@ -85,7 +85,8 @@ namespace WebUI.Controllers
             ViewBag.MinuteOfDay = MinuteOfDay;
             ViewBag.Location = Location;
             //will become upcomingShows
-            return View(allShows);
+            //return View(allShows);
+            return View(upcomingShows);
         }
 
         [HttpGet]

@@ -52,7 +52,16 @@ namespace WebUI.Controllers
         public ActionResult OrderTickets(Order order)
         {
             TempData["Order"] = order;
-            return RedirectToAction("AddPopcorn"); ;
+            int ticketcount = order.studentTickets + order.seniorTickets + order.normalTickets + order.childTickets;
+            if (ticketcount <= 0 | ticketcount > 10)
+            {
+                return RedirectToAction("OrderTickets");
+            }
+            else
+            {
+                return RedirectToAction("AddPopcorn");
+            }
+            // return RedirectToAction("AddPopcorn");
         }
 
         [HttpGet]

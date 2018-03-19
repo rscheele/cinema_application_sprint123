@@ -5,15 +5,15 @@
 
 <body>
     <div class="text-center">
-        <p>
+        @*<p>*@
             <h2>Je bestelt nu tickets voor @ViewBag.MovieName</h2><br />
             <p>Selecteer het aantal gewenste tickets.</p><br />
-            <p>Let op: Voor het studententarief dient een geldige studentenpas getoont te worden bij de ingang!</p><br />
-            <input action="action" class="btn btn-success" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
-        </p>
+            <b>Let op:</b><p>Voor het studententarief dient een geldige studentenpas getoond te worden bij de ingang!</p>
+            <b>Let op:</b><p>Bestel minimaal 1 en maximaal 10 tickets!</p>
+        @*</p>*@
         @using (Html.BeginForm())
     {
-        <table align="center">
+        <table align="center"  style="border-spacing: 10px; border-collapse: separate;">
             <tr>
                 <th scope="col">Type ticket</th>
                 <th scope="col">Prijs</th>
@@ -22,22 +22,22 @@
             <tr>
                 <td>Standaard</td>
                 <td>€@ViewBag.NormalPrice</td>
-                <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0" })</td>
+                <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0" , @max = "10", @style = "width:50px" })</td>
             </tr>
             <tr>
                 <td>Kind</td>
                 <td>€@ViewBag.ChildPrice</td>
-                <td>@Html.TextBox("childTickets", 0, new { @type = "number", @min = "0" })</td>
+                <td>@Html.TextBox("childTickets", 0, new { @type = "number", @min = "0", @max = "10", @style = "width:50px" })</td>
             </tr>
             <tr>
                 <td>Student</td>
                 <td>€@ViewBag.StudentPrice</td>
-                <td>@Html.TextBox("studentTickets", 0, new { @type = "number", @min = "0" })</td>
+                <td>@Html.TextBox("studentTickets", 0, new { @type = "number", @min = "0", @max = "10", @style = "width:50px" })</td>
             </tr>
             <tr>
                 <td>Senior</td>
                 <td>€@ViewBag.SeniorPrice</td>
-                <td>@Html.TextBox("seniorTickets", 0, new { @type = "number", @min = "0" })</td>
+                <td>@Html.TextBox("seniorTickets", 0, new { @type = "number", @min = "0", @max = "10", @style = "width:50px" })</td>
             </tr>
         </table>
 

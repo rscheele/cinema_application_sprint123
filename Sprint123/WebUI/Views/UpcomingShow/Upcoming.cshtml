@@ -33,6 +33,9 @@
             <p>Zaal:</p>
         </th>
         <th>
+            <p>Leeftijd:</p>
+        </th>
+        <th>
             <p>Aanvangstijd:</p>
         </th>
         <th>
@@ -42,17 +45,15 @@
     </tr>
     <tr>
         <td>
-            <p>? - 2,50 euro korting!</p>
+            <p>? - &euro;2,50 korting!</p>
         </td>
         <td>
             @if (@ViewBag.threed == false)
-            {
-            <input class="check-box" disabled="disabled" type="checkbox" />
-            }
-            else
-            {
-        <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
-        }
+             {
+             <p>3D</p>
+             }else {
+             <p></p>
+             }
         </td>
         <td>
             <p>@ViewBag.language</p>
@@ -65,6 +66,20 @@
         </td>
         <td>
             <p>@ViewBag.room</p>
+        </td>
+        <td>
+            @if (@ViewBag.age == 16)
+             {
+             <img src="~/Content/kijkwijzer-16.png" alt="16" height="25" width="25"/>
+             }else if(@ViewBag.age == 12) {
+             <img src="~/Content/kijkwijzer-12.png" alt="12" height="25" width="25"/>
+             }else if(@ViewBag.age == 6)
+             {
+             <img src="~/Content/kijkwijzer-6.png" alt="6" height="25" width="25"/>
+             }else if (@ViewBag.age < 6)
+             {
+             <img src="~/Content/kijkwijzer-AL.png" alt="AL" height="25" width="25"/>
+             }
         </td>
         <td>
             <p>@ViewBag.begintime</p>
@@ -82,7 +97,12 @@
             @Html.DisplayFor(modelItem => item.Movie.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Movie.Is3D)
+            @if (item.Movie.Is3D == true)
+             {
+             <p>3D</p>
+             }else {
+             <p></p>
+             }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Movie.Language)
@@ -95,6 +115,20 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Room.RoomID)
+        </td>
+        <td>
+            @if (item.Movie.Age == 16)
+             {
+             <img src="~/Content/kijkwijzer-16.png" alt="16" height="25" width="25"/>
+             }else if(item.Movie.Age == 12) {
+             <img src="~/Content/kijkwijzer-12.png" alt="12" height="25" width="25"/>
+             }else if(item.Movie.Age == 6)
+             {
+             <img src="~/Content/kijkwijzer-6.png" alt="6" height="25" width="25"/>
+             }else if (item.Movie.Age < 6)
+             {
+             <img src="~/Content/kijkwijzer-AL.png" alt="AL" height="25" width="25"/>
+             }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BeginTime)

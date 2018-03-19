@@ -49,8 +49,9 @@ namespace WebUI.Controllers
                 .Where(s => s.EndTime < EndOfDay).ToList();
 
             //--secret movie ---
-            IEnumerable<Show> list = showRepository.GetShows();
-            IEnumerable<Show> secretShow = list.OrderBy(s => s.NumberofTickets).Take(1);
+            IEnumerable<Show> showx = allShows;
+            //IEnumerable<Show> list = showRepository.GetShows();
+            IEnumerable<Show> secretShow = showx.OrderBy(s => s.NumberofTickets).Take(1);
             Show show = secretShow.First();
             String showid = show.ShowID.ToString();
             string begintime = show.BeginTime.ToString();
@@ -59,6 +60,7 @@ namespace WebUI.Controllers
             string sublanguage = show.Movie.LanguageSub.ToString();
             string length = show.Movie.Length.ToString();
             string room = show.RoomID.ToString();
+            int age = show.Movie.Age;
 
             ViewBag.showid = showid;
             ViewBag.begintime = begintime;
@@ -67,6 +69,7 @@ namespace WebUI.Controllers
             ViewBag.language = language;
             ViewBag.sublanguage = sublanguage;
             ViewBag.length = length;
+            ViewBag.age = age;
             ViewBag.room = room;
             //--secret movie ---         
             DateTime today = DateTime.Now;
@@ -85,8 +88,8 @@ namespace WebUI.Controllers
             ViewBag.MinuteOfDay = MinuteOfDay;
             ViewBag.Location = Location;
             //will become upcomingShows
-            //return View(allShows);
-            return View(upcomingShows);
+            return View(allShows);
+            //return View(upcomingShows);
         }
 
         [HttpGet]

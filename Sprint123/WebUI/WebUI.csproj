@@ -136,6 +136,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\footer-fixed.css" />
     <Content Include="Content\footer-logo90x30.png" />
+    <Content Include="Content\kijkwijzer-12.png" />
+    <Content Include="Content\kijkwijzer-16.png" />
+    <Content Include="Content\kijkwijzer-6.png" />
+    <Content Include="Content\kijkwijzer-AL.png" />
+    <Content Include="Content\kijkwijzer-discriminatie.png" />
+    <Content Include="Content\kijkwijzer-drugs.png" />
+    <Content Include="Content\kijkwijzer-eng.png" />
+    <Content Include="Content\kijkwijzer-geweld.png" />
+    <Content Include="Content\kijkwijzer-groftaalgebruik.png" />
+    <Content Include="Content\kijkwijzer-seks.png" />
+    <Content Include="Content\kijkwijzer.png" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\my-javascript.js" />
     <Content Include="Content\Site.css" />

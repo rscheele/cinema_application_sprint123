@@ -36,7 +36,14 @@
                     @Html.DisplayFor(x => item.TicketType)
                 </td>
                 <td>
-                    @Html.DisplayFor(x => item.Popcorn)
+                    @if (item.Popcorn == true)
+                    {
+                         <p>Ja</p>
+                    }
+                    else
+                    {
+                         <p>Nee</p>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.Seat.SeatNumber)

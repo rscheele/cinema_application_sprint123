@@ -81,6 +81,9 @@ namespace WebUI.Controllers
                 addText("Eindtijd: " + t.Show.EndTime.ToString("HH:mm"), smallFont);
                 addText("Locatie: " + location, smallFont);
                 addText("Zaal: " + t.Show.RoomID, smallFont);
+                AddEmptyLine();
+                addText("Met popcorn arrangement: " + (t.Popcorn ? "Ja" : "Nee"));
+
                 //addText("Stoelnummer: " + t.Seat.SeatNumber, smallFont);
                 //addText("Rijnummer: " + t.Seat.RowY, smallFont);
             }

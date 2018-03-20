@@ -46,8 +46,15 @@ namespace WebUI.Controllers
                     item.Show = orderedShow;
                 }
 
-                TempData["Tickets"] = tickets;
-                return View("DisplayReservation", tickets);
+                TempData["TicketList"] = tickets;
+                if (tickets.First().IsPaid == true)
+                {
+                    return View("DisplayReservation", tickets);
+                }
+                else
+                {
+                    return RedirectToAction("Pay", "Pin", tickets);
+                }
             }
             else
             {
@@ -87,7 +94,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult PrintReservationTickets()
         {
-            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["Tickets"];
+            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["TicketList"];
             List<Ticket> tickets = ticketss.ToList();
             var pdf = new PrintTickets(tickets);
             return pdf.SendPdf();

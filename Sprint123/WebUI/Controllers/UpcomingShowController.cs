@@ -14,14 +14,12 @@ namespace WebUI.Controllers
     {
         private IMovieOverviewRepository movieRepository;
         private IShowRepository showRepository;
-        private ITicketRepository ticketRepository;
         //need ticketRepo for secret movie;
 
-        public UpcomingShowController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository)
+        public UpcomingShowController(IMovieOverviewRepository movieRepository, IShowRepository showRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
-            this.ticketRepository = ticketRepository;
         }
 
         // GET: UpcomingShow

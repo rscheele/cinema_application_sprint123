@@ -78,6 +78,7 @@ namespace WebUI.Controllers
             else
             {
                 List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                ticketRepository.SaveTickets(tickets);
                 var pdf = new PrintTickets(tickets);
                 return pdf.SendPdf(); 
             }

@@ -12,12 +12,10 @@ namespace WebUI.Controllers
 {
     public class TicketController : Controller
     {
-        private ITicketRepository ticketRepository;
         private IShowRepository showRepository;
 
-        public TicketController(ITicketRepository ticketRepository, IShowRepository showRepository)
+        public TicketController(IShowRepository showRepository)
         {
-            this.ticketRepository = ticketRepository;
             this.showRepository = showRepository;
         }
 

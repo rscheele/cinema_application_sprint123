@@ -11,5 +11,6 @@ namespace Domain.Abstract
     {
         IEnumerable<Ticket> GetTickets(long reservationID);
         IEnumerable<Ticket> GetMovieSecretTickets();
+        void SaveTickets(List<Ticket> tickets);
     }
 }

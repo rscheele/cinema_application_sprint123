@@ -201,7 +201,6 @@
     <Compile Include="Business_Logic\MovieType.cs" />
     <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PinController.cs" />
     <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />

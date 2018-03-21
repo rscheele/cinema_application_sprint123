@@ -33,9 +33,9 @@ namespace Domain.Concrete
         {
             foreach (var item in tickets)
             {
-                //context.Tickets.Add(item);
+                context.Tickets.Add(item);
             }
-            //context.SaveChanges();
+            context.SaveChanges();
         }
     }
         

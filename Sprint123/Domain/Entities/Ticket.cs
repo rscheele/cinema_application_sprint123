@@ -22,8 +22,10 @@ namespace Domain.Entities
         public bool IsPaid { get; set; }
         public int? SeatID { get; set; }
         public int? ShowID { get; set; }
+        [NotMapped]
         [ForeignKey("SeatID")]
         public virtual Seat Seat { get; set; }
+        [NotMapped]
         [ForeignKey("ShowID")]
         public virtual Show Show { get; set; }
         public bool Popcorn { get; set; }

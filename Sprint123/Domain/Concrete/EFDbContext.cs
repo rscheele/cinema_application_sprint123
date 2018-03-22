@@ -16,6 +16,7 @@ namespace Domain.Concrete
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<TempTicket> TempTickets { get; set; }
+        public DbSet<ShowSeat> ShowSeats { get; set; }
 
         public EFDbContext() : base("EFDbContext"){
         

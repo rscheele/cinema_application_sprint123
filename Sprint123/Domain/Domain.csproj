@@ -70,12 +70,14 @@
   <ItemGroup>
     <Compile Include="Abstract\IMovieOverviewRepository.cs" />
     <Compile Include="Abstract\IShowRepository.cs" />
+    <Compile Include="Abstract\IShowSeatRepository.cs" />
     <Compile Include="Abstract\ITempTicketRepository.cs" />
     <Compile Include="Abstract\ITicketRepository.cs" />
     <Compile Include="Concrete\CinemaInitializer.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\MovieOverviewRepository.cs" />
     <Compile Include="Concrete\ShowRepository.cs" />
+    <Compile Include="Concrete\ShowSeatRepository.cs" />
     <Compile Include="Concrete\TempTicketRepository.cs" />
     <Compile Include="Concrete\TicketRepository.cs" />
     <Compile Include="Entities\Movie.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Show.cs" />
+    <Compile Include="Entities\ShowSeat.cs" />
     <Compile Include="Entities\TempTicket.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

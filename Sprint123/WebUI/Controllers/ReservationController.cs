@@ -85,6 +85,10 @@ namespace WebUI.Controllers
             else
             {
                 List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                foreach (var item in tickets)
+                {
+                    item.IsPaid = true;
+                }
                 ticketRepository.SaveTickets(tickets);
                 var pdf = new PrintTickets(tickets);
                 return pdf.SendPdf(); 

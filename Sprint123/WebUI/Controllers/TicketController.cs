@@ -118,6 +118,7 @@ namespace WebUI.Controllers
                 item.IsPaid = false;
                 item.Popcorn = false;
                 item.SeatID = 0;
+                item.ShowID = selectedShow.ShowID;
                 //adding seat data ---- BEGIN
                 //item.Seat.SeatNumber =12;
                 //item.Seat.RowY =2;

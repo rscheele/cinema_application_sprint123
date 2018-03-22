@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
-    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseAlways<EFDbContext>
+    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
     {
         protected override void Seed(EFDbContext context)
         {
@@ -1017,6 +1017,7 @@ namespace Domain.Concrete
             new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatID=12,ReservationID=20180681426908,Popcorn=false},
             new Ticket{Price=15.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=13,ReservationID=20180681426908,Popcorn=true},
             new Ticket{Price=10.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=14,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatID=15,ReservationID=20180681426908,Popcorn=false},
             new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatID=15,ReservationID=20180681426908,Popcorn=false}
             };
 

@@ -13,7 +13,6 @@ namespace Domain.Concrete
         public DbSet<Show> Shows { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
-        public DbSet<RoomLayout> RoomLayouts { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<TempTicket> TempTickets { get; set; }

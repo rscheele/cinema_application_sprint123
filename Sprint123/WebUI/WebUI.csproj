@@ -206,16 +206,13 @@
     <Compile Include="Models\PrintTickets.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\SeatSelectionController.cs" />
-    <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UpcomingShowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\SeatCoord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

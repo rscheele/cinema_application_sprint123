@@ -15,15 +15,13 @@ namespace Domain.Entities
 
         }
         [Key]
-        public int SeatID { get; set; }
-        public int RowX { get; set; }
-        public int RowY { get; set; }
-        public int SeatNumber { get; set; }
-
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int? SeatID { get; set; }
         public int? RoomID { get; set; }
-        
+        [NotMapped]
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
-
+        public int RowNumber { get; set; }
+        public int SeatNumber { get; set; }
     }
 }

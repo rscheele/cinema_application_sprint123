@@ -81,7 +81,6 @@
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Room.cs" />
-    <Compile Include="Entities\RoomLayout.cs" />
     <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Show.cs" />
     <Compile Include="Entities\TempTicket.cs" />

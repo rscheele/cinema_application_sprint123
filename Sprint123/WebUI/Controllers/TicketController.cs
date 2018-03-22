@@ -14,17 +14,20 @@ namespace WebUI.Controllers
     {
         private IShowRepository showRepository;
         private ITempTicketRepository tempTicketRepository;
+        private ITicketRepository ticketRepository;
 
-        public TicketController(IShowRepository showRepository, ITempTicketRepository tempTicketRepository)
+        public TicketController(IShowRepository showRepository, ITempTicketRepository tempTicketRepository, ITicketRepository ticketRepository)
         {
             this.showRepository = showRepository;
             this.tempTicketRepository = tempTicketRepository;
+            this.ticketRepository = ticketRepository;
         }
 
         [HttpGet]
         public ActionResult OrderTickets()
         {
             Show selectedShow = (Show)TempData["Show"];
+            string soldOut = (string)TempData["SoldOut"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
             //hide name if movie is secret ----BEGIN
             //Boolean IsSecret = (Boolean)TempData["Secret"];
@@ -42,6 +45,10 @@ namespace WebUI.Controllers
             ViewBag.ChildPrice = tarrifs[1];
             ViewBag.StudentPrice = tarrifs[2];
             ViewBag.SeniorPrice = tarrifs[3];
+            if (soldOut != null)
+            {
+                ViewBag.SoldOut = soldOut;
+            }
 
             TempData["Show"] = selectedShow;
             TempData["Secret"] = secret;
@@ -51,10 +58,34 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult OrderTickets(Order order)
         {
+            // Add a maximum of tickets that can be ordered based on database
+            Show selectedShow = (Show)TempData["Show"];
+            int bookedTickets = ticketRepository.GetShowTickets(selectedShow.ShowID).Count();
+            int reservedTickets = tempTicketRepository.GetTempTicketsShow(selectedShow.ShowID).Count();
+            int totalBookedSeats = bookedTickets + reservedTickets;
+            int maxSeats = selectedShow.Room.TotalSeats;
+            int seatsLeft = maxSeats - totalBookedSeats;
+            int max = 10;
+            if (seatsLeft < 10)
+            {
+                max = seatsLeft;
+            }
+            TempData["Show"] = selectedShow;
+
             TempData["Order"] = order;
             int ticketcount = order.studentTickets + order.seniorTickets + order.normalTickets + order.childTickets;
-            if (ticketcount <= 0 | ticketcount > 10)
+            if (max == 0)
             {
+                TempData["SoldOut"] = "De show is helaas uitverkocht. Er zijn geen tickets meer beschikbaar.";
+                return RedirectToAction("OrderTickets");
+            }
+            else if (ticketcount <= 0 | ticketcount > 10)
+            {
+                return RedirectToAction("OrderTickets");
+            }
+            else if (ticketcount > max)
+            {
+                TempData["SoldOut"] = "De show is bijna uitverkocht, er zijn nog maar " + max + " tickets beschikbaar!";
                 return RedirectToAction("OrderTickets");
             }
             else
@@ -160,7 +191,7 @@ namespace WebUI.Controllers
                 }
             }           
             TempData["TicketList"] = ticketList;
-            //return RedirectToAction("SummaryView", "Summary", ticketList);
+            //return RedirectToAction("SeatSelection", "SeatSelection", ticketList);
             return RedirectToAction("Pay", "Pin", ticketList);
         }
 

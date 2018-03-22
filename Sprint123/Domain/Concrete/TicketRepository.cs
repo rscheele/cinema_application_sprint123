@@ -17,9 +17,9 @@ namespace Domain.Concrete
             return context.Tickets;
         }
 
-        public IEnumerable<Ticket> GetTickets(long reservationID)
+        public IEnumerable<Ticket> GetTickets(long ReservationID)
         {
-            List<Ticket> list = context.Tickets.Where(x => x.ReservationID == reservationID).ToList();
+            List<Ticket> list = context.Tickets.Where(x => x.ReservationID == ReservationID).ToList();
             if (list != null)
             {
                 return list;
@@ -29,9 +29,24 @@ namespace Domain.Concrete
             }
             
         }
-        public void SaveTickets(List<Ticket> tickets)
+
+        public IEnumerable<Ticket> GetShowTickets(int ShowID)
         {
-            foreach (var item in tickets)
+            List<Ticket> list = context.Tickets.Where(x => x.ShowID == ShowID).ToList();
+            if (list != null)
+            {
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public void SaveTickets(List<Ticket> Tickets)
+        {
+            foreach (var item in Tickets)
             {
                 context.Tickets.Add(item);
             }

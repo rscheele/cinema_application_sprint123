@@ -17,7 +17,7 @@ namespace Domain.Concrete
             return context.TempTickets;
         }
 
-        public IEnumerable<TempTicket> GetTempTickets(long ReservationID)
+        public IEnumerable<TempTicket> GetTempTicketsReservation(long ReservationID)
         {
             List<TempTicket> list = context.TempTickets.Where(x => x.ReservationID == ReservationID).ToList();
             if (list != null)
@@ -30,7 +30,7 @@ namespace Domain.Concrete
             }
         }
 
-        public IEnumerable<TempTicket> GetTempTickets(int? ShowID)
+        public IEnumerable<TempTicket> GetTempTicketsShow(int? ShowID)
         {
             List<TempTicket> list = context.TempTickets.Where(x => x.ShowID == ShowID).ToList();
             if (list != null)

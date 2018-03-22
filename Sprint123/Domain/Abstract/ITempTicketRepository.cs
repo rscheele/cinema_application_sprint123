@@ -10,8 +10,8 @@ namespace Domain.Abstract
     public interface ITempTicketRepository
     {
         IEnumerable<TempTicket> GetTempTickets();
-        IEnumerable<TempTicket> GetTempTickets(int? ShowID);
-        IEnumerable<TempTicket> GetTempTickets(long ReservationID);
+        IEnumerable<TempTicket> GetTempTicketsShow(int? ShowID);
+        IEnumerable<TempTicket> GetTempTicketsReservation(long ReservationID);
         void SaveTempTickets(List<TempTicket> TempTickets);
         void UpdateTempTickets(List<TempTicket> TempTickets);
         void DeleteTempTickets(long ReservationID);

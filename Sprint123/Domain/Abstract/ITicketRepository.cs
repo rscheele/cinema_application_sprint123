@@ -9,8 +9,9 @@ namespace Domain.Abstract
 {
     public interface ITicketRepository
     {
-        IEnumerable<Ticket> GetTickets(long reservationID);
+        IEnumerable<Ticket> GetTickets(long ReservationID);
+        IEnumerable<Ticket> GetShowTickets(int ShowID);
         IEnumerable<Ticket> GetMovieSecretTickets();
-        void SaveTickets(List<Ticket> tickets);
+        void SaveTickets(List<Ticket> Tickets);
     }
 }

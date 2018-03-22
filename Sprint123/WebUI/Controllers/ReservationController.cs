@@ -16,12 +16,14 @@ namespace WebUI.Controllers
         private IMovieOverviewRepository movieRepository;
         private IShowRepository showRepository;
         private ITicketRepository ticketRepository;
+        private ITempTicketRepository tempTicketRepository;
 
-        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository)
+        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
+            this.tempTicketRepository = tempTicketRepository;
         }
 
         // GET: Reservation
@@ -90,6 +92,7 @@ namespace WebUI.Controllers
                     item.IsPaid = true;
                 }
                 ticketRepository.SaveTickets(tickets);
+                tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
                 var pdf = new PrintTickets(tickets);
                 return pdf.SendPdf(); 
             }

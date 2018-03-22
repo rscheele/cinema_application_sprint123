@@ -13,10 +13,12 @@ namespace WebUI.Controllers
     public class TicketController : Controller
     {
         private IShowRepository showRepository;
+        private ITempTicketRepository tempTicketRepository;
 
-        public TicketController(IShowRepository showRepository)
+        public TicketController(IShowRepository showRepository, ITempTicketRepository tempTicketRepository)
         {
             this.showRepository = showRepository;
+            this.tempTicketRepository = tempTicketRepository;
         }
 
         [HttpGet]
@@ -69,6 +71,7 @@ namespace WebUI.Controllers
             Show selectedShow = (Show)TempData["Show"];
             List<decimal> tarrifs = calculatePrices(selectedShow);
             List<Ticket> tickets = new List<Ticket>();
+            List<TempTicket> tempTickets = new List<TempTicket>();
             int numberoftickets = 0;
             // Generate ReservationID for reservation based on date and time
             DateTime dateTime = DateTime.Now;
@@ -124,10 +127,18 @@ namespace WebUI.Controllers
                 //item.Seat.RowY =2;
                 //adding seat data ---- END
                 item.ReservationID = reservationID;
+                //Concurrency
+                TempTicket tempTicket = new TempTicket();
+                tempTicket.ReservationID = item.ReservationID;
+                tempTicket.SeatID = item.SeatID;
+                tempTicket.ShowID = item.ShowID;
+                tempTicket.TimeAdded = DateTime.Now;
+                tempTickets.Add(tempTicket);
                 numberoftickets++;
             }
             selectedShow.NumberofTickets = selectedShow.NumberofTickets + numberoftickets;
             showRepository.SaveShow(selectedShow);
+            tempTicketRepository.SaveTempTickets(tempTickets);
 
             TempData["Order"] = order;
             TempData["Show"] = selectedShow;

@@ -986,7 +986,7 @@ namespace Domain.Concrete
 
             seats.ForEach(s => context.Seats.Add(s));
             context.SaveChanges();
-             /*-----------end of table creation------------ */
+            /*-----------end of table creation------------ */
 
             /* -----------start of table creation------------ */
             var shows = new List<Show>
@@ -1022,6 +1022,30 @@ namespace Domain.Concrete
 
             tickets.ForEach(s => context.Tickets.Add(s));
             context.SaveChanges();
+            /*-----------end of table creation------------ */
+
+            /* -----------start of table creation------------*/
+            // SHOWSEATS
+            var showSeats = new List<ShowSeat>();
+            foreach (var i in shows)
+            {
+                foreach (var j in seats)
+                {
+                    if (i.RoomID == j.RoomID)
+                    {
+                        ShowSeat showSeat = new ShowSeat();
+                        showSeat.ShowID = i.ShowID;
+                        showSeat.RoomID = i.RoomID;
+                        showSeat.RowNumber = j.RowNumber;
+                        showSeat.SeatNumber = j.SeatNumber;
+                        showSeat.IsTaken = false;
+                        showSeats.Add(showSeat);
+                    }
+                }
+            }
+            showSeats.ForEach(s => context.ShowSeats.Add(s));
+            context.SaveChanges();
+
             /*-----------end of table creation------------ */
 
         }

@@ -28,6 +28,9 @@ namespace Sprint123.WebUI.Infrastructure
             kernel.Bind<IShowRepository>().To<ShowRepository>();
             kernel.Bind<ITicketRepository>().To<TicketRepository>();
             kernel.Bind<IMovieOverviewRepository>().To<MovieOverviewRepository>();
+            kernel.Bind<ITempTicketRepository>().To<TempTicketRepository>();
+            kernel.Bind<IShowSeatRepository>().To<ShowSeatRepository>();
+            kernel.Bind<IRoomRepository>().To<RoomRepository>();
         }
     }
 }

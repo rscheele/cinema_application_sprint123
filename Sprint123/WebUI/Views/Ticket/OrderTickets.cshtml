@@ -6,14 +6,15 @@
 <body>
     <div class="text-center">
         @*<p>*@
-            <h2>Je bestelt nu tickets voor @ViewBag.MovieName</h2><br />
-            <p>Selecteer het aantal gewenste tickets.</p><br />
-            <b>Let op:</b><p>Voor het studententarief dient een geldige studentenpas getoond te worden bij de ingang!</p>
-            <b>Let op:</b><p>Bestel minimaal 1 en maximaal 10 tickets!</p>
+        <h2>Je bestelt nu tickets voor @ViewBag.MovieName</h2><br />
+        <p>Selecteer het aantal gewenste tickets.</p><br />
+        <b>Let op:</b><p>Voor het studententarief dient een geldige studentenpas getoond te worden bij de ingang!</p>
+        <b>Let op:</b><p>Bestel minimaal 1 en maximaal 10 tickets!</p>
+        <p style="color:red"><b>@ViewBag.SoldOut</b></p>
         @*</p>*@
         @using (Html.BeginForm())
     {
-        <table align="center"  style="border-spacing: 10px; border-collapse: separate;">
+        <table align="center" style="border-spacing: 10px; border-collapse: separate;">
             <tr>
                 <th scope="col">Type ticket</th>
                 <th scope="col">Prijs</th>
@@ -22,7 +23,7 @@
             <tr>
                 <td>Standaard</td>
                 <td>€@ViewBag.NormalPrice</td>
-                <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0" , @max = "10", @style = "width:50px" })</td>
+                <td>@Html.TextBox("normalTickets", 0, new { @type = "number", @min = "0", @max = "10", @style = "width:50px" })</td>
             </tr>
             <tr>
                 <td>Kind</td>

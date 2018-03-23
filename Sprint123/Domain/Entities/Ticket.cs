@@ -20,10 +20,14 @@ namespace Domain.Entities
         public decimal Price { get; set; }
         public string TicketType { get; set; }//could be enum
         public bool IsPaid { get; set; }
-        public int? SeatID { get; set; }
+        public int? SeatNumber { get; set; }
+        public int? RowNumber { get; set; }
         public int? ShowID { get; set; }
+        public int? SeatID { get; set; }
+        [NotMapped]
         [ForeignKey("SeatID")]
         public virtual Seat Seat { get; set; }
+        [NotMapped]
         [ForeignKey("ShowID")]
         public virtual Show Show { get; set; }
         public bool Popcorn { get; set; }

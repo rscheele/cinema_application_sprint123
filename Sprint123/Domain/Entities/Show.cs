@@ -18,22 +18,15 @@ namespace Domain.Entities
 
         [Key]
         public int ShowID { get; set; }
-
         public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
-
         public int? MovieID { get; set; }
-
         [ForeignKey("MovieID")]
         public virtual Movie Movie { get; set; }
-
         public int? RoomID { get; set; }
-
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
-
         public int NumberofTickets { get; set; }  
-
         public bool ChildDiscount { get; set; }
         public bool StudentDiscount { get; set; }
         public bool SeniorDiscount { get; set; }

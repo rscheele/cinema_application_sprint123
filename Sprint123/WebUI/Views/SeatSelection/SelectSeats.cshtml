@@ -1,9 +1,33 @@
-﻿@model Domain.Entities.RoomLayout
+﻿@model  WebUI.Models.SeatLayout
 
 @{
     ViewBag.Title = "SelectSeats";
 }
+<body>
+    <h2>SelectSeats</h2>
+    @for (int i = 1; i <= Model.rowCount; i++)
+    {
+        foreach (var item in Model.showSeats)
+        {
+            if (item.RowNumber == i)
+            {
+                if (item.IsTaken == true)
+                {
+                    <i>X</i>
+                }
+                else if (item.IsReserved == true)
+                {
+                    <i>R</i>
+                }
+                else
+                {
+                    <i>S</i>
+                }
+            }
+        }
+        <br />
+    }
 
-<h2>SelectSeats</h2>
 
-@Html.ActionLink("Kiezen", "Confirm", "Confirmation", null, null)
+    @Html.ActionLink("Stoeltjes kiezen", "ChooseSeats", "SeatSelection", null, null)
+</body>

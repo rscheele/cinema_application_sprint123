@@ -200,24 +200,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business_Logic\MovieOverview.cs" />
     <Compile Include="Business_Logic\MovieType.cs" />
-    <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PinController.cs" />
     <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\SeatSelectionController.cs" />
-    <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UpcomingShowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\SeatCoord.cs" />
+    <Compile Include="Models\SeatLayout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,15 +237,13 @@
     <Content Include="Views\Ticket\OrderTickets.cshtml" />
     <Content Include="Views\Ticket\AddPopcorn.cshtml" />
     <Content Include="Views\SeatSelection\SelectSeats.cshtml" />
-    <Content Include="Views\Confirmation\Confirm.cshtml" />
-    <Content Include="Views\Payment\Payment.cshtml" />
-    <Content Include="Views\Payment\Succes.cshtml" />
     <Content Include="Views\Reservation\Reservation.cshtml" />
     <Content Include="Views\Reservation\DisplayReservation.cshtml" />
     <Content Include="Views\Reservation\NoReservationFound.cshtml" />
     <Content Include="Views\Pin\Pay.cshtml" />
     <Content Include="Views\UpcomingShow\Upcoming2.cshtml" />
     <Content Include="Views\UpcomingShow\ShowDetails.cshtml" />
+    <Content Include="Views\Reservation\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

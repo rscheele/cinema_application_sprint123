@@ -18,13 +18,7 @@ namespace Domain.Entities
         [Key]
         public int? RoomID { get; set; }
         public int? RoomNumber { get; set; }
-        public int LayoutID { get; set; }
-        public int LocationID { get; set; }
-
-        [ForeignKey("LayoutID")]
-        public virtual RoomLayout Layout { get; set; }
-
-        [ForeignKey("LocationID")]
-        public virtual Location Location { get; set; }
+        public int TotalSeats { get; set; }
+        public int RowCount { get; set; }
     }
 }

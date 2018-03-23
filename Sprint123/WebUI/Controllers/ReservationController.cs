@@ -16,12 +16,14 @@ namespace WebUI.Controllers
         private IMovieOverviewRepository movieRepository;
         private IShowRepository showRepository;
         private ITicketRepository ticketRepository;
+        private ITempTicketRepository tempTicketRepository;
 
-        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository)
+        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
+            this.tempTicketRepository = tempTicketRepository;
         }
 
         // GET: Reservation
@@ -85,10 +87,23 @@ namespace WebUI.Controllers
             else
             {
                 List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                foreach (var item in tickets)
+                {
+                    item.IsPaid = true;
+                }
                 ticketRepository.SaveTickets(tickets);
-                var pdf = new PrintTickets(tickets);
-                return pdf.SendPdf(); 
+                tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
+                TempData["TicketList"] = tickets;
+                return View("Success");
             }
+        }
+
+        [HttpGet]
+        public ActionResult PrintSessionTickets()
+        {
+            List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+            var pdf = new PrintTickets(tickets);
+            return pdf.SendPdf();
         }
 
         [HttpGet]

@@ -8,20 +8,26 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Seat
+    public class ShowSeat
     {
-        public Seat()
+        public ShowSeat()
         {
 
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int? SeatID { get; set; }
+        public int? ShowID { get; set; }
+        [NotMapped]
+        [ForeignKey("ShowID")]
+        public virtual Show Show { get; set; }
         public int? RoomID { get; set; }
         [NotMapped]
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
         public int RowNumber { get; set; }
         public int SeatNumber { get; set; }
+        public bool IsTaken { get; set; }
+        public bool IsReserved { get; set; }
     }
 }

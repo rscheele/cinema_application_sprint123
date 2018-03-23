@@ -180,7 +180,6 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult AddPopcorn(List<Ticket> tickets)
         {
-           
             List<Ticket> ticketList = (List<Ticket>)TempData["Tickets"];
             for (int i = 0; i < tickets.Count; i++)
             {
@@ -191,8 +190,7 @@ namespace WebUI.Controllers
                 }
             }           
             TempData["TicketList"] = ticketList;
-            //return RedirectToAction("SeatSelection", "SeatSelection", ticketList);
-            return RedirectToAction("SelectSeats", "SeatSelection", ticketList);
+            return RedirectToAction("SelectSeats", "SeatSelection");
         }
 
         public List<decimal> calculatePrices(Show show)

@@ -76,12 +76,12 @@ namespace Domain.Concrete
             /* -----------start of table creation------------ */
             var rooms = new List<Room>
             {
-            new Room{RoomID=1,RoomNumber=1,TotalSeats=240},
-            new Room{RoomID=2,RoomNumber=2,TotalSeats=240},
-            new Room{RoomID=3,RoomNumber=3,TotalSeats=240},
-            new Room{RoomID=4,RoomNumber=4,TotalSeats=77},
-            new Room{RoomID=5,RoomNumber=5,TotalSeats=50},
-            new Room{RoomID=6,RoomNumber=6,TotalSeats=50}
+            new Room{RoomID=1,RoomNumber=1,TotalSeats=240,RowCount=12},
+            new Room{RoomID=2,RoomNumber=2,TotalSeats=240,RowCount=12},
+            new Room{RoomID=3,RoomNumber=3,TotalSeats=240,RowCount=12},
+            new Room{RoomID=4,RoomNumber=4,TotalSeats=77,RowCount=7},
+            new Room{RoomID=5,RoomNumber=5,TotalSeats=50,RowCount=4},
+            new Room{RoomID=6,RoomNumber=6,TotalSeats=50,RowCount=4}
             };
 
             rooms.ForEach(s => context.Rooms.Add(s));
@@ -1041,6 +1041,7 @@ namespace Domain.Concrete
                         showSeat.RowNumber = j.RowNumber;
                         showSeat.SeatNumber = j.SeatNumber;
                         showSeat.IsTaken = false;
+                        showSeat.IsReserved = false;
                         showSeats.Add(showSeat);
                     }
                 }

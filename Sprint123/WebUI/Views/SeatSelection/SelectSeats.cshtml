@@ -1,7 +1,15 @@
-﻿@{
+﻿@model  IEnumerable<Domain.Entities.ShowSeat>
+
+@{
     ViewBag.Title = "SelectSeats";
 }
+<body>
+    <h2>SelectSeats</h2>
+    @foreach (var item in Model)
+    {
+        
+    }
 
-<h2>SelectSeats</h2>
 
-@Html.ActionLink("Stoeltjes", "ChooseSeats", "SeatSelection", null, null)
+    @Html.ActionLink("Stoeltjes kiezen", "ChooseSeats", "SeatSelection", null, null)
+</body>

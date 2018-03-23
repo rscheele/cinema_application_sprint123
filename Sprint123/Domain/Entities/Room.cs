@@ -19,5 +19,6 @@ namespace Domain.Entities
         public int? RoomID { get; set; }
         public int? RoomNumber { get; set; }
         public int TotalSeats { get; set; }
+        public int RowCount { get; set; }
     }
 }

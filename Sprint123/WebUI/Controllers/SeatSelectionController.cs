@@ -30,6 +30,7 @@ namespace WebUI.Controllers
             Room room = roomRepository.GetRoom(show.RoomID);
             IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeats(show.ShowID);
             int totalTickets = ticketList.Count();
+            long reservationID = ticketList.FirstOrDefault().ReservationID;
 
             for (int i = 1; i <= room.RowCount; i++)
             {
@@ -56,6 +57,7 @@ namespace WebUI.Controllers
                         tempTickets[k].SeatNumber = currentRow[k].SeatNumber;
                         tempTickets[k].SeatID = currentRow[k].SeatID;
                         showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().IsReserved = true;
+                        showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().ReservationID = reservationID;
                     }
                     showSeatRepository.UpdateShowSeats(showSeats.ToList());
                     tempTicketRepository.UpdateTempTickets(tempTickets);

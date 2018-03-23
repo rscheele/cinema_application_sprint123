@@ -29,6 +29,19 @@ namespace Domain.Concrete
             }
         }
 
+        public IEnumerable<ShowSeat> GetShowSeatsReservation(long ReservationID)
+        {
+            List<ShowSeat> list = context.ShowSeats.Where(x => x.ReservationID == ReservationID).ToList();
+            if (list != null)
+            {
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void SaveShowSeats(List<ShowSeat> ShowSeats)
         {
             foreach (var item in ShowSeats)

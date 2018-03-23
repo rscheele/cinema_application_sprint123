@@ -17,13 +17,15 @@ namespace WebUI.Controllers
         private IShowRepository showRepository;
         private ITicketRepository ticketRepository;
         private ITempTicketRepository tempTicketRepository;
+        private IShowSeatRepository showSeatRepository;
 
-        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository)
+        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository, IShowSeatRepository showSeatRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
             this.tempTicketRepository = tempTicketRepository;
+            this.showSeatRepository = showSeatRepository;
         }
 
         // GET: Reservation
@@ -87,10 +89,20 @@ namespace WebUI.Controllers
             else
             {
                 List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tickets.FirstOrDefault().ReservationID);
                 foreach (var item in tickets)
                 {
                     item.IsPaid = true;
+                    foreach (var seat in showSeats)
+                    {
+                        if (seat.SeatID == item.SeatID)
+                        {
+                            seat.IsReserved = false;
+                            seat.IsTaken = true;
+                        }
+                    }
                 }
+                showSeatRepository.UpdateShowSeats(showSeats.ToList());
                 ticketRepository.SaveTickets(tickets);
                 tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
                 TempData["TicketList"] = tickets;

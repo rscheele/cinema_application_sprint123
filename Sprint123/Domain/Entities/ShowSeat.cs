@@ -29,5 +29,6 @@ namespace Domain.Entities
         public int SeatNumber { get; set; }
         public bool IsTaken { get; set; }
         public bool IsReserved { get; set; }
+        public long ReservationID { get; set; }
     }
 }

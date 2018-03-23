@@ -11,6 +11,7 @@ namespace Domain.Abstract
     {
         IEnumerable<ShowSeat> GetShowSeats();
         IEnumerable<ShowSeat> GetShowSeats(int? ShowID);
+        IEnumerable<ShowSeat> GetShowSeatsReservation(long ReservationID);
         void SaveShowSeats(List<ShowSeat> ShowSeats);
         void UpdateShowSeats(List<ShowSeat> ShowSeats);
     }

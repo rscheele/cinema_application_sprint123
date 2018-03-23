@@ -31,6 +31,9 @@ namespace WebUI.Controllers
             IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeats(show.ShowID);
             int totalTickets = ticketList.Count();
             long reservationID = ticketList.FirstOrDefault().ReservationID;
+            // Quick and dirty math programming
+            double halfwayRaw = room.RowCount / 2;
+            int halfway = int.Parse(Math.Ceiling(halfwayRaw).ToString());
 
             for (int i = 1; i <= room.RowCount; i++)
             {

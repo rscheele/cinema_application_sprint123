@@ -5,13 +5,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 
 namespace Domain.Concrete
 {
     // DropCreateDatabaseIfModelChanges VS DropCreateDatabaseAlways
     public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
     {
-        byte[] b = File.ReadAllBytes("C:/Users/Matthijs/Source/Repos/Sprint123/Sprint123/WebUI/Content/pacific-rim-small.png");
+        byte[] b = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/pacific-rim-small.png"));
+        //byte[] b = File.ReadAllBytes("/WebUI/Content/pacific-rim-small.png");
 
         protected override void Seed(EFDbContext context)
         {

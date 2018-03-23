@@ -57,9 +57,9 @@ namespace WebUI.Controllers
                 return View(filteredShows);
 
             }
-            if(!DateTime searchDate){
+            /*if(!DateTime searchDate){
                 List <Show> filteredShows
-            }
+            }*/
             //--------------filters--------------------
             //will become upcomingShows
             //ViewBag.locationId = Locationid;

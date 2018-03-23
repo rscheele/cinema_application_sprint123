@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    public enum Genre
+    {
+        Action, Adventure, Comedy, Crime, Drama, Fantasy, Historical, Horror, Western, Kids   
+    }
+
     public class Movie
     {
 
@@ -25,6 +30,14 @@ namespace Domain.Entities
         public int MovieType { get; set; }
         public int Length { get; set; }
         public bool Is3D { get; set; }
+        public byte[] Image { get; set; }
+        public string Trailer { get; set; }
+        public string MainActors { get; set; }
+        public string SubActors { get; set; }
+        public string IMDB { get; set; }
+        public string Website { get; set; }
+        public string Director { get; set; }
+        public Genre Genre { get; set; }
 
         public int LocationID { get; set; }
 

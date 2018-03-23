@@ -100,12 +100,16 @@ input {
     }
 
     header#header, footer.social, footer.social {
-        display: none
+        display: none; 
+        position:absolute
     }
 
     header.menu-mobile {
         display: block
     }
+}
+.card-footer{
+    background-color: black
 }
 
 .nav-avans {

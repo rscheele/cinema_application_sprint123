@@ -22,10 +22,58 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
         }
 
+        public String GetFilmBase64String(Movie movie)
+        {
+            var base64 = Convert.ToBase64String(movie.Image);
+            return String.Format("data:image/gif;base64,{0}", base64);
+        }
+        // GET: Upcoming2
+        //[HttpGet]
+        public ActionResult Upcoming2(int locationid, string searchString/*, bool? x, bool? xx, bool? xxx, bool? xxxx, bool? xxxxx*/)
+        {
+            int Locationid = locationid;
+            DateTime now = DateTime.Now;
+            //DateTime EndOfWeek = now.AddDays(5);
+            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
+            int daysUntilThursday = ((int)DayOfWeek.Thursday - (int)now.DayOfWeek + 7) % 7;
+            DateTime nextThursday = now.AddDays(daysUntilThursday);
+
+            List<Show> allShows = showRepository.GetShows().ToList();
+            //Filter out shows from different location
+            List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid).ToList();
+            //Filter out shows from the past
+            List<Show> ShowsFromNow = allThislocationShows.ToEnumerable()
+                .Where(s => s.BeginTime > now).ToList();
+            //Order by show date
+            List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
+                .OrderBy(s => s.BeginTime).ToList();
+            //take shows form current movie week
+            List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
+                .Where(s => s.EndTime < nextThursday).ToList();        
+            //--------------filters--------------------
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                List <Show> filteredShows = allShows.ToEnumerable().Where(s => s.Movie.Name.Contains(searchString)).ToList();
+                return View(filteredShows);
+
+            }
+            if(!DateTime searchDate){
+                List <Show> filteredShows
+            }
+            //--------------filters--------------------
+            //will become upcomingShows
+            //ViewBag.locationId = Locationid;
+            //TempData["location"] = Locationid;
+            //TempData["upcomingShows"] = allShows;
+            return View(allShows);
+            //return View(upcomingShows);
+        }
+
         // GET: UpcomingShow
         [HttpGet]
         public ActionResult Upcoming(int locationid)
         {
+            
             int Locationid = locationid; 
             DateTime now = DateTime.Now;
             DateTime EndOfDay = DateTime.Today.AddDays(1) +new TimeSpan(02,00,00);
@@ -88,6 +136,15 @@ namespace WebUI.Controllers
             //will become upcomingShows
             return View(allShows);
             //return View(upcomingShows);
+        }
+
+        [HttpGet]
+        public ActionResult ShowDetails(int id)
+        {
+            List<Show> allShows = showRepository.GetShows().ToList();
+            Show orderedShow = allShows.Find(r => r.ShowID == id);
+            return View("ShowDetails", orderedShow);
+
         }
 
         [HttpGet]

@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace Domain.Concrete
 {
     public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseAlways<EFDbContext>
     {
+        byte[] b = File.ReadAllBytes("C:/Users/Matthijs/Source/Repos/Sprint123/Sprint123/WebUI/Content/pacific-rim-small.png");
+
         protected override void Seed(EFDbContext context)
         {
             //    SEQUENCE:
@@ -36,35 +39,35 @@ namespace Domain.Concrete
             /* -----------start of table creation------------ */
             var movies = new List<Movie>
             {
-            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false,LocationID=1},
-            new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=1},
-            new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=1},
-            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false,LocationID=1},
-            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true,LocationID=1},
-            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=1},
-            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=1},
-            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=1},
-            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=1},
+            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg", LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg", LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg", LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg", LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=1, Genre=Genre.Action},
+            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=1, Genre=Genre.Action},
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=1, Genre=Genre.Kids},
 
-            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false,LocationID=2},
-            new Movie{Name="Tomb Raider",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=2},
-            new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=2},
-            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false,LocationID=2},
-            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true,LocationID=2},
-            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=2},
-            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=2},
-            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=2},
-            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=2},
+            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Tomb Raider",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Death Wish",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Action},
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=2, Genre=Genre.Kids },
 
-            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false,LocationID=3},
-            new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false,LocationID=3},
-            new Movie{Name="Pacific Rim Uprising",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true,LocationID=3},
-            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false,LocationID=3},
-            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true,LocationID=3},
-            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false,LocationID=3},
-            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false,LocationID=3},
-            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false,LocationID=3},
-            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false,LocationID=3}
+            new Movie{Name="Darkest Hour",Language="Engels",LanguageSub="Nederlands", Age=16,MovieType=2,Length=120,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Red Sparrow",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=140,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Pacific Rim Uprising",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=108,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Diep in de Zee",Language="Nederlands",LanguageSub="Nederlands",Age=6,MovieType=2,Length=91,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Black Panther",Language="Engels",LanguageSub="Nederlands",Age=12,MovieType=2,Length=134,Is3D=true, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Bankier van het Verzet",Language="Nederlands",LanguageSub="Nederlands",Age=12,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="The Shape of Water",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=123,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Three BillBoards Outside Ebbing, Missouri",Language="Engels",LanguageSub="Nederlands",Age=16,MovieType=2,Length=115,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Action},
+            new Movie{Name="Buurman en Buurman bouwen een huis",Language="Nederlands",LanguageSub="Nederlands",Age=4,MovieType=2,Length=150,Is3D=false, Image=b,Trailer="trailer",MainActors="Sir Actor, James T, Lizie G",SubActors="Frankie S, Georgia B",IMDB="8.1",Website="http://www.imdb.com/title/tt2557478/",Director="Spielberg",LocationID=3, Genre=Genre.Kids}
 
             };
 

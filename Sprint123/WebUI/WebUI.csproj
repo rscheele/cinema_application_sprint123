@@ -149,6 +149,7 @@
     <Content Include="Content\kijkwijzer.png" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\my-javascript.js" />
+    <Content Include="Content\pacific-rim-small.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -247,6 +248,8 @@
     <Content Include="Views\Reservation\DisplayReservation.cshtml" />
     <Content Include="Views\Reservation\NoReservationFound.cshtml" />
     <Content Include="Views\Pin\Pay.cshtml" />
+    <Content Include="Views\UpcomingShow\Upcoming2.cshtml" />
+    <Content Include="Views\UpcomingShow\ShowDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

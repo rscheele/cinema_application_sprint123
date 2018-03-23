@@ -1,0 +1,96 @@
+﻿@model Domain.Entities.Show
+
+@{
+    ViewBag.Title = "ShowDetails";
+}
+
+<h2></h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Movie.Name)</h4>
+    <hr />   
+    <!-- IMDB plugin BEGIN TO DO: change data-title for model.Movie.IMDB-->
+    <span class="imdbRatingPlugin" data-user="ur86663828" data-title="tt2557478" data-style="p4">
+        <a href="https://www.imdb.com/title/tt2557478/?ref_=plg_rt_1">
+            <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_31x14.png" alt=" Pacific Rim: Uprising
+(2018) on IMDb" />
+        </a>
+    </span>
+    <script>(function (d, s, id) { var js, stags = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) { return; } js = d.createElement(s); js.id = id; js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js"; stags.parentNode.insertBefore(js, stags); })(document, 'script', 'imdb-rating-api');</script>
+    <!-- IMDB plugin END-->
+    <div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+    </div>
+</div>
+    <dl class="dl-vertical">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Room.RoomID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BeginTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Age)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Age)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Is3D)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Is3D)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Language)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Language)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.MainActors)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.MainActors)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.SubActors)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.SubActors)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Director)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Director)
+        </dd>
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Bestel", "OrderMovie2", new { id = Model.ShowID })*@
+    <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = Model.ShowID, secret = false}, null)'">Bestel kaartjes</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>
+

@@ -20,6 +20,7 @@ namespace Domain.Concrete
             //    5. seat 
             //    6. show
             //    7. ticket
+            //    8. showseat
 
             /* -----------start of table creation------------ */
             var locations = new List<Location>

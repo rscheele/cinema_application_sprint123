@@ -192,7 +192,7 @@ namespace WebUI.Controllers
             }           
             TempData["TicketList"] = ticketList;
             //return RedirectToAction("SeatSelection", "SeatSelection", ticketList);
-            return RedirectToAction("Pay", "Pin", ticketList);
+            return RedirectToAction("SelectSeats", "SeatSelection", ticketList);
         }
 
         public List<decimal> calculatePrices(Show show)

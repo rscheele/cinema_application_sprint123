@@ -86,16 +86,23 @@ namespace WebUI.Controllers
             }
             else
             {
-                List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
-                foreach (var item in tickets)
-                {
-                    item.IsPaid = true;
-                }
-                ticketRepository.SaveTickets(tickets);
-                tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
-                var pdf = new PrintTickets(tickets);
-                return pdf.SendPdf(); 
+                return View("Success");
             }
+        }
+
+        [HttpGet]
+        public ActionResult PrintSessionTickets()
+        {
+            List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+            foreach (var item in tickets)
+            {
+                item.IsPaid = true;
+            }
+            ticketRepository.SaveTickets(tickets);
+            tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
+            var ticketList = ticketRepository.GetTickets(tickets.FirstOrDefault().ReservationID);
+            var pdf = new PrintTickets(ticketList.ToList());
+            return pdf.SendPdf();
         }
 
         [HttpGet]

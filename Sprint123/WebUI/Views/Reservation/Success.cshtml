@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Success";
+}
+<body>
+    <div class="form-horizontal">
+        <br />
+        <br />
+        <h1><b>De betaling is geslaagd!</b></h1>
+        <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("PrintSessionTickets","Reservation")';disableButton(this)">Print Tickets</button>
+    </div>
+</body>
+

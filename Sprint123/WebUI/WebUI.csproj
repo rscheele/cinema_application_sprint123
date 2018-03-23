@@ -237,12 +237,11 @@
     <Content Include="Views\Ticket\AddPopcorn.cshtml" />
     <Content Include="Views\SeatSelection\SelectSeats.cshtml" />
     <Content Include="Views\Confirmation\Confirm.cshtml" />
-    <Content Include="Views\Payment\Payment.cshtml" />
-    <Content Include="Views\Payment\Succes.cshtml" />
     <Content Include="Views\Reservation\Reservation.cshtml" />
     <Content Include="Views\Reservation\DisplayReservation.cshtml" />
     <Content Include="Views\Reservation\NoReservationFound.cshtml" />
     <Content Include="Views\Pin\Pay.cshtml" />
+    <Content Include="Views\Reservation\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

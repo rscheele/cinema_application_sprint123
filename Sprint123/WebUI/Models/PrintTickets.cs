@@ -82,6 +82,9 @@ namespace WebUI.Controllers
                 addText("Locatie: " + location, smallFont);
                 addText("Zaal: " + t.Show.RoomID, smallFont);
                 AddEmptyLine();
+                addText("Rijnummer  : " + t.RowNumber);
+                addText("Stoelnummer: " + t.SeatNumber);
+                AddEmptyLine();
                 addText("Met popcorn arrangement: " + (t.Popcorn ? "Ja" : "Nee"));
 
                 //addText("Stoelnummer: " + t.Seat.SeatNumber, smallFont);

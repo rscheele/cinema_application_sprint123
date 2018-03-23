@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
+    // DropCreateDatabaseIfModelChanges VS DropCreateDatabaseAlways
     public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
     {
         protected override void Seed(EFDbContext context)
@@ -823,6 +824,7 @@ namespace Domain.Concrete
             new Seat{RoomID=4,RowNumber=2,SeatNumber=4},
             new Seat{RoomID=4,RowNumber=2,SeatNumber=5},
             new Seat{RoomID=4,RowNumber=2,SeatNumber=6},
+            new Seat{RoomID=4,RowNumber=3,SeatNumber=1},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=2},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=3},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=4},
@@ -834,6 +836,7 @@ namespace Domain.Concrete
             new Seat{RoomID=4,RowNumber=4,SeatNumber=4},
             new Seat{RoomID=4,RowNumber=4,SeatNumber=5},
             new Seat{RoomID=4,RowNumber=4,SeatNumber=6},
+            new Seat{RoomID=4,RowNumber=5,SeatNumber=1},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=2},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=3},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=4},
@@ -845,6 +848,7 @@ namespace Domain.Concrete
             new Seat{RoomID=4,RowNumber=6,SeatNumber=4},
             new Seat{RoomID=4,RowNumber=6,SeatNumber=5},
             new Seat{RoomID=4,RowNumber=6,SeatNumber=6},
+            new Seat{RoomID=4,RowNumber=7,SeatNumber=1},
             new Seat{RoomID=4,RowNumber=7,SeatNumber=2},
             new Seat{RoomID=4,RowNumber=7,SeatNumber=3},
             new Seat{RoomID=4,RowNumber=7,SeatNumber=4},
@@ -860,6 +864,7 @@ namespace Domain.Concrete
             new Seat{RoomID=4,RowNumber=2,SeatNumber=9},
             new Seat{RoomID=4,RowNumber=2,SeatNumber=10},
             new Seat{RoomID=4,RowNumber=2,SeatNumber=11},
+            new Seat{RoomID=4,RowNumber=3,SeatNumber=7},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=8},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=9},
             new Seat{RoomID=4,RowNumber=3,SeatNumber=10},
@@ -869,6 +874,7 @@ namespace Domain.Concrete
             new Seat{RoomID=4,RowNumber=4,SeatNumber=9},
             new Seat{RoomID=4,RowNumber=4,SeatNumber=10},
             new Seat{RoomID=4,RowNumber=4,SeatNumber=11},
+            new Seat{RoomID=4,RowNumber=5,SeatNumber=7},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=8},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=9},
             new Seat{RoomID=4,RowNumber=5,SeatNumber=10},
@@ -1011,15 +1017,14 @@ namespace Domain.Concrete
             var tickets = new List<Ticket>
             {
             // Reservation 20180681426908 20180681426909
-            new Ticket{Price=9.50M,TicketType="Normaal",IsPaid=false,ShowID=1,SeatID=5,ReservationID=20180681426909,Popcorn=false},
-            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=false,ShowID=1,SeatID=6,ReservationID=20180681426909,Popcorn=true},
-            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=false,ShowID=1,SeatID=7,ReservationID=20180681426909,Popcorn=true},
-            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatID=11,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatID=12,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=15.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=13,ReservationID=20180681426908,Popcorn=true},
-            new Ticket{Price=10.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatID=14,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatID=15,ReservationID=20180681426908,Popcorn=false},
-            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatID=15,ReservationID=20180681426908,Popcorn=false}
+            new Ticket{Price=9.50M,TicketType="Normaal",IsPaid=false,ShowID=1,SeatNumber=1,RowNumber=1,ReservationID=20180681426909,Popcorn=false},
+            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=false,ShowID=1,SeatNumber=2,RowNumber=1,ReservationID=20180681426909,Popcorn=true},
+            new Ticket{Price=13.00M,TicketType="Kind",IsPaid=false,ShowID=1,SeatNumber=3,RowNumber=1,ReservationID=20180681426909,Popcorn=true},
+            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatNumber=1,RowNumber=1,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=12.00M,TicketType="Normaal",IsPaid=true,ShowID=3,SeatNumber=2,RowNumber=1,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=15.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatNumber=3,RowNumber=1,ReservationID=20180681426908,Popcorn=true},
+            new Ticket{Price=10.00M,TicketType="Kind",IsPaid=true,ShowID=3,SeatNumber=4,RowNumber=1,ReservationID=20180681426908,Popcorn=false},
+            new Ticket{Price=10.50M,TicketType="Senior",IsPaid=true,ShowID=3,SeatNumber=5,RowNumber=1,ReservationID=20180681426908,Popcorn=false},
             };
 
             tickets.ForEach(s => context.Tickets.Add(s));

@@ -151,7 +151,6 @@ namespace WebUI.Controllers
                 item.Show = selectedShow;
                 item.IsPaid = false;
                 item.Popcorn = false;
-                item.SeatID = 0;
                 item.ShowID = selectedShow.ShowID;
                 //adding seat data ---- BEGIN
                 //item.Seat.SeatNumber =12;
@@ -161,7 +160,6 @@ namespace WebUI.Controllers
                 //Concurrency
                 TempTicket tempTicket = new TempTicket();
                 tempTicket.ReservationID = item.ReservationID;
-                tempTicket.SeatID = item.SeatID;
                 tempTicket.ShowID = item.ShowID;
                 tempTicket.TimeAdded = DateTime.Now;
                 tempTickets.Add(tempTicket);

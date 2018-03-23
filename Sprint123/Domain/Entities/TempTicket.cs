@@ -19,6 +19,8 @@ namespace Domain.Entities
         public int ID { get; set; }
         public long ReservationID { get; set; }
         public int? SeatID { get; set; }
+        public int? RowNumber { get; set; }
+        public int? SeatNumber { get; set; }
         public int? ShowID { get; set; }
         public DateTime TimeAdded { get; set; }
     }

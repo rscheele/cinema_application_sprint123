@@ -1,13 +1,31 @@
-﻿@model  IEnumerable<Domain.Entities.ShowSeat>
+﻿@model  WebUI.Models.SeatLayout
 
 @{
     ViewBag.Title = "SelectSeats";
 }
 <body>
     <h2>SelectSeats</h2>
-    @foreach (var item in Model)
+    @for (int i = 1; i <= Model.rowCount; i++)
     {
-        
+        foreach (var item in Model.showSeats)
+        {
+            if (item.RowNumber == i)
+            {
+                if (item.IsTaken == true)
+                {
+                    <i>X</i>
+                }
+                else if (item.IsReserved == true)
+                {
+                    <i>R</i>
+                }
+                else
+                {
+                    <i>S</i>
+                }
+            }
+        }
+        <br />
     }
 
 

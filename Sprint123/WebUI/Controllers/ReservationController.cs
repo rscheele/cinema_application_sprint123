@@ -102,8 +102,7 @@ namespace WebUI.Controllers
         public ActionResult PrintSessionTickets()
         {
             List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
-            var ticketList = ticketRepository.GetTickets(tickets.FirstOrDefault().ReservationID);
-            var pdf = new PrintTickets(ticketList.ToList());
+            var pdf = new PrintTickets(tickets);
             return pdf.SendPdf();
         }
 

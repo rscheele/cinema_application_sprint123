@@ -7,14 +7,13 @@
         <p>
             <h2>Reservering</h2><br />
             <p>Haal je thuis bestelde tickets op met de reservatie ID!</p>
-            <input action="action" class="btn btn-success" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
         </p>
         @using (Html.BeginForm())
-    {
+         {
         <p>Voer het ID van je reservering in</p>
         <input type="number" name="reservationID" min="0" max="99999999999999" required />
         <input class="btn btn-success" type="submit" value="Ophalen" />
-}
+         }
     </div>
 </body>
 

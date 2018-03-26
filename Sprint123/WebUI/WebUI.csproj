@@ -162,6 +162,11 @@
     <Content Include="Content\pieter-konijn.jpg" />
     <Content Include="Content\Red-Sparrow.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\sprite-blue.png" />
+    <Content Include="Content\sprite-purple.png" />
+    <Content Include="Content\sprite-red.png" />
+    <Content Include="Content\sprite-screen.png" />
+    <Content Include="Content\sprite-yellow.png" />
     <Content Include="Content\the-shape-of-water.jpg" />
     <Content Include="Content\three-billboards.jpg" />
     <Content Include="Content\tomb-raider.jpg" />

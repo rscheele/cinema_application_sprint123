@@ -46,7 +46,7 @@
     <!--Begin Avans nav bar-->
     <nav class="nav-avans", style="height: 60px;">
         <div class="container"}>
-            @Html.ActionLink("Avans Cinema", "Index", "Home", new { area = "" }, new { @style = "color:black; padding: 10px; font-weight: bold;", @class = "navbar-brand" })
+            @Html.ActionLink("Avans Cinema", "Overview", "UpcomingShow", new { locationid = 1 }, new { @style = "color:black; padding: 10px; font-weight: bold;", @class = "navbar-brand" })
             <input action="action" class="btn btn-success" style="float: right; padding:8px; margin-top:8px" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
             <ul class="global-links">
                 <li>

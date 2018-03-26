@@ -117,5 +117,83 @@ namespace UnitTests
             // Assert -- assert if expected equals given by act.
             Assert.IsTrue(ShowIDIsEqual(IdOfShows, ExpectedIDsofShows));
         }
+
+        [TestMethod]
+        public void TestFiltersForMovies()
+        {
+            //arrange
+            //TO DO add movie data
+            string search = "Bruce Willis";
+            string genre = "actie";
+            string genre2 = "kids";
+            List<Movie> movielist = new List<Movie> {
+                new Movie
+                {
+                    //actie film met bruce willis
+                },
+                new Movie
+                {
+                    //actie film
+                },
+                new Movie
+                {
+                    //avontuur film
+                },
+                new Movie
+                {
+                    //kids film
+                },
+                new Movie
+                {
+                    //kids film
+                }
+            };
+
+            List<Movie> allMovies = movielist;
+            //Act
+
+            //TO DO: add filter query's
+            List<Movie> filteredSearchMovies = allMovies.ToEnumerable()
+                    .Where(s => s.Name.Contains(search)
+                    || s.MainActors.Contains(search)
+                    || s.SubActors.Contains(search)
+                    || s.Director.Contains(search))
+                    .ToList();
+
+            List<Movie> filteredMovies = allMovies.ToEnumerable()
+                   .Where(s => s.Genre.ToString() == genre)
+                   .ToList();
+
+            List<Movie> filteredMovies2 = allMovies.ToEnumerable()
+                   .Where(s => s.Genre.ToString() == genre2)
+                   .ToList();
+            
+
+            List<int> IdOfFilteredMovies = new List<int>
+            {
+
+            };
+
+            List<int> IdOfFilteredMovies2 = new List<int>
+            {
+
+            };
+
+            List<int> ExpectedIDsofFilteredMovies = new List<int>
+            {
+                3,
+                2,
+                1
+            };
+            List<int> ExpectedIDsofFilteredMovies2 = new List<int>
+            {
+                3,
+                2,
+                1
+            };
+            // Assert -- assert if expected equals given by act.
+            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMovies, ExpectedIDsofFilteredMovies));
+            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMovies2, ExpectedIDsofFilteredMovies2));
+        }
     }
 }

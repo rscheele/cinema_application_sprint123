@@ -14,7 +14,6 @@ namespace WebUI.Controllers
     {
         private IMovieOverviewRepository movieRepository;
         private IShowRepository showRepository;
-        //need ticketRepo for secret movie;
 
         public UpcomingShowController(IMovieOverviewRepository movieRepository, IShowRepository showRepository)
         {
@@ -22,15 +21,11 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
         }
 
-        public String GetFilmBase64String(Movie movie)
-        {
-            var base64 = Convert.ToBase64String(movie.Image);
-            return String.Format("data:image/gif;base64,{0}", base64);
-        }
-        // GET: Upcoming2
+        // GET: Overview
         //[HttpGet]
-        public ActionResult Upcoming2(int locationid, string searchString/*, bool? x, bool? xx, bool? xxx, bool? xxxx, bool? xxxxx*/)
+        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start, DateTime? end)
         {
+
             int Locationid = locationid;
             DateTime now = DateTime.Now;
             //DateTime EndOfWeek = now.AddDays(5);
@@ -49,23 +44,37 @@ namespace WebUI.Controllers
                 .OrderBy(s => s.BeginTime).ToList();
             //take shows form current movie week
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
-                .Where(s => s.EndTime < nextThursday).ToList();        
-            //--------------filters--------------------
+                .Where(s => s.EndTime < nextThursday).ToList();  
+            
+            //--------------filters BEGIN--------------------
             if (!String.IsNullOrEmpty(searchString))
             {
-                List <Show> filteredShows = allShows.ToEnumerable().Where(s => s.Movie.Name.Contains(searchString)).ToList();
+                List <Show> filteredShows = allShows.ToEnumerable()
+                    .Where(s => s.Movie.Name.Contains(searchString) 
+                        || s.Movie.MainActors.Contains(searchString) 
+                        || s.Movie.Genre.Contains(searchString) 
+                        || s.Movie.Director.Contains(searchString))
+                    .ToList();
                 return View(filteredShows);
 
             }
-            /*if(!DateTime searchDate){
-                List <Show> filteredShows
-            }*/
-            //--------------filters--------------------
-            //will become upcomingShows
-            //ViewBag.locationId = Locationid;
-            //TempData["location"] = Locationid;
-            //TempData["upcomingShows"] = allShows;
-            return View(allShows);
+            if (age != null)
+            {
+                List<Show> filteredShows = allShows.ToEnumerable()
+                    .Where(s => s.Movie.Age == age)
+                    .ToList();
+                return View(filteredShows);
+            }
+            if (start.HasValue == true && end.HasValue == true)
+            {
+                List<Show> filteredShows = allShows.ToEnumerable()
+                                   .Where(s => s.BeginTime.Date > start && s.EndTime.Date < end)
+                                   .ToList();
+                return View(filteredShows);
+            }
+            //--------------filters END------------------------
+           
+            return View(allThislocationShows);
             //return View(upcomingShows);
         }
 

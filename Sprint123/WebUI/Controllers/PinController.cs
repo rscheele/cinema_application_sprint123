@@ -15,7 +15,7 @@ namespace WebUI.Controllers
         // GET: Pin
         public ViewResult Pay()
         {
-            List<Ticket> ticketsList = (List<Ticket>)TempData["TicketList"];
+            List<Ticket> ticketsList = (List<Ticket>)TempData["Tickets"];
             //ViewBag.tickets = ticketsList;
 
             PinViewModel model = (PinViewModel)TempData["model"];
@@ -24,7 +24,7 @@ namespace WebUI.Controllers
                 model = new PinViewModel();
             }
             TempData["model"] = model;
-            TempData["ticketList"] = ticketsList;
+            TempData["Tickets"] = ticketsList;
             return View("Pay", model);
         }
 

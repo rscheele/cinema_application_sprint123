@@ -105,7 +105,7 @@ namespace WebUI.Controllers
                 showSeatRepository.UpdateShowSeats(showSeats.ToList());
                 ticketRepository.SaveTickets(tickets);
                 tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
-                TempData["TicketList"] = tickets;
+                TempData["Tickets"] = tickets;
                 return View("Success");
             }
         }

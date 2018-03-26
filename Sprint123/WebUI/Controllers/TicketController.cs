@@ -85,16 +85,16 @@ namespace WebUI.Controllers
             if (max == 0)
             {
                 TempData["SoldOut"] = "De show is helaas uitverkocht. Er zijn geen tickets meer beschikbaar.";
-                return RedirectToAction("OrderTickets", new { order.reservationID });
+                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID});
             }
             else if (ticketcount <= 0 | ticketcount > 10)
             {
-                return RedirectToAction("OrderTickets", new { order.reservationID });
+                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID });
             }
             else if (ticketcount > max)
             {
                 TempData["SoldOut"] = "De show is bijna uitverkocht, er zijn nog maar " + max + " tickets beschikbaar!";
-                return RedirectToAction("OrderTickets", new { order.reservationID });
+                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID });
             }
             else
             {

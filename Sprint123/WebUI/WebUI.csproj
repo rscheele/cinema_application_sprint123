@@ -128,14 +128,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bankier-van-het-verzet.jpg" />
+    <Content Include="Content\black-panther.jpg" />
+    <Content Include="Content\bob-de-bouwer.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\buurman-en-buurman.jpg" />
+    <Content Include="Content\darkest-hour.jpg" />
+    <Content Include="Content\death-wish.jpg" />
+    <Content Include="Content\diep-in-de-zee.jpg" />
     <Content Include="Content\footer-fixed.css" />
     <Content Include="Content\footer-logo90x30.png" />
+    <Content Include="Content\imdb_logo.png" />
     <Content Include="Content\kijkwijzer-12.png" />
     <Content Include="Content\kijkwijzer-16.png" />
     <Content Include="Content\kijkwijzer-6.png" />
@@ -150,7 +158,13 @@
     <Content Include="Content\menu.css" />
     <Content Include="Content\my-javascript.js" />
     <Content Include="Content\pacific-rim-small.png" />
+    <Content Include="Content\pacific-rim-uprising.jpg" />
+    <Content Include="Content\pieter-konijn.jpg" />
+    <Content Include="Content\Red-Sparrow.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\the-shape-of-water.jpg" />
+    <Content Include="Content\three-billboards.jpg" />
+    <Content Include="Content\tomb-raider.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -242,7 +256,7 @@
     <Content Include="Views\Reservation\DisplayReservation.cshtml" />
     <Content Include="Views\Reservation\NoReservationFound.cshtml" />
     <Content Include="Views\Pin\Pay.cshtml" />
-    <Content Include="Views\UpcomingShow\Upcoming2.cshtml" />
+    <Content Include="Views\UpcomingShow\Overview.cshtml" />
     <Content Include="Views\UpcomingShow\ShowDetails.cshtml" />
     <Content Include="Views\Reservation\Success.cshtml" />
     <None Include="Web.Debug.config">

@@ -50,14 +50,13 @@ namespace WebUI.Controllers
                     item.Show = orderedShow;
                 }
 
-                TempData["Tickets"] = tickets;
                 if (tickets.First().IsPaid == true)
                 {
                     return View("DisplayReservation", tickets);
                 }
                 else
                 {
-                    return RedirectToAction("Pay", "Pin", tickets);
+                    return RedirectToAction("Pay", "Pin", new { reservationID = resID });
                 }
             }
             else
@@ -90,35 +89,56 @@ namespace WebUI.Controllers
             {
                 List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
                 List<Ticket> tickets = new List<Ticket>();
-                IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tempTickets.FirstOrDefault().ReservationID);
-                foreach (var item in tempTickets)
-                {
-                    item.IsPaid = true;
-                    foreach (var seat in showSeats)
+                if (tempTickets.Count != 0) {
+                    IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tempTickets.FirstOrDefault().ReservationID);
+                    foreach (var item in tempTickets)
                     {
-                        if (seat.SeatID == item.SeatID)
+                        item.IsPaid = true;
+                        foreach (var seat in showSeats)
                         {
-                            seat.IsReserved = false;
-                            seat.IsTaken = true;
+                            if (seat.SeatID == item.SeatID)
+                            {
+                                seat.IsReserved = false;
+                                seat.IsTaken = true;
+                            }
+                        }
+                        Ticket ticket = new Ticket();
+                        ticket.IsPaid = item.IsPaid;
+                        ticket.Popcorn = item.Popcorn;
+                        ticket.Price = item.Price;
+                        ticket.ReservationID = item.ReservationID;
+                        ticket.RowNumber = item.RowNumber;
+                        ticket.Seat = item.Seat;
+                        ticket.SeatID = item.SeatID;
+                        ticket.SeatNumber = item.SeatNumber;
+                        ticket.Show = item.Show;
+                        ticket.ShowID = item.ShowID;
+                        ticket.TicketType = item.TicketType;
+                        tickets.Add(ticket);
+                    }
+                    showSeatRepository.UpdateShowSeats(showSeats.ToList());
+                    ticketRepository.SaveTickets(tickets);
+                    tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+                }
+                else
+                {
+                    tickets = ticketRepository.GetTickets(reservationID).ToList();
+                    IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tickets.FirstOrDefault().ReservationID);
+                    foreach (var item in tickets)
+                    {
+                        item.IsPaid = true;
+                        foreach (var seat in showSeats)
+                        {
+                            if (seat.SeatID == item.SeatID)
+                            {
+                                seat.IsReserved = false;
+                                seat.IsTaken = true;
+                            }
                         }
                     }
-                    Ticket ticket = new Ticket();
-                    ticket.IsPaid = item.IsPaid;
-                    ticket.Popcorn = item.Popcorn;
-                    ticket.Price = item.Price;
-                    ticket.ReservationID = item.ReservationID;
-                    ticket.RowNumber = item.RowNumber;
-                    ticket.Seat = item.Seat;
-                    ticket.SeatID = item.SeatID;
-                    ticket.SeatNumber = item.SeatNumber;
-                    ticket.Show = item.Show;
-                    ticket.ShowID = item.ShowID;
-                    ticket.TicketType = item.TicketType;
-                    tickets.Add(ticket);
+                    ticketRepository.UpdateTickets(tickets);
                 }
-                showSeatRepository.UpdateShowSeats(showSeats.ToList());
-                ticketRepository.SaveTickets(tickets);
-                tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+
                 Reservation reservation = new Reservation();
                 reservation.reservationID = reservationID;
                 return View("Success", reservation);

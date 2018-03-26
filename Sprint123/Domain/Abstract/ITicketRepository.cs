@@ -12,6 +12,7 @@ namespace Domain.Abstract
         IEnumerable<Ticket> GetTickets(long ReservationID);
         IEnumerable<Ticket> GetShowTickets(int ShowID);
         IEnumerable<Ticket> GetMovieSecretTickets();
+        void UpdateTickets(List<Ticket> Tickets);
         void SaveTickets(List<Ticket> Tickets);
     }
 }

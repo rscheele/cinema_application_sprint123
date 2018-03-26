@@ -52,6 +52,19 @@ namespace Domain.Concrete
             }
             context.SaveChanges();
         }
+
+        public void UpdateTickets(List<Ticket> Tickets)
+        {
+            foreach (var item in Tickets)
+            {
+                Ticket dbEntry = context.Tickets.Find(item.TicketID);
+                if (dbEntry != null)
+                {
+                    context.Entry(dbEntry).CurrentValues.SetValues(item);
+                }
+            }
+            context.SaveChanges();
+        }
     }
         
 }

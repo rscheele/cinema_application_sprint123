@@ -187,7 +187,8 @@ namespace WebUI.Controllers
                 {
                     ticketList[i].Popcorn = false;
                 }
-            }           
+            }
+            tempTicketRepository.UpdateTempTickets(ticketList);
             return RedirectToAction("SelectSeats", "SeatSelection", new { reservationID = tickets.FirstOrDefault().ReservationID });
         }
 

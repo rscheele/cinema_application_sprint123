@@ -16,7 +16,6 @@ namespace WebUI.Controllers
         private Font normalFont;
         private Font largeFont;
         private Font smallFont;
-        private string culture;
 
         public PrintTickets(List<Ticket> tickets)
         {

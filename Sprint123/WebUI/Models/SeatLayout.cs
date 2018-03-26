@@ -11,5 +11,7 @@ namespace WebUI.Models
         public IEnumerable<ShowSeat> showSeats;
 
         public int rowCount;
+
+        public List<Ticket> tickets;
     }
 }

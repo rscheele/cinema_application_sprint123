@@ -35,75 +35,85 @@ namespace WebUI.Controllers
             double halfwayRaw = room.RowCount / 2;
             int halfway = int.Parse(Math.Ceiling(halfwayRaw).ToString());
 
-            for (int i = 1; i <= room.RowCount; i++)
+            if (ticketList.FirstOrDefault().RowNumber == null)
             {
-                List<ShowSeat> currentRow = new List<ShowSeat>();
-                int count = 0;
-                // Trying to find somehwere where you can all sit next to eachother
-                foreach (var j in showSeats)
+                int row = halfway;
+                for (int i = 1; i <= room.RowCount; i++)
                 {
-                    if (j.RowNumber == i && j.IsTaken == false && j.IsReserved == false)
-                    {
-                        currentRow.Add(j);
-                        count++;
-                    }
-                }
-                if (count >= totalTickets)
-                {
-                    List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(ticketList.FirstOrDefault().ReservationID).ToList();
-                    for (int k = 0; k < totalTickets; k++)
-                    {
-                        ticketList[k].RowNumber = currentRow[k].RowNumber;
-                        ticketList[k].SeatNumber = currentRow[k].SeatNumber;
-                        ticketList[k].SeatID = currentRow[k].SeatID;
-                        tempTickets[k].RowNumber = currentRow[k].RowNumber;
-                        tempTickets[k].SeatNumber = currentRow[k].SeatNumber;
-                        tempTickets[k].SeatID = currentRow[k].SeatID;
-                        showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().IsReserved = true;
-                        showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().ReservationID = reservationID;
-                    }
-                    showSeatRepository.UpdateShowSeats(showSeats.ToList());
-                    tempTicketRepository.UpdateTempTickets(tempTickets);
-                    break;
-                } else if (i == room.RowCount)
-                // If there aren't enough seats left where you can sit next to eachother
-                {
-                    List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(ticketList.FirstOrDefault().ReservationID).ToList();
-                    currentRow.Clear();
-                    count = 0;
+                    List<ShowSeat> currentRow = new List<ShowSeat>();
+                    int count = 0;
+                    // Trying to find somehwere where you can all sit next to eachother
                     foreach (var j in showSeats)
                     {
-                        if (j.IsTaken == false && j.IsReserved == false)
+                        if (j.RowNumber == halfway && j.IsTaken == false && j.IsReserved == false)
                         {
                             currentRow.Add(j);
                             count++;
-                            if (count == totalTickets)
-                            {
-                                break;
-                            }
                         }
                     }
-
-                    for (int k = 0; k < totalTickets; k++)
+                    if (count >= totalTickets)
                     {
-                        ticketList[k].RowNumber = currentRow[k].RowNumber;
-                        ticketList[k].SeatNumber = currentRow[k].SeatNumber;
-                        ticketList[k].SeatID = currentRow[k].SeatID;
-                        tempTickets[k].RowNumber = currentRow[k].RowNumber;
-                        tempTickets[k].SeatNumber = currentRow[k].SeatNumber;
-                        tempTickets[k].SeatID = currentRow[k].SeatID;
-                        showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().IsReserved = true;
+                        List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(ticketList.FirstOrDefault().ReservationID).ToList();
+                        for (int k = 0; k < totalTickets; k++)
+                        {
+                            ticketList[k].RowNumber = currentRow[k].RowNumber;
+                            ticketList[k].SeatNumber = currentRow[k].SeatNumber;
+                            ticketList[k].SeatID = currentRow[k].SeatID;
+                            tempTickets[k].RowNumber = currentRow[k].RowNumber;
+                            tempTickets[k].SeatNumber = currentRow[k].SeatNumber;
+                            tempTickets[k].SeatID = currentRow[k].SeatID;
+                            showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().IsReserved = true;
+                            showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().ReservationID = reservationID;
+                        }
+                        showSeatRepository.UpdateShowSeats(showSeats.ToList());
+                        tempTicketRepository.UpdateTempTickets(tempTickets);
+                        break;
                     }
-                    showSeatRepository.UpdateShowSeats(showSeats.ToList());
-                    tempTicketRepository.UpdateTempTickets(tempTickets);
+                    else if (halfway == room.RowCount)
+                    // If there aren't enough seats left where you can sit next to eachother
+                    {
+                        List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(ticketList.FirstOrDefault().ReservationID).ToList();
+                        currentRow.Clear();
+                        count = 0;
+                        foreach (var j in showSeats)
+                        {
+                            if (j.IsTaken == false && j.IsReserved == false)
+                            {
+                                currentRow.Add(j);
+                                count++;
+                                if (count == totalTickets)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+
+                        for (int k = 0; k < totalTickets; k++)
+                        {
+                            ticketList[k].RowNumber = currentRow[k].RowNumber;
+                            ticketList[k].SeatNumber = currentRow[k].SeatNumber;
+                            ticketList[k].SeatID = currentRow[k].SeatID;
+                            tempTickets[k].RowNumber = currentRow[k].RowNumber;
+                            tempTickets[k].SeatNumber = currentRow[k].SeatNumber;
+                            tempTickets[k].SeatID = currentRow[k].SeatID;
+                            showSeats.Where(x => x.SeatID == currentRow[k].SeatID).FirstOrDefault().IsReserved = true;
+                        }
+                        showSeatRepository.UpdateShowSeats(showSeats.ToList());
+                        tempTicketRepository.UpdateTempTickets(tempTickets);
+                    }
+                    currentRow.Clear();
+                    if (halfway == room.RowCount)
+                    {
+                        halfway = 1;
+                    }
                 }
-                currentRow.Clear();
             }
 
             SeatLayout seatLayout = new SeatLayout();
             seatLayout.showSeats = showSeats;
             seatLayout.rowCount = room.RowCount;
-            TempData["TicketList"] = ticketList;
+            seatLayout.tickets = ticketList;
+            TempData["Tickets"] = ticketList;
             return View("SelectSeats", seatLayout);
         }
         

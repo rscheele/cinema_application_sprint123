@@ -187,7 +187,7 @@ namespace WebUI.Controllers
                     ticketList[i].Popcorn = true;
                 }
             }           
-            TempData["TicketList"] = ticketList;
+            TempData["Tickets"] = ticketList;
             return RedirectToAction("SelectSeats", "SeatSelection");
         }
 

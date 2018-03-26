@@ -17,7 +17,20 @@
                 }
                 else if (item.IsReserved == true)
                 {
-                    <i>R</i>
+                    bool noCurrentReservation = true;
+                    foreach (var j in Model.tickets)
+                    {
+                        if (item.SeatID == j.SeatID)
+                        {
+                            <i>C</i>
+                            noCurrentReservation = false;
+                            break;
+                        }
+                    }
+                    if (noCurrentReservation == true)
+                    {
+                        <i>R</i>
+                    }
                 }
                 else
                 {

@@ -50,7 +50,7 @@ namespace WebUI.Controllers
                     item.Show = orderedShow;
                 }
 
-                TempData["TicketList"] = tickets;
+                TempData["Tickets"] = tickets;
                 if (tickets.First().IsPaid == true)
                 {
                     return View("DisplayReservation", tickets);
@@ -88,7 +88,7 @@ namespace WebUI.Controllers
             }
             else
             {
-                List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+                List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
                 IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tickets.FirstOrDefault().ReservationID);
                 foreach (var item in tickets)
                 {
@@ -113,7 +113,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult PrintSessionTickets()
         {
-            List<Ticket> tickets = (List<Ticket>)TempData["TicketList"];
+            List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
             var pdf = new PrintTickets(tickets);
             return pdf.SendPdf();
         }
@@ -121,7 +121,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult PrintReservationTickets()
         {
-            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["TicketList"];
+            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["Tickets"];
             List<Ticket> tickets = ticketss.ToList();
             var pdf = new PrintTickets(tickets);
             return pdf.SendPdf();

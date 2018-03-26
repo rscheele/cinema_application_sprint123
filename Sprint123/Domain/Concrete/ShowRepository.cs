@@ -12,6 +12,19 @@ namespace Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
+        public Show FindShow(int showID)
+        {
+            Show show = context.Shows.Where(x => x.ShowID == showID).FirstOrDefault();
+            if (showID != null)
+            {
+                return show;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<Show> GetShows()
         {
             return context.Shows;

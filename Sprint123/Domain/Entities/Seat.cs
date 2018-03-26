@@ -16,8 +16,8 @@ namespace Domain.Entities
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int? SeatID { get; set; }
-        public int? RoomID { get; set; }
+        public int SeatID { get; set; }
+        public int RoomID { get; set; }
         [NotMapped]
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }

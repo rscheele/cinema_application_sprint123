@@ -12,6 +12,6 @@ namespace WebUI.Models
 
         public int rowCount;
 
-        public List<Ticket> tickets;
+        public List<TempTicket> tickets;
     }
 }

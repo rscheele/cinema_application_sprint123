@@ -1,4 +1,6 @@
-﻿@{
+﻿@model WebUI.Models.Reservation
+
+@{
     ViewBag.Title = "Success";
 }
 <body>
@@ -6,7 +8,7 @@
         <br />
         <br />
         <h1><b>De betaling is geslaagd!</b></h1>
-        <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("PrintSessionTickets","Reservation")';disableButton(this)">Print Tickets</button>
+        <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("PrintSessionTickets","Reservation", new { reservationID = Model.reservationID })';disableButton(this)">Print Tickets</button>
     </div>
 </body>
 

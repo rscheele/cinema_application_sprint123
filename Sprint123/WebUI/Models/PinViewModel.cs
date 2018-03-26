@@ -34,5 +34,6 @@ namespace WebUI.Models
                 PinValue = PinValue.Remove(PinValue.Length - 1);
             }
         }
+        public long reservationID;
     }
 }

@@ -31,37 +31,37 @@
                     <div class="col-md-offset-5 col-md-2 col-md-offset-5">
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "1"})'">1</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "2"})'">2</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "3"})'">3</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "1", reservationID = Model.reservationID})'">1</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "2", reservationID = Model.reservationID})'">2</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "3", reservationID = Model.reservationID})'">3</button>
                             </div>
                         </div>
 
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "4"})'">4</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "5"})'">5</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "6"})'">6</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "4", reservationID = Model.reservationID})'">4</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "5", reservationID = Model.reservationID})'">5</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "6", reservationID = Model.reservationID})'">6</button>
                             </div>
                         </div>
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "7"})'">7</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "8"})'">8</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "9"})'">9</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "7", reservationID = Model.reservationID})'">7</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "8", reservationID = Model.reservationID})'">8</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "9", reservationID = Model.reservationID})'">9</button>
                             </div>
                         </div>
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "0"})'">0</button>
-                                <button type="button" onclick="location.href='@Url.Action("PinViewRemoveNumber", "Pin")'">Backspace</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewAddNumber", "Pin", new { s = "0", reservationID = Model.reservationID})'">0</button>
+                                <button type="button" onclick="location.href='@Url.Action("PinViewRemoveNumber", "Pin", new { reservationID = Model.reservationID})'">Backspace</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--pin numpad END-->
                 @*<input type="submit" value="Betaal" class="btn btn-success" onclick="location.href='@Url.Action("PrintTickets","Reservation", Model)'">*@
-                <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("PrintTickets","Reservation")';disableButton(this)">Betaal &amp; Print Tickets</button>
+                <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("PrintTickets","Reservation", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
                 <input action="action" class="btn btn-success" type="button" value="Start nieuwe bestelling" onclick="window.history.go(-4); return false;" />
             </div>
         </div>

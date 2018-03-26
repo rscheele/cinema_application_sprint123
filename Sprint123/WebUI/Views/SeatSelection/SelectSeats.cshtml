@@ -5,8 +5,9 @@
 }
 <body>
     <br />
-    <br />
     <div class="text-center">
+        <h2>Stoelselectie zaal @Html.DisplayFor(x => Model.showSeats.FirstOrDefault().RoomID)</h2>
+        <br />
         <img src="~/Content/sprite-screen.png">
         <br />
         <br />
@@ -82,6 +83,6 @@
         </table>
         <br />
         <br />
-        <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("ChooseSeats", "SeatSelection", null, null)';disableButton(this)">Naar betalen</button>
+        <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("ChooseSeats", "SeatSelection", new { reservationID = Model.tickets.FirstOrDefault().ReservationID })';disableButton(this)">Naar betalen</button>
     </div>
 </body>

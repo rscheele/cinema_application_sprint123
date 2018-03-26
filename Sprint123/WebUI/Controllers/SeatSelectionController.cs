@@ -14,28 +14,29 @@ namespace WebUI.Controllers
         private IShowSeatRepository showSeatRepository;
         private IRoomRepository roomRepository;
         private ITempTicketRepository tempTicketRepository;
+        private IShowRepository showRepository;
 
-        public SeatSelectionController(IShowSeatRepository showSeatRepository, IRoomRepository roomRepository, ITempTicketRepository tempTicketRepository)
+        public SeatSelectionController(IShowSeatRepository showSeatRepository, IRoomRepository roomRepository, ITempTicketRepository tempTicketRepository, IShowRepository showRepository)
         {
             this.showSeatRepository = showSeatRepository;
             this.roomRepository = roomRepository;
             this.tempTicketRepository = tempTicketRepository;
+            this.showRepository = showRepository;
         }
 
         [HttpGet]
-        public ActionResult SelectSeats()
+        public ActionResult SelectSeats(long reservationID)
         {
-            List<Ticket> ticketList = (List<Ticket>)TempData["Tickets"];
-            Show show = ticketList.FirstOrDefault().Show;
+            List<TempTicket> ticketList = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+            Show show = showRepository.FindShow(ticketList.FirstOrDefault().ShowID);
             Room room = roomRepository.GetRoom(show.RoomID);
             IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeats(show.ShowID);
             int totalTickets = ticketList.Count();
-            long reservationID = ticketList.FirstOrDefault().ReservationID;
             // Quick and dirty math programming
             double halfwayRaw = room.RowCount / 2;
             int halfway = int.Parse(Math.Ceiling(halfwayRaw).ToString());
 
-            if (ticketList.FirstOrDefault().RowNumber == null)
+            if (ticketList.FirstOrDefault().RowNumber == 0)
             {
                 int row = halfway-1;
                 for (int i = 1; i <= room.RowCount; i++)
@@ -114,15 +115,13 @@ namespace WebUI.Controllers
             seatLayout.showSeats = showSeats;
             seatLayout.rowCount = room.RowCount;
             seatLayout.tickets = ticketList;
-            TempData["Tickets"] = ticketList;
             return View("SelectSeats", seatLayout);
         }
-        
+
         [HttpGet]
-        public ActionResult ChooseSeats()
+        public ActionResult ChooseSeats(long reservationID)
         {
-            List<Ticket> ticketList = (List<Ticket>)TempData["Tickets"];
-            return RedirectToAction("Pay", "Pin", ticketList);
+            return RedirectToAction("Pay", "Pin", new { reservationID });
         }
     }
 }

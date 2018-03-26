@@ -152,9 +152,16 @@ namespace WebUI.Controllers
         {
             List<Show> allShows = showRepository.GetShows().ToList();
             Show orderedShow = allShows.Find(r => r.ShowID == id);
-            TempData["Show"] = orderedShow;
             TempData["Secret"] = secret;
-            return RedirectToAction("OrderTickets", "Ticket");
+            // Generating reservation ID with datetime and using this as our transaction session ID
+            DateTime dateTime = DateTime.Now;
+            int year = dateTime.Year;
+            int doy = dateTime.DayOfYear;
+            int hour = dateTime.Hour;
+            int minute = dateTime.Minute;
+            int ms = dateTime.Millisecond;
+            long reservationID = long.Parse(year.ToString() + doy.ToString().PadLeft(3, '0') + hour.ToString().PadLeft(2, '0') + minute.ToString().PadLeft(2, '0') + ms.ToString().PadLeft(3, '0'));
+            return RedirectToAction("OrderTickets", "Ticket", new { reservationID, showID = id});
         }
     }
 }

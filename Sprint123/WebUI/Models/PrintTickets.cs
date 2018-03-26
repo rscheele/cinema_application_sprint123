@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Abstract;
+using Domain.Entities;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -17,7 +18,7 @@ namespace WebUI.Controllers
         private Font largeFont;
         private Font smallFont;
 
-        public PrintTickets(List<Ticket> tickets)
+        public PrintTickets(List<Ticket> tickets, Show show)
         {
             normalFont = FontFactory.GetFont("Segoe UI", 8.0f, BaseColor.BLACK);
             smallFont = FontFactory.GetFont("Segoe UI", 6.0f, BaseColor.BLACK);
@@ -26,14 +27,16 @@ namespace WebUI.Controllers
             doc = new Document(PageSize.A6);
             ms = new MemoryStream();
             writer = PdfWriter.GetInstance(doc, ms);
-            Write(tickets);
+
+            Write(tickets, show);
         }
 
-        public bool Write(List<Ticket> tickets)
+        public bool Write(List<Ticket> tickets, Show show)
         {
             writer.Open();
             doc.Open();
             string location = "Breda";
+
 
             bool first = true;
             foreach (Ticket t in tickets)
@@ -55,31 +58,31 @@ namespace WebUI.Controllers
                 addText("Reserveringsnummer: " + t.ReservationID);
 
                 string sub;
-                if (t.Show.Movie.LanguageSub == null)
+                if (show.Movie.LanguageSub == null)
                 {
                     sub = "Geen";
                 }
                 else
                 {
-                    sub = t.Show.Movie.LanguageSub;
+                    sub = show.Movie.LanguageSub;
                 }
 
-                addText("Film: " + t.Show.Movie.Name);
-                addText("Taal: " + t.Show.Movie.Language);
+                addText("Film: " + show.Movie.Name);
+                addText("Taal: " + show.Movie.Language);
                 addText("Ondertiteling: " + sub);
-                addText("Leeftijd: " + t.Show.Movie.Age);
-                addText("Duur: " + t.Show.Movie.Length + " minuten");
-                addText("3D: " + (t.Show.Movie.Is3D ? "Ja" : "Nee"));
+                addText("Leeftijd: " + show.Movie.Age);
+                addText("Duur: " + show.Movie.Length + " minuten");
+                addText("3D: " + (show.Movie.Is3D ? "Ja" : "Nee"));
                 addText("Prijs: €" + t.Price.ToString());
 
 
                 /// maandag 1 Februari 2017
-                addText("Datum: " + t.Show.BeginTime.ToString("dddd d MMMM yyyy"), smallFont);
+                addText("Datum: " + show.BeginTime.ToString("dddd d MMMM yyyy"), smallFont);
                 // 23:45
-                addText("Begintijd: " + t.Show.BeginTime.ToString("HH:mm"), smallFont);
-                addText("Eindtijd: " + t.Show.EndTime.ToString("HH:mm"), smallFont);
+                addText("Begintijd: " + show.BeginTime.ToString("HH:mm"), smallFont);
+                addText("Eindtijd: " + show.EndTime.ToString("HH:mm"), smallFont);
                 addText("Locatie: " + location, smallFont);
-                addText("Zaal: " + t.Show.RoomID, smallFont);
+                addText("Zaal: " + show.RoomID, smallFont);
                 AddEmptyLine();
                 addText("Rijnummer  : " + t.RowNumber);
                 addText("Stoelnummer: " + t.SeatNumber);

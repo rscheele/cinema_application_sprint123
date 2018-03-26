@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Abstract;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,17 @@ namespace WebUI.Controllers
 {
     public class PinController : Controller
     {
-        public PinController() { }
+        private ITempTicketRepository tempTicketRepository;
+
+        public PinController(ITempTicketRepository tempTicketRepository)
+        {
+            this.tempTicketRepository = tempTicketRepository;
+        }
 
         // GET: Pin
-        public ViewResult Pay()
+        public ViewResult Pay(long reservationID)
         {
-            List<Ticket> ticketsList = (List<Ticket>)TempData["Tickets"];
+            List<TempTicket> ticketsList = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
             //ViewBag.tickets = ticketsList;
 
             PinViewModel model = (PinViewModel)TempData["model"];
@@ -23,31 +29,31 @@ namespace WebUI.Controllers
             {
                 model = new PinViewModel();
             }
+            model.reservationID = reservationID;
             TempData["model"] = model;
-            TempData["Tickets"] = ticketsList;
             return View("Pay", model);
         }
 
         [HttpGet]
-        public ActionResult PinViewAddNumber(String s)
+        public ActionResult PinViewAddNumber(String s, long reservationID)
         {
             PinViewModel model = (PinViewModel)TempData["model"];
 
             model.PinValue += s;
 
             TempData["model"] = model;
-            return RedirectToAction("Pay");
+            return RedirectToAction("Pay", new { reservationID });
         }
 
         [HttpGet]
-        public ActionResult PinViewRemoveNumber()
+        public ActionResult PinViewRemoveNumber(long reservationID)
         {
             PinViewModel model = (PinViewModel)TempData["model"];
 
             model.PinRemoveNumber();
 
             TempData["model"] = model;
-            return RedirectToAction("Pay");
+            return RedirectToAction("Pay", new { reservationID });
         }
     }
 }

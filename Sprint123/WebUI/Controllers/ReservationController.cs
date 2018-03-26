@@ -67,7 +67,7 @@ namespace WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult PrintTickets()
+        public ActionResult PrintTickets(long reservationID)
         {
             PinViewModel model = (PinViewModel)TempData["model"];
 
@@ -88,9 +88,10 @@ namespace WebUI.Controllers
             }
             else
             {
-                List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
-                IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tickets.FirstOrDefault().ReservationID);
-                foreach (var item in tickets)
+                List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+                List<Ticket> tickets = new List<Ticket>();
+                IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tempTickets.FirstOrDefault().ReservationID);
+                foreach (var item in tempTickets)
                 {
                     item.IsPaid = true;
                     foreach (var seat in showSeats)
@@ -101,29 +102,44 @@ namespace WebUI.Controllers
                             seat.IsTaken = true;
                         }
                     }
+                    Ticket ticket = new Ticket();
+                    ticket.IsPaid = item.IsPaid;
+                    ticket.Popcorn = item.Popcorn;
+                    ticket.Price = item.Price;
+                    ticket.ReservationID = item.ReservationID;
+                    ticket.RowNumber = item.RowNumber;
+                    ticket.Seat = item.Seat;
+                    ticket.SeatID = item.SeatID;
+                    ticket.SeatNumber = item.SeatNumber;
+                    ticket.Show = item.Show;
+                    ticket.ShowID = item.ShowID;
+                    ticket.TicketType = item.TicketType;
+                    tickets.Add(ticket);
                 }
                 showSeatRepository.UpdateShowSeats(showSeats.ToList());
                 ticketRepository.SaveTickets(tickets);
-                tempTicketRepository.DeleteTempTickets(tickets.FirstOrDefault().ReservationID);
-                TempData["Tickets"] = tickets;
-                return View("Success");
+                tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+                Reservation reservation = new Reservation();
+                reservation.reservationID = reservationID;
+                return View("Success", reservation);
             }
         }
 
         [HttpGet]
-        public ActionResult PrintSessionTickets()
+        public ActionResult PrintSessionTickets(long reservationID)
         {
-            List<Ticket> tickets = (List<Ticket>)TempData["Tickets"];
-            var pdf = new PrintTickets(tickets);
+            List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
+            Show show = showRepository.FindShow(tickets[0].ShowID);
+            var pdf = new PrintTickets(tickets, show);
             return pdf.SendPdf();
         }
 
         [HttpGet]
-        public ActionResult PrintReservationTickets()
+        public ActionResult PrintReservationTickets(long reservationID)
         {
-            IEnumerable<Ticket> ticketss = (IEnumerable<Ticket>)TempData["Tickets"];
-            List<Ticket> tickets = ticketss.ToList();
-            var pdf = new PrintTickets(tickets);
+            List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
+            Show show = showRepository.FindShow(tickets[0].ShowID);
+            var pdf = new PrintTickets(tickets, show);
             return pdf.SendPdf();
         }
     }

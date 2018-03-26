@@ -18,12 +18,12 @@ namespace Domain.Entities
         public int TicketID { get; set; }
         public long ReservationID { get; set; }
         public decimal Price { get; set; }
-        public string TicketType { get; set; }//could be enum
+        public string TicketType { get; set; }
         public bool IsPaid { get; set; }
-        public int? SeatNumber { get; set; }
-        public int? RowNumber { get; set; }
-        public int? ShowID { get; set; }
-        public int? SeatID { get; set; }
+        public int SeatNumber { get; set; }
+        public int RowNumber { get; set; }
+        public int ShowID { get; set; }
+        public int SeatID { get; set; }
         [NotMapped]
         [ForeignKey("SeatID")]
         public virtual Seat Seat { get; set; }

@@ -38,14 +38,25 @@ namespace WebUI.Controllers
 
             if (ticketList.FirstOrDefault().RowNumber == 0)
             {
-                int row = halfway-1;
+                int row = halfway - 1;
+                bool fillUp = true;
                 for (int i = 1; i <= room.RowCount; i++)
                 {
-                    row++;
-                    if (row > room.RowCount)
+                    if (row < room.RowCount && fillUp == true)
                     {
-                        row = 1;
+                        row++;
                     }
+                    else
+                    {
+                        if (row == room.RowCount)
+                        {
+                            row = halfway;
+                            fillUp = false;
+                        }
+                        row--;
+                    }
+                    
+
                     List<ShowSeat> currentRow = new List<ShowSeat>();
                     int count = 0;
                     // Trying to find somehwere where you can all sit next to eachother
@@ -75,7 +86,7 @@ namespace WebUI.Controllers
                         tempTicketRepository.UpdateTempTickets(tempTickets);
                         break;
                     }
-                    else if (row == halfway - 1)
+                    else if (row == 1)
                     // If there aren't enough seats left where you can sit next to eachother
                     {
                         List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(ticketList.FirstOrDefault().ReservationID).ToList();

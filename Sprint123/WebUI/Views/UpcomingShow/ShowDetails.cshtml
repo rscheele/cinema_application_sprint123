@@ -94,8 +94,16 @@
                 <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = Model.ShowID, secret = false}, null)'">Bestel kaartjes</button>
             </p>
             </div>
-            <div class="col-sm">                
+            <div class="col-sm">
                 <iframe width="400" height="300" src="@Model.Movie.Trailer"></iframe>
+                <dl>
+                    <dt>
+                        Beschrijving
+                    </dt>
+                    <dd>
+                        @Html.Raw(Model.Movie.Description)
+                    </dd>
+                </dl>
             </div>
         </div>
     </div>

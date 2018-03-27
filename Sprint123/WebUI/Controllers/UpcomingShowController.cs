@@ -23,7 +23,7 @@ namespace WebUI.Controllers
 
         // GET: Overview
         //[HttpGet]
-        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start, DateTime? end)
+        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start/*, DateTime? end*/)
         {
 
             int Locationid = locationid;
@@ -46,10 +46,10 @@ namespace WebUI.Controllers
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < nextThursday).ToList();  
             
-            //--------------filters BEGIN--------------------
+            //--------------filters BEGIN  was allShows!!!!--------------------
             if (!String.IsNullOrEmpty(searchString))
             {
-                List <Show> filteredShows = allShows.ToEnumerable()
+                List <Show> filteredShows = upcomingShows.ToEnumerable()
                     .Where(s => s.Movie.Name.Contains(searchString) 
                         || s.Movie.MainActors.Contains(searchString) 
                         || s.Movie.Genre.Contains(searchString) 
@@ -60,15 +60,16 @@ namespace WebUI.Controllers
             }
             if (age != null)
             {
-                List<Show> filteredShows = allShows.ToEnumerable()
+                List<Show> filteredShows = upcomingShows
                     .Where(s => s.Movie.Age == age)
                     .ToList();
                 return View(filteredShows);
             }
-            if (start.HasValue == true && end.HasValue == true)
+            if (start.HasValue == true)
             {
-                List<Show> filteredShows = allShows.ToEnumerable()
-                                   .Where(s => s.BeginTime.Date > start && s.EndTime.Date < end)
+                DateTime selectedDate = (DateTime)start;
+                List<Show> filteredShows = upcomingShows
+                                   .Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear)
                                    .ToList();
                 return View(filteredShows);
             }

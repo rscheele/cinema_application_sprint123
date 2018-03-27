@@ -49,7 +49,7 @@ namespace WebUI.Controllers
             //--------------filters BEGIN  was allShows!!!!--------------------
             if (!String.IsNullOrEmpty(searchString))
             {
-                List <Show> filteredShows = allShows
+                List <Show> filteredShows = allThislocationShows
                     .Where(s => s.Movie.Name.Contains(searchString) 
                         || s.Movie.MainActors.Contains(searchString) 
                         || s.Movie.Genre.Contains(searchString)
@@ -62,7 +62,7 @@ namespace WebUI.Controllers
             }
             if (age != null)
             {
-                List<Show> filteredShows = allShows
+                List<Show> filteredShows = allThislocationShows
                     .Where(s => s.Movie.Age == age)
                     .ToList();
                 return View(filteredShows);
@@ -70,7 +70,7 @@ namespace WebUI.Controllers
             if (start.HasValue == true)
             {
                 DateTime selectedDate = (DateTime)start;
-                List<Show> filteredShows = allShows
+                List<Show> filteredShows = allThislocationShows
                                    .Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear)
                                    .ToList();
                 return View(filteredShows);

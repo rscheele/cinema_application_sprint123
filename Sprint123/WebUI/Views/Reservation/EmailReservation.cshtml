@@ -11,7 +11,8 @@
         <p><b>Jullie reserveringsnummer is @Html.DisplayFor(x => Model.ReservationID)</b></p><br />
         <p>Voer je email adres in om de reservering te bevestigen!</p>
         <p>@Html.TextBoxFor(x => Model.EmailAdress, new { @class = "formcontrol" })</p>
-        <input class="btn btn-success" type="submit" value="Reserveer" />
+        <p>Ik wil graag de nieuwsbrief ontvangen!   @Html.CheckBoxFor(x => Model.NewsLetter)</p>
+        <input class="btn btn-danger" type="submit" value="Reserveer" />
     }
 </body>
 

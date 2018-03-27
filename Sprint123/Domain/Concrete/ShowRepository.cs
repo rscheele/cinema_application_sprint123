@@ -46,9 +46,6 @@ namespace Domain.Concrete
                     dbEntry.MovieID = show.MovieID;
                     dbEntry.RoomID = show.RoomID;
                     dbEntry.NumberofTickets = show.NumberofTickets;
-                    dbEntry.ChildDiscount = show.ChildDiscount;
-                    dbEntry.StudentDiscount = show.StudentDiscount;
-                    dbEntry.SeniorDiscount = show.SeniorDiscount;
                 }
             }
             context.SaveChanges();

@@ -1,4 +1,4 @@
-﻿@model  List<Domain.Entities.TempTicket>
+﻿@model  List<WebUI.Models.TempTicketModel>
 
 @{
     ViewBag.Title = "AddPopcorn";
@@ -19,6 +19,9 @@
                 <th scope="col">Prijs</th>
                 <th scope="col">Type</th>
                 <th scope="col">Popcorn?</th>
+                <th scope="col">Extra kosten</th>
+                <th scope="col">3D Bril?</th>
+                <th scope="col">Extra kosten</th>
             </tr>
             @{ int j = 0;}
             @for (int i = 0; i < Model.Count; i++)
@@ -40,11 +43,17 @@
                 <td>
                     + €5,-
                 </td>
+                <td>
+                    @Html.CheckBoxFor(x => Model[i].Glasses)
+                </td>
+                <td>
+                    + €2,-
+                </td>
             </tr>
             }
 
         </table> <br />
-        <input class="btn btn-success" type="submit" value="Voeg toe!" />
+        <input class="btn btn-danger" type="submit" value="Voeg toe!" />
         }
     </div>
 </body>

@@ -111,6 +111,7 @@
     <Compile Include="TestUpcomingShows.cs" />
     <Compile Include="TestSecretShow.cs" />
     <Compile Include="TestLocation.cs" />
+    <Compile Include="TestTickets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

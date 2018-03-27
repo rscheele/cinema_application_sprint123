@@ -162,6 +162,10 @@
     <Content Include="Content\pieter-konijn.jpg" />
     <Content Include="Content\Red-Sparrow.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\socialmedia_facebook.png" />
+    <Content Include="Content\socialmedia_insta.png" />
+    <Content Include="Content\socialmedia_twitter.png" />
+    <Content Include="Content\special_ladies.png" />
     <Content Include="Content\sprite-blue.png" />
     <Content Include="Content\sprite-purple.png" />
     <Content Include="Content\sprite-red.png" />
@@ -220,9 +224,12 @@
     <Compile Include="Business_Logic\MovieOverview.cs" />
     <Compile Include="Business_Logic\MovieType.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PinController.cs" />
     <Compile Include="Models\CreditcardModel.cs" />
+    <Compile Include="Controllers\SpecialsController.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EmailReservation.cs" />
     <Compile Include="Models\IdealModel.cs" />
     <Compile Include="Models\PinViewModel.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\SeatLayout.cs" />
+    <Compile Include="Models\TempTicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +282,12 @@
     <Content Include="Views\Pin\Ideal.cshtml" />
     <Content Include="Views\Pin\Creditcard.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Email\Unsubscribe.cshtml" />
+    <Content Include="Views\Email\NoEmailFound.cshtml" />
+    <Content Include="Views\Email\EmailRemoved.cshtml" />
+    <Content Include="Views\Specials\Specials.cshtml" />
+    <Content Include="Views\Specials\Ladies.cshtml" />
+    <Content Include="Views\Specials\LadiesOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -6,18 +6,10 @@ using System.Web;
 
 namespace WebUI.Models
 {
-    public class EmailReservation
+    public class EmailModel
     {
-        public EmailReservation()
-        {
-
-        }
-        [Required(ErrorMessage = "Please enter your email address")]
+        [Required(ErrorMessage = "Voer een emailadres in")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Voer een geldig emailadres in")]
         public string EmailAdress { get; set; }
-        public long ReservationID { get; set; }
-        public bool Paid { get; set; }
-        public bool NewsLetter { get; set; }
-
     }
 }

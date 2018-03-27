@@ -88,6 +88,8 @@ namespace WebUI.Controllers
                 addText("Stoelnummer: " + t.SeatNumber);
                 AddEmptyLine();
                 addText("Met popcorn arrangement: " + (t.Popcorn ? "Ja" : "Nee"));
+                AddEmptyLine();
+                addText("Inclusief 3D bril: " + (t.Glasses ? "Ja" : "Nee"));
 
                 //addText("Stoelnummer: " + t.Seat.SeatNumber, smallFont);
                 //addText("Rijnummer: " + t.Seat.RowY, smallFont);

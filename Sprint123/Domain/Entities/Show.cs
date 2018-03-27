@@ -26,9 +26,8 @@ namespace Domain.Entities
         public int RoomID { get; set; }
         [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
-        public int NumberofTickets { get; set; }  
-        public bool ChildDiscount { get; set; }
-        public bool StudentDiscount { get; set; }
-        public bool SeniorDiscount { get; set; }
+        public int NumberofTickets { get; set; }
+        // Type 0 = normal show, type 1 = ladies night
+        public int ShowType { get; set; }
     }
 }

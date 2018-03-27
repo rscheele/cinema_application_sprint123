@@ -6,7 +6,7 @@
 <div class="form-horizontal">
     <h4>Pin Invoeren om te betalen</h4>
     @*<div>
-        <input action="action" class="btn btn-success" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
+        <input action="action" class="btn btn-danger" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
     </div>*@
     <hr />
         <div class="container">
@@ -60,9 +60,9 @@
                     </div>
                 </div>
                 <!--pin numpad END-->
-                @*<input type="submit" value="Betaal" class="btn btn-success" onclick="location.href='@Url.Action("PrintTickets","Reservation", Model)'">*@
-                <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("Finish","Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
-                <!--<input action="action" class="btn btn-success" type="button" value="Start nieuwe bestelling" onclick="window.history.go(-4); return false;" />-->
+                @*<input type="submit" value="Betaal" class="btn btn-danger" onclick="location.href='@Url.Action("PrintTickets","Reservation", Model)'">*@
+                <button type="button" id="oneclick" class="btn btn-danger" onclick="location.href='@Url.Action("Finish","Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
+                <!--<input action="action" class="btn btn-danger" type="button" value="Start nieuwe bestelling" onclick="window.history.go(-4); return false;" />-->
             </div>
         </div>
     </div>

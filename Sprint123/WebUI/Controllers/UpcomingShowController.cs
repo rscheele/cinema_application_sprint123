@@ -33,8 +33,8 @@ namespace WebUI.Controllers
             DateTime nextWednesday = now.AddDays(daysUntilWednesday);
 
             List<Show> allShows = showRepository.GetShows().ToList();
-            //Filter out shows from different location
-            List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid).ToList();
+            //Filter out shows from different location and shows that are not of type 0
+            List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid && s.ShowType == 0).ToList();
 
             // Remove shows that start within 25 minutes (Or that are older for that matter)
             DateTime currentDateTime = DateTime.Now;

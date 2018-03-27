@@ -65,7 +65,7 @@ namespace Domain.Concrete
             context.SaveChanges();
         }
 
-        public void DeleteTempTickets(long ReservationID)
+        public void DeleteTempTicket(long ReservationID)
         {
             List<TempTicket> list = context.TempTickets.Where(x => x.ReservationID == ReservationID).ToList();
             foreach (var item in list)
@@ -74,5 +74,13 @@ namespace Domain.Concrete
             }
             context.SaveChanges();
         }
+
+        public void DeleteTempTickets(List<TempTicket> tempTickets)
+        {
+            context.TempTickets.RemoveRange(tempTickets);
+            context.SaveChanges();
+        }
+
+
     }
 }

@@ -63,5 +63,12 @@ namespace Domain.Concrete
             }
             context.SaveChanges();
         }
+
+        public void UpdateShowSeats(ShowSeat ShowSeat)
+        {
+            ShowSeat dbEntry = context.ShowSeats.Find(ShowSeat.SeatID);
+            context.Entry(dbEntry).CurrentValues.SetValues(ShowSeat);
+            context.SaveChanges();
+        }
     }
 }

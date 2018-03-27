@@ -13,12 +13,14 @@ namespace WebUI.Controllers
     public class TicketController : Controller
     {
         private IShowRepository showRepository;
+        private IShowSeatRepository showSeatRepository;
         private ITempTicketRepository tempTicketRepository;
         private ITicketRepository ticketRepository;
 
-        public TicketController(IShowRepository showRepository, ITempTicketRepository tempTicketRepository, ITicketRepository ticketRepository)
+        public TicketController(IShowRepository showRepository, IShowSeatRepository showSeatRepository, ITempTicketRepository tempTicketRepository, ITicketRepository ticketRepository)
         {
             this.showRepository = showRepository;
+            this.showSeatRepository = showSeatRepository;
             this.tempTicketRepository = tempTicketRepository;
             this.ticketRepository = ticketRepository;
         }
@@ -26,6 +28,31 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult OrderTickets(long reservationID, int showID)
         {
+            // Remove tickets that are still in progress of being bought older than 5 minutes
+            DateTime currentDateTime = DateTime.Now;
+            DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -5, 0));
+            List<TempTicket> tempTicketList = tempTicketRepository.GetTempTickets().ToList();
+            List<TempTicket> oldTempTickets = new List<TempTicket>();
+
+            foreach (var i in tempTicketList)
+            {
+                if (i.TimeAdded < minusDateTime)
+                {
+                    List<ShowSeat> showSeats = showSeatRepository.GetShowSeats(i.ShowID).ToList();
+                    foreach (var j in showSeats)
+                    {
+                        if (i.SeatID == j.SeatID)
+                        {
+                            j.IsReserved = false;
+                            showSeatRepository.UpdateShowSeats(j);
+                            break;
+                        }
+                    }
+                    oldTempTickets.Add(i);
+                }
+            }
+            tempTicketRepository.DeleteTempTickets(oldTempTickets);
+
             Show selectedShow = showRepository.FindShow(showID);
             string soldOut = (string)TempData["SoldOut"];
             List<decimal> tarrifs = calculatePrices(selectedShow);

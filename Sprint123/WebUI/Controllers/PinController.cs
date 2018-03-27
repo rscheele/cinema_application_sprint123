@@ -61,6 +61,7 @@ namespace WebUI.Controllers
         public ActionResult Finish(long reservationID)
         {
             List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+            bool paid = true;
             if (tempTickets.Count > 0)
             {
                 foreach (var i in tempTickets)
@@ -68,7 +69,7 @@ namespace WebUI.Controllers
                     i.IsPaid = true;
                 }
                 tempTicketRepository.UpdateTempTickets(tempTickets);
-                return RedirectToAction("EmailReservation", "Reservation", new { reservationID });
+                return RedirectToAction("EmailReservation", "Reservation", new { reservationID , paid});
             }
             else
             {

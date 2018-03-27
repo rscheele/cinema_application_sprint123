@@ -120,7 +120,7 @@ namespace WebUI.Controllers
                     }
                     showSeatRepository.UpdateShowSeats(showSeats.ToList());
                     ticketRepository.SaveTickets(tickets);
-                    tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+                    tempTicketRepository.DeleteTempTicket(tempTickets.FirstOrDefault().ReservationID);
                 }
                 else
                 {
@@ -180,10 +180,11 @@ namespace WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult EmailReservation(long reservationID)
+        public ActionResult EmailReservation(long reservationID, bool paid)
         {
             EmailReservation emailReservation = new EmailReservation();
             emailReservation.ReservationID = reservationID;
+            emailReservation.Paid = paid;
             return View("EmailReservation", emailReservation);
         }
 
@@ -223,10 +224,11 @@ namespace WebUI.Controllers
                 }
                 showSeatRepository.UpdateShowSeats(showSeats.ToList());
                 ticketRepository.SaveTickets(tickets);
-                tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+                tempTicketRepository.DeleteTempTicket(tempTickets.FirstOrDefault().ReservationID);
 
                 Reservation reservation = new Reservation();
                 reservation.reservationID = emailReservation.ReservationID;
+                reservation.Paid = emailReservation.Paid;
                 return View("Success", reservation);
             }
             else

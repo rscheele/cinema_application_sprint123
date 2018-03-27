@@ -16,5 +16,7 @@ namespace WebUI.Models
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Voer een geldig emailadres in")]
         public string EmailAdress { get; set; }
         public long ReservationID { get; set; }
+        public bool Paid { get; set; }
+
     }
 }

@@ -52,7 +52,7 @@
     }
         </table>
         <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID })'">Naar betalen</button>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("EmailReservation", "Reservation", new { reservationID = Model.FirstOrDefault().ReservationID })'">Alleen reserveren</button>
+        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("EmailReservation", "Reservation", new { reservationID = Model.FirstOrDefault().ReservationID , Paid = false})'">Alleen reserveren</button>
     </div>
 </body>
 

@@ -14,6 +14,7 @@ namespace Domain.Abstract
         IEnumerable<TempTicket> GetTempTicketsReservation(long ReservationID);
         void SaveTempTickets(List<TempTicket> TempTickets);
         void UpdateTempTickets(List<TempTicket> TempTickets);
-        void DeleteTempTickets(long ReservationID);
+        void DeleteTempTicket(long ReservationID);
+        void DeleteTempTickets(List<TempTicket> TempTickets);
     }
 }

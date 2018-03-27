@@ -1013,36 +1013,36 @@ namespace Domain.Concrete
 
             /* -----------start of table creation------------ */
             var shows = new List<Show>
-            {
-            new Show{BeginTime=DateTime.Parse("2018-03-26 16:15:00.000"),EndTime=DateTime.Parse("2018-03-26 18:30:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=1,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=2,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:08:00.000"),EndTime=DateTime.Parse("2018-03-26 21:08:00.000"),MovieID=3,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:11:00.000"),EndTime=DateTime.Parse("2018-03-26 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 21:15:00.000"),EndTime=DateTime.Parse("2018-03-26 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 21:15:00.000"),EndTime=DateTime.Parse("2018-03-26 22:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            { new Show{BeginTime=DateTime.Parse("2018-03-27 16:15:00.000"),EndTime=DateTime.Parse("2018-03-27 18:30:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=1,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=2,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:08:00.000"),EndTime=DateTime.Parse("2018-03-27 21:08:00.000"),MovieID=3,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:11:00.000"),EndTime=DateTime.Parse("2018-03-27 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 21:15:00.000"),EndTime=DateTime.Parse("2018-03-27 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 21:15:00.000"),EndTime=DateTime.Parse("2018-03-27 22:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
 
-            new Show{BeginTime=DateTime.Parse("2018-03-26 16:15:00.000"),EndTime=DateTime.Parse("2018-03-26 18:30:00.000"),MovieID=19,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=21,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=22,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:08:00.000"),EndTime=DateTime.Parse("2018-03-26 21:08:00.000"),MovieID=23,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:11:00.000"),EndTime=DateTime.Parse("2018-03-26 21:11:00.000"),MovieID=24,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=25,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=26,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 21:15:00.000"),EndTime=DateTime.Parse("2018-03-26 23:15:00.000"),MovieID=27,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 16:15:00.000"),EndTime=DateTime.Parse("2018-03-27 18:30:00.000"),MovieID=19,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=21,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=22,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:08:00.000"),EndTime=DateTime.Parse("2018-03-27 21:08:00.000"),MovieID=23,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:11:00.000"),EndTime=DateTime.Parse("2018-03-27 21:11:00.000"),MovieID=24,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=25,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=27,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 21:15:00.000"),EndTime=DateTime.Parse("2018-03-27 23:15:00.000"),MovieID=27,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
 
-            new Show{BeginTime=DateTime.Parse("2018-03-26 16:15:00.000"),EndTime=DateTime.Parse("2018-03-26 18:30:00.000"),MovieID=10,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=11,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=12,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:08:00.000"),EndTime=DateTime.Parse("2018-03-26 21:08:00.000"),MovieID=13,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:11:00.000"),EndTime=DateTime.Parse("2018-03-26 21:11:00.000"),MovieID=14,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=15,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 19:00:00.000"),EndTime=DateTime.Parse("2018-03-26 21:00:00.000"),MovieID=16,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 21:15:00.000"),EndTime=DateTime.Parse("2018-03-26 23:15:00.000"),MovieID=17,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
-            new Show{BeginTime=DateTime.Parse("2018-03-26 21:15:00.000"),EndTime=DateTime.Parse("2018-03-26 22:30:00.000"),MovieID=18,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true}
+            new Show{BeginTime=DateTime.Parse("2018-03-27 16:15:00.000"),EndTime=DateTime.Parse("2018-03-27 18:30:00.000"),MovieID=10,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=11,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=12,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:08:00.000"),EndTime=DateTime.Parse("2018-03-27 21:08:00.000"),MovieID=13,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:11:00.000"),EndTime=DateTime.Parse("2018-03-27 21:11:00.000"),MovieID=14,RoomID=4,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=15,RoomID=5,NumberofTickets=6,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 19:00:00.000"),EndTime=DateTime.Parse("2018-03-27 21:00:00.000"),MovieID=16,RoomID=6,NumberofTickets=2,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 21:15:00.000"),EndTime=DateTime.Parse("2018-03-27 23:15:00.000"),MovieID=17,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
+            new Show{BeginTime=DateTime.Parse("2018-03-27 21:15:00.000"),EndTime=DateTime.Parse("2018-03-27 22:30:00.000"),MovieID=18,RoomID=2,NumberofTickets=15,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true}
             };
+           
 
             shows.ForEach(s => context.Shows.Add(s));
             context.SaveChanges();

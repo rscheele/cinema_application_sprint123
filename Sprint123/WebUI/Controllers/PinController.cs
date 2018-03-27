@@ -21,19 +21,45 @@ namespace WebUI.Controllers
         }
 
         // GET: Pin
-        public ViewResult Pay(long reservationID)
+        public ViewResult Pay(long reservationID, string paytype)
         {
             List<TempTicket> ticketsList = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
             //ViewBag.tickets = ticketsList;
-
-            PinViewModel model = (PinViewModel)TempData["model"];
-            if(model == null)
+            
+            if (paytype == "ideal")
             {
-                model = new PinViewModel();
+                IdealModel model2 = (IdealModel)TempData["model2"];
+                if (model2 == null)
+                {
+                    model2 = new IdealModel();
+                }
+                model2.reservationID = reservationID;
+                TempData["model2"] = model2;
+                return View("Ideal", model2);
             }
-            model.reservationID = reservationID;
-            TempData["model"] = model;
-            return View("Pay", model);
+            if (paytype == "credit")
+            {
+                CreditcardModel model4 = (CreditcardModel)TempData["model4"];
+                if (model4 == null)
+                {
+                    model4 = new CreditcardModel();
+                }
+                model4.reservationID = reservationID;
+                TempData["model4"] = model4;
+                return View("Creditcard", model4);
+            }
+            else
+            {
+                PinViewModel model = (PinViewModel)TempData["model"];
+                if (model == null)
+                {
+                    model = new PinViewModel();
+                }
+                model.reservationID = reservationID;
+                TempData["model"] = model;
+
+                return View("Pay", model);
+            }
         }
 
         [HttpGet]
@@ -57,6 +83,37 @@ namespace WebUI.Controllers
             TempData["model"] = model;
             return RedirectToAction("Pay", new { reservationID });
         }
+
+        //[HttpPost]
+        //ActionResult ValidateIdeal(long reservationID)
+        //{
+        //    IdealModel model = (IdealModel)TempData["model"];
+        //    TempData["model"] = model;
+        //    if (ModelState.IsValid)
+        //    {
+        //        return RedirectToAction("Finish", reservationID);
+        //    }
+        //    else
+        //    {
+        //        return View("Ideal", new { reservationID });
+        //    }
+        //}
+
+        //[HttpPost]
+        //ActionResult ValidateCredit(long reservationID)
+        //{
+        //    CreditcardModel model = (CreditcardModel)TempData["model"];
+        //    TempData["model"] = model;
+        //    if (ModelState.IsValid)
+        //    {
+        //        return RedirectToAction("Finish", reservationID);
+        //    }
+        //    else
+        //    {
+        //        return View("Creditcard", new { reservationID });
+        //    }
+        //}
+
 
         public ActionResult Finish(long reservationID)
         {

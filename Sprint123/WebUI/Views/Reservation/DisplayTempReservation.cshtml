@@ -25,7 +25,7 @@
                 <th scope="col">Stoelnummer</th>
             </tr>
             @foreach (var item in Model)
-        {
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(x => item.ID)
@@ -38,13 +38,13 @@
                 </td>
                 <td>
                     @if (item.Popcorn == true)
-        {
-            <p>Ja</p>
-}
-else
-{
-            <p>Nee</p>
-}
+                    {
+                    <p>Ja</p>
+                    }
+                    else
+                    {
+                <p>Nee</p>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.RowNumber)
@@ -53,9 +53,11 @@ else
                     @Html.DisplayFor(x => item.SeatNumber)
                 </td>
             </tr>
-    }
+            }
         </table>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID })'">Naar betalen</button>
+        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = ""})'">Naar betalen met Pin</button>
+        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "ideal"})'">Naar betalen met Ideal</button>
+        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "credit" })'">Naar betalen met CreditCard</button>
         <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("EmailReservation", "Reservation", new { reservationID = Model.FirstOrDefault().ReservationID , Paid = false})'">Alleen reserveren</button>
     </div>
 </body>

@@ -219,9 +219,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business_Logic\MovieOverview.cs" />
     <Compile Include="Business_Logic\MovieType.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PinController.cs" />
+    <Compile Include="Models\CreditcardModel.cs" />
     <Compile Include="Models\EmailReservation.cs" />
+    <Compile Include="Models\IdealModel.cs" />
     <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
@@ -268,6 +271,9 @@
     <Content Include="Views\Reservation\DisplayTempReservation.cshtml" />
     <Content Include="Views\Reservation\EmailReservation.cshtml" />
     <Content Include="Views\UpcomingShow\NotAvailable.cshtml" />
+    <Content Include="Views\Pin\Ideal.cshtml" />
+    <Content Include="Views\Pin\Creditcard.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

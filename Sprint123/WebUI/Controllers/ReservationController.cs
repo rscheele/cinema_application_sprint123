@@ -38,9 +38,10 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reservation(string reservationID)
+        public ActionResult Reservation(string reservationID, string paytype)
         {
             long resID = Convert.ToInt64(reservationID);
+            string payid = paytype;
             IEnumerable<Ticket> tickets = ticketRepository.GetTickets(resID);
 
             if (tickets.Count() > 0) { 
@@ -58,7 +59,7 @@ namespace WebUI.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Pay", "Pin", new { reservationID = resID });
+                    return RedirectToAction("Pay", "Pin", new { reservationID = resID , paytype = payid });
                 }
             }
             else

@@ -23,15 +23,12 @@ namespace WebUI.Controllers
 
         // GET: Overview
         //[HttpGet]
-        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start/*, DateTime? end*/)
+        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start)
         {
 
             int Locationid = locationid;
             DateTime now = DateTime.Now;
-            //DateTime EndOfWeek = now.AddDays(5);
             // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
-            //int daysUntilThursday = ((int)DayOfWeek.Thursday - (int)now.DayOfWeek + 7) % 7;
-            //DateTime nextThursday = now.AddDays(daysUntilThursday);
             int daysUntilWednesday = ((int)DayOfWeek.Wednesday - (int)now.DayOfWeek + 7) % 7;
             DateTime nextWednesday = now.AddDays(daysUntilWednesday);
 
@@ -44,8 +41,6 @@ namespace WebUI.Controllers
             DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -25, 0));
             List<Show> tempShowList = new List<Show>();
 
-
-
             //Filter out shows from the past
             List<Show> ShowsFromNow = allThislocationShows.ToEnumerable()
                 .Where(s => s.BeginTime > now).ToList();
@@ -56,49 +51,52 @@ namespace WebUI.Controllers
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < nextWednesday).ToList();
 
-            foreach (var i in upcomingShows) //allThislocationShows
+            foreach (var i in upcomingShows)
             {
                 if (i.BeginTime > minusDateTime)
                 {
                     tempShowList.Add(i);
                 }
             }
-            upcomingShows = tempShowList; //allThislocationShows
+            upcomingShows = tempShowList;
             ViewBag.locid = 1;
 
             //--------------filters BEGIN  was allShows!!!!--------------------
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) | age.HasValue | start.HasValue)
             {
-                List <Show> filteredShows = upcomingShows //allThislocationShows
-                    .Where(s => s.Movie.Name.Contains(searchString) 
-                        || s.Movie.MainActors.Contains(searchString) 
-                        || s.Movie.Genre.Contains(searchString)
-                        || s.Movie.MainActors.Contains(searchString)
-                        || s.Movie.SubActors.Contains(searchString)
-                        || s.Movie.Director.Contains(searchString))
-                    .ToList();
+                List<Show> filteredShows = allShows.ToList();
+                if (!String.IsNullOrEmpty(searchString)) {
+                    filteredShows     
+                    .Where(s => s.Movie.Name.Contains(searchString)
+                            || s.Movie.MainActors.Contains(searchString)
+                            || s.Movie.Genre.Contains(searchString)
+                            || s.Movie.MainActors.Contains(searchString)
+                            || s.Movie.SubActors.Contains(searchString)
+                            || s.Movie.Director.Contains(searchString))
+                        .ToList();
+                }
+                if(age != null && age>0 )
+                {
+                    filteredShows.Where(s => s.Movie.Age == age).ToList();
+                }
+                if(start.HasValue == true)
+                {
+                    DateTime selectedDate = (DateTime)start;
+                    filteredShows.Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
+                }
                 return View(filteredShows);
 
             }
-            if (age != null)
-            {
-                List<Show> filteredShows = upcomingShows //allThislocationShows
-                    .Where(s => s.Movie.Age == age)
-                    .ToList();
-                return View(filteredShows);
-            }
-            if (start.HasValue == true)
-            {
-                DateTime selectedDate = (DateTime)start;
-                List<Show> filteredShows = upcomingShows  //allThislocationShows
-                                   .Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear)
-                                   .ToList();
-                return View(filteredShows);
-            }
-            //--------------filters END------------------------
-            
-            return View(upcomingShows);
-            //return View(allShows);
+            //Three Expected shows --------BEGIN
+            string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
+            string y = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Trailer.ToString();
+            string z = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(3).Movie.Trailer.ToString();
+            ViewBag.trailer1 = x;
+            ViewBag.trailer2 = y;
+            ViewBag.trailer3 = z;
+            //Three Expected shows --------END
+            //return View(upcomingShows);
+            return View(allShows);
         }
 
         // GET: UpcomingShow

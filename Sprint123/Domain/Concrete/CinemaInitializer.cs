@@ -10,7 +10,7 @@ using System.Web.Hosting;
 namespace Domain.Concrete
 {
     // DropCreateDatabaseIfModelChanges VS DropCreateDatabaseAlways
-    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseAlways<EFDbContext>
+    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
     {
         byte[] uprising = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/pacific-rim-uprising.jpg"));
         byte[] hour = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/darkest-hour.jpg"));
@@ -1013,7 +1013,8 @@ namespace Domain.Concrete
 
             /* -----------start of table creation------------ */
             var shows = new List<Show>
-            { new Show{BeginTime=DateTime.Parse("2018-03-29 14:40:00.000"),EndTime=DateTime.Parse("2018-03-29 16:10:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
+            {
+            new Show{BeginTime=DateTime.Parse("2018-03-29 14:40:00.000"),EndTime=DateTime.Parse("2018-03-29 16:10:00.000"),MovieID=9,RoomID=2,NumberofTickets=11,ChildDiscount=true,StudentDiscount=true,SeniorDiscount=true},
             new Show{BeginTime=DateTime.Parse("2018-03-29 14:25:00.000"),EndTime=DateTime.Parse("2018-03-29 16:25:00.000"),MovieID=1,RoomID=1,NumberofTickets=10,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
             new Show{BeginTime=DateTime.Parse("2018-03-29 14:35:00.000"),EndTime=DateTime.Parse("2018-03-29 16:45:00.000"),MovieID=2,RoomID=2,NumberofTickets=3,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},
             new Show{BeginTime=DateTime.Parse("2018-03-29 14:45:00.000"),EndTime=DateTime.Parse("2018-03-29 16:55:00.000"),MovieID=3,RoomID=3,NumberofTickets=1,ChildDiscount=false,StudentDiscount=true,SeniorDiscount=true},

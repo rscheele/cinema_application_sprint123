@@ -21,6 +21,7 @@
                 <th scope="col">Prijs</th>
                 <th scope="col">Type</th>
                 <th scope="col">Popcorn inbegrepen?</th>
+                <th scope="col">Rijnummer</th>
                 <th scope="col">Stoelnummer</th>
             </tr>
             @foreach (var item in Model)
@@ -44,6 +45,9 @@
             {
                 <p>Nee</p>
         }
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.RowNumber)
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.SeatNumber)

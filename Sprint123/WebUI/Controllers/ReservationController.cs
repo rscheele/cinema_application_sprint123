@@ -159,8 +159,35 @@ namespace WebUI.Controllers
         {
             List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
             Show show = showRepository.FindShow(tickets[0].ShowID);
+            foreach (var i in tickets)
+            {
+                i.IsPaid = true;
+            }
+            ticketRepository.UpdateTickets(tickets);
             var pdf = new PrintTickets(tickets, show);
             return pdf.SendPdf();
+        }
+
+        [HttpGet]
+        public ActionResult DisplayReservation(long reservationID)
+        {
+            IEnumerable<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID);
+
+            // Add the show to the ticket
+            Show orderedShow = showRepository.FindShow(tempTickets.FirstOrDefault().ShowID);
+            foreach (var item in tempTickets)
+            {
+                item.Show = orderedShow;
+            }
+            return View("DisplayTempReservation", tempTickets);
+        }
+
+        [HttpGet]
+        public ActionResult EmailReservation(long reservationID)
+        {
+            EmailReservation emailReservation = new EmailReservation();
+            emailReservation.reservationID = reservationID;
+            return View("EmailReservation", emailReservation);
         }
     }
 }

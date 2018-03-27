@@ -121,7 +121,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public ActionResult ChooseSeats(long reservationID)
         {
-            return RedirectToAction("Pay", "Pin", new { reservationID });
+            return RedirectToAction("DisplayReservation", "Reservation", new { reservationID });
         }
     }
 }

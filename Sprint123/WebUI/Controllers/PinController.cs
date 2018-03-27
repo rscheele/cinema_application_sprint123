@@ -55,5 +55,24 @@ namespace WebUI.Controllers
             TempData["model"] = model;
             return RedirectToAction("Pay", new { reservationID });
         }
+
+        public ActionResult Finish(long reservationID)
+        {
+
+            List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+            if (tempTickets.Count > 0)
+            {
+                foreach (var i in tempTickets)
+                {
+                    i.IsPaid = true;
+                }
+                tempTicketRepository.UpdateTempTickets(tempTickets);
+                return RedirectToAction("EmailReservation", "Reservation", new { reservationID });
+            }
+            else
+            {
+                return RedirectToAction("PrintReservationTickets", "Reservation", new { reservationID });
+            }
+        }
     }
 }

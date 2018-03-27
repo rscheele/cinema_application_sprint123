@@ -221,6 +221,7 @@
     <Compile Include="Business_Logic\MovieType.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PinController.cs" />
+    <Compile Include="Models\EmailReservation.cs" />
     <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
@@ -264,6 +265,8 @@
     <Content Include="Views\UpcomingShow\Overview.cshtml" />
     <Content Include="Views\UpcomingShow\ShowDetails.cshtml" />
     <Content Include="Views\Reservation\Success.cshtml" />
+    <Content Include="Views\Reservation\DisplayTempReservation.cshtml" />
+    <Content Include="Views\Reservation\EmailReservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

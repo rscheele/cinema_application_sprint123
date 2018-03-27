@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace WebUI.Controllers
 {
@@ -159,11 +161,6 @@ namespace WebUI.Controllers
         {
             List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
             Show show = showRepository.FindShow(tickets[0].ShowID);
-            foreach (var i in tickets)
-            {
-                i.IsPaid = true;
-            }
-            ticketRepository.UpdateTickets(tickets);
             var pdf = new PrintTickets(tickets, show);
             return pdf.SendPdf();
         }
@@ -186,8 +183,89 @@ namespace WebUI.Controllers
         public ActionResult EmailReservation(long reservationID)
         {
             EmailReservation emailReservation = new EmailReservation();
-            emailReservation.reservationID = reservationID;
+            emailReservation.ReservationID = reservationID;
             return View("EmailReservation", emailReservation);
+        }
+
+        [HttpPost]
+        public ViewResult EmailReservation(EmailReservation emailReservation)
+        {
+            if (ModelState.IsValid)
+            {
+                Email(emailReservation.ReservationID, emailReservation.EmailAdress);
+
+                List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(emailReservation.ReservationID).ToList();
+                List<Ticket> tickets = new List<Ticket>();
+                IEnumerable<ShowSeat> showSeats = showSeatRepository.GetShowSeatsReservation(tempTickets.FirstOrDefault().ReservationID);
+                foreach (var item in tempTickets)
+                {
+                    foreach (var seat in showSeats)
+                    {
+                        if (seat.SeatID == item.SeatID)
+                        {
+                            seat.IsReserved = false;
+                            seat.IsTaken = true;
+                        }
+                    }
+                    Ticket ticket = new Ticket();
+                    ticket.IsPaid = item.IsPaid;
+                    ticket.Popcorn = item.Popcorn;
+                    ticket.Price = item.Price;
+                    ticket.ReservationID = item.ReservationID;
+                    ticket.RowNumber = item.RowNumber;
+                    ticket.Seat = item.Seat;
+                    ticket.SeatID = item.SeatID;
+                    ticket.SeatNumber = item.SeatNumber;
+                    ticket.Show = item.Show;
+                    ticket.ShowID = item.ShowID;
+                    ticket.TicketType = item.TicketType;
+                    tickets.Add(ticket);
+                }
+                showSeatRepository.UpdateShowSeats(showSeats.ToList());
+                ticketRepository.SaveTickets(tickets);
+                tempTicketRepository.DeleteTempTickets(tempTickets.FirstOrDefault().ReservationID);
+
+                Reservation reservation = new Reservation();
+                reservation.reservationID = emailReservation.ReservationID;
+                return View("Success", reservation);
+            }
+            else
+            {
+                return View("EmailReservation", emailReservation);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult SendingEmail(EmailReservation emailReservation)
+        {
+            return View("SendingEmail", emailReservation);
+        }
+
+        private void Email(long reservationID, string emailTo)
+        {
+            var fromAddress = new MailAddress("avanscinema@gmail.com", "From Name");
+            var toAddress = new MailAddress(emailTo, "To Name");
+            const string fromPassword = "avans123";
+            string subject = "Je AvansCinema ticket met ID " + reservationID.ToString();
+            string body = "Jullie reserveringsnummer is " + reservationID.ToString() + " . Gebruik deze om je tickets op te halen bij de terminal in de bioscoop.";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
         }
     }
 }

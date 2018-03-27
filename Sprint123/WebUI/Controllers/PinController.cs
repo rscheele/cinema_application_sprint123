@@ -12,10 +12,12 @@ namespace WebUI.Controllers
     public class PinController : Controller
     {
         private ITempTicketRepository tempTicketRepository;
+        private ITicketRepository ticketRepository;
 
-        public PinController(ITempTicketRepository tempTicketRepository)
+        public PinController(ITempTicketRepository tempTicketRepository, ITicketRepository ticketRepository)
         {
             this.tempTicketRepository = tempTicketRepository;
+            this.ticketRepository = ticketRepository;
         }
 
         // GET: Pin
@@ -58,7 +60,6 @@ namespace WebUI.Controllers
 
         public ActionResult Finish(long reservationID)
         {
-
             List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
             if (tempTickets.Count > 0)
             {
@@ -71,6 +72,12 @@ namespace WebUI.Controllers
             }
             else
             {
+                List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
+                foreach (var i in tickets)
+                {
+                    i.IsPaid = true;
+                }
+                ticketRepository.UpdateTickets(tickets);
                 return RedirectToAction("PrintReservationTickets", "Reservation", new { reservationID });
             }
         }

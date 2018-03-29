@@ -194,7 +194,7 @@ namespace WebUI.Controllers
             // Generating reservation ID with datetime and using this as our transaction session ID
             DateTime dateTime = DateTime.Now;
             DateTime minusDateTime = dateTime.Add(new TimeSpan(0, -25, 0));
-            if (minusDateTime > orderedShow.BeginTime) //begin om 29-3 10.25  > -- 29-3 9.50.00 als dit true is dan redirect
+            if (minusDateTime > orderedShow.BeginTime)
             {
                 return RedirectToAction("NotAvailable");
             }

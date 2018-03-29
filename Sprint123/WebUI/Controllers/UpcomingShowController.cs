@@ -30,8 +30,10 @@ namespace WebUI.Controllers
             DateTime now = DateTime.Now;
             //DateTime EndOfWeek = now.AddDays(5);
             // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
-            int daysUntilThursday = ((int)DayOfWeek.Thursday - (int)now.DayOfWeek + 7) % 7;
-            DateTime nextThursday = now.AddDays(daysUntilThursday);
+            //int daysUntilThursday = ((int)DayOfWeek.Thursday - (int)now.DayOfWeek + 7) % 7;
+            //DateTime nextThursday = now.AddDays(daysUntilThursday);
+            int daysUntilWednesday = ((int)DayOfWeek.Wednesday - (int)now.DayOfWeek + 7) % 7;
+            DateTime nextWednesday = now.AddDays(daysUntilWednesday);
 
             List<Show> allShows = showRepository.GetShows().ToList();
             //Filter out shows from different location
@@ -42,14 +44,7 @@ namespace WebUI.Controllers
             DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -25, 0));
             List<Show> tempShowList = new List<Show>();
 
-            foreach (var i in allThislocationShows)
-            {
-                if (i.BeginTime > minusDateTime)
-                {
-                    tempShowList.Add(i);
-                }
-            }
-            allThislocationShows = tempShowList;
+
 
             //Filter out shows from the past
             List<Show> ShowsFromNow = allThislocationShows.ToEnumerable()
@@ -59,12 +54,22 @@ namespace WebUI.Controllers
                 .OrderBy(s => s.BeginTime).ToList();
             //take shows form current movie week
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
-                .Where(s => s.EndTime < nextThursday).ToList();  
-            
+                .Where(s => s.EndTime < nextWednesday).ToList();
+
+            foreach (var i in upcomingShows) //allThislocationShows
+            {
+                if (i.BeginTime > minusDateTime)
+                {
+                    tempShowList.Add(i);
+                }
+            }
+            upcomingShows = tempShowList; //allThislocationShows
+            ViewBag.locid = 1;
+
             //--------------filters BEGIN  was allShows!!!!--------------------
             if (!String.IsNullOrEmpty(searchString))
             {
-                List <Show> filteredShows = allThislocationShows
+                List <Show> filteredShows = upcomingShows //allThislocationShows
                     .Where(s => s.Movie.Name.Contains(searchString) 
                         || s.Movie.MainActors.Contains(searchString) 
                         || s.Movie.Genre.Contains(searchString)
@@ -77,7 +82,7 @@ namespace WebUI.Controllers
             }
             if (age != null)
             {
-                List<Show> filteredShows = allThislocationShows
+                List<Show> filteredShows = upcomingShows //allThislocationShows
                     .Where(s => s.Movie.Age == age)
                     .ToList();
                 return View(filteredShows);
@@ -85,15 +90,15 @@ namespace WebUI.Controllers
             if (start.HasValue == true)
             {
                 DateTime selectedDate = (DateTime)start;
-                List<Show> filteredShows = allThislocationShows
+                List<Show> filteredShows = upcomingShows  //allThislocationShows
                                    .Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear)
                                    .ToList();
                 return View(filteredShows);
             }
             //--------------filters END------------------------
-           
-            return View(allThislocationShows);
-            //return View(upcomingShows);
+            
+            return View(upcomingShows);
+            //return View(allShows);
         }
 
         // GET: UpcomingShow
@@ -175,6 +180,12 @@ namespace WebUI.Controllers
         }
 
         [HttpGet]
+        public ActionResult NotAvailable()
+        {
+            return View("NotAvailable");
+        }
+
+        [HttpGet]
         public ActionResult OrderMovie(int id, bool secret)
         {
             List<Show> allShows = showRepository.GetShows().ToList();
@@ -182,13 +193,21 @@ namespace WebUI.Controllers
             TempData["Secret"] = secret;
             // Generating reservation ID with datetime and using this as our transaction session ID
             DateTime dateTime = DateTime.Now;
-            int year = dateTime.Year;
-            int doy = dateTime.DayOfYear;
-            int hour = dateTime.Hour;
-            int minute = dateTime.Minute;
-            int ms = dateTime.Millisecond;
-            long reservationID = long.Parse(year.ToString() + doy.ToString().PadLeft(3, '0') + hour.ToString().PadLeft(2, '0') + minute.ToString().PadLeft(2, '0') + ms.ToString().PadLeft(3, '0'));
-            return RedirectToAction("OrderTickets", "Ticket", new { reservationID, showID = id});
+            DateTime minusDateTime = dateTime.Add(new TimeSpan(0, -25, 0));
+            if (minusDateTime > orderedShow.BeginTime) //begin om 29-3 10.25  > -- 29-3 9.50.00 als dit true is dan redirect
+            {
+                return RedirectToAction("NotAvailable");
+            }
+            else
+            {
+                int year = dateTime.Year;
+                int doy = dateTime.DayOfYear;
+                int hour = dateTime.Hour;
+                int minute = dateTime.Minute;
+                int ms = dateTime.Millisecond;
+                long reservationID = long.Parse(year.ToString() + doy.ToString().PadLeft(3, '0') + hour.ToString().PadLeft(2, '0') + minute.ToString().PadLeft(2, '0') + ms.ToString().PadLeft(3, '0'));
+                return RedirectToAction("OrderTickets", "Ticket", new { reservationID, showID = id });
+            }
         }
     }
 }

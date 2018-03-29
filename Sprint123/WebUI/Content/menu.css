@@ -47,7 +47,8 @@ input {
 }
 
 .container {
-    margin: 0 auto
+    /*margin: 0 auto;*/ 
+    margin-bottom: 100px;
 }
 
 @media ( min-width : 1200px) {

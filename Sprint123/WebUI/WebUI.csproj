@@ -267,6 +267,7 @@
     <Content Include="Views\Reservation\Success.cshtml" />
     <Content Include="Views\Reservation\DisplayTempReservation.cshtml" />
     <Content Include="Views\Reservation\EmailReservation.cshtml" />
+    <Content Include="Views\UpcomingShow\NotAvailable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

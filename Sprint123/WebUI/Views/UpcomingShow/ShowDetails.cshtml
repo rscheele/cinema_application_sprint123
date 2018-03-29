@@ -1,10 +1,8 @@
 ﻿@model Domain.Entities.Show
 
 @{
-    ViewBag.Title = "ShowDetails";
+    ViewBag.Title = "Details -"+Model.Movie.Name;
 }
-
-@*<h2></h2>*@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Movie.Name)</h4>

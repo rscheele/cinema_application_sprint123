@@ -47,7 +47,7 @@
     <nav class="nav-avans", style="height: 60px;">
         <div class="container"}>
             @Html.ActionLink("Avans Cinema", "Overview", "UpcomingShow", new { locationid = 1 }, new { @style = "color:black; padding: 10px; font-weight: bold;", @class = "navbar-brand" })
-            @if (ViewContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath != "~/UpcomingShow/Overview")
+            @if (ViewContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath != "~/UpcomingShow/Overview" & ViewContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath != "~/Home/Index")
             {
                  <input action="action" class="btn btn-success" style="float: right; padding:8px; margin-top:8px" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
             }

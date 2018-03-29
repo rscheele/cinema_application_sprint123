@@ -123,28 +123,54 @@ namespace UnitTests
         {
             //arrange
             //TO DO add movie data
-            string search = "Bruce Willis";
+            string search = "Bruce";
             string genre = "actie";
             string genre2 = "kids";
+            int age = 4;
             List<Movie> movielist = new List<Movie> {
                 new Movie
                 {
-                    //actie film met bruce willis
+                   MovieID=1,
+                   Name="Death Wish",
+                   MainActors="Bruce Willis",
+                   Genre="actie",
+                   Age=16
+                   //actie film met bruce willis
                 },
                 new Movie
                 {
+                    MovieID=2,
+                    Name="Tomb Raider",
+                    MainActors="John Doe",
+                    Genre="actie",
+                    Age=16
                     //actie film
                 },
                 new Movie
                 {
+                    MovieID=3,
+                    Name="Raiders of the lost Ark",
+                    MainActors="Harrison Ford",
+                    Genre="avontuur",
+                    Age=16
                     //avontuur film
                 },
                 new Movie
                 {
+                    MovieID=4,
+                    Name="Buurman en Buurman",
+                    MainActors="Kees Prins",
+                    Genre="kids",
+                    Age=4
                     //kids film
                 },
                 new Movie
                 {
+                    MovieID=5,
+                    Name="Diep in de Zee",
+                    MainActors="John Doe",
+                    Genre="kids",
+                    Age=4
                     //kids film
                 }
             };
@@ -153,47 +179,73 @@ namespace UnitTests
             //Act
 
             //TO DO: add filter query's
-            List<Movie> filteredSearchMovies = allMovies.ToEnumerable()
+            List<Movie> filteredSearchMovies = allMovies
                     .Where(s => s.Name.Contains(search)
-                    || s.MainActors.Contains(search)
-                    || s.SubActors.Contains(search)
-                    || s.Director.Contains(search))
+                    | s.MainActors.Contains(search))
                     .ToList();
 
-            List<Movie> filteredMovies = allMovies.ToEnumerable()
+            List<Movie> filteredMoviesonGenre = allMovies
                    .Where(s => s.Genre.ToString() == genre)
                    .ToList();
 
-            List<Movie> filteredMovies2 = allMovies.ToEnumerable()
+            List<Movie> filteredMoviesonGenre2 = allMovies
                    .Where(s => s.Genre.ToString() == genre2)
                    .ToList();
-            
+
+            List<Movie> filteredMoviesonAge = allMovies
+                    .Where(s => s.Age == age)
+                    .ToList();
 
             List<int> IdOfFilteredMovies = new List<int>
             {
+                filteredSearchMovies[0].MovieID,  //id=1
+            };
+
+            List<int> IdOfFilteredMoviesonGenre = new List<int>
+            {
+                filteredMoviesonGenre[0].MovieID, //id=1
+                filteredMoviesonGenre[1].MovieID //id=2
 
             };
 
-            List<int> IdOfFilteredMovies2 = new List<int>
+            List<int> IdOfFilteredMoviesonGenre2 = new List<int>
             {
+                filteredMoviesonGenre2[0].MovieID, //id=4
+                filteredMoviesonGenre2[1].MovieID //id=5
 
+            };
+
+            List<int> IdOfFilteredMoviesonAge = new List<int>
+            {
+                filteredMoviesonAge[0].MovieID, //id=4
+                filteredMoviesonAge[1].MovieID //id=5
             };
 
             List<int> ExpectedIDsofFilteredMovies = new List<int>
             {
-                3,
-                2,
                 1
             };
-            List<int> ExpectedIDsofFilteredMovies2 = new List<int>
+
+            List<int> ExpectedIDsofFilteredMoviesonGenre = new List<int>
             {
-                3,
-                2,
-                1
+                1,
+                2
             };
-            // Assert -- assert if expected equals given by act.
+            List<int> ExpectedIDsofFilteredMoviesonGenre2 = new List<int>
+            {
+                4,
+                5
+            };
+            List<int> ExpectedIDsofFilteredMoviesonAge = new List<int>
+            {
+                4,
+                5                
+            };
+            // Assert -- assert if expected ids of movies equals given by act.
             Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMovies, ExpectedIDsofFilteredMovies));
-            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMovies2, ExpectedIDsofFilteredMovies2));
+            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMoviesonGenre, ExpectedIDsofFilteredMoviesonGenre));
+            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMoviesonGenre2, ExpectedIDsofFilteredMoviesonGenre2));
+            Assert.IsTrue(ShowIDIsEqual(IdOfFilteredMoviesonAge, ExpectedIDsofFilteredMoviesonAge));
         }
     }
 }

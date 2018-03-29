@@ -49,7 +49,8 @@
 </div>
 
 <h2>Deze Week in de bioscoop:</h2>
-<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>
+<button class="btn btn-success" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
+@*<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>*@
 <div class="container">
     <div class="row">
         <div class="col-sm">
@@ -57,8 +58,6 @@
           {
             <p>
                 Zoek op film, genre, acteur of regisseur:@Html.TextBox("SearchString")
-                @*Of zoek op datum:   !!!Not functional!!!*@
-                @* @Html.TextBox("End", null, new { @class = "date-picker" })*@
                 <input type="submit" class="btn btn-success" value="Zoek films" />
             </p>
           }
@@ -129,7 +128,6 @@
             {
                 <tr>
                     <td>
-                        @*@Html.DisplayFor(modelItem => item.Movie.Image)*@
                         <img src="data:image;base64,@System.Convert.ToBase64String(item.Movie.Image)" width="60" height="80" />
                     </td>
                     <td>

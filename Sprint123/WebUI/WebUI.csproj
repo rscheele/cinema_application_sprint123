@@ -225,6 +225,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PinController.cs" />
+    <Compile Include="Controllers\SpecialsController.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EmailReservation.cs" />
     <Compile Include="Models\PinViewModel.cs" />
@@ -277,6 +278,7 @@
     <Content Include="Views\Email\Unsubscribe.cshtml" />
     <Content Include="Views\Email\NoEmailFound.cshtml" />
     <Content Include="Views\Email\EmailRemoved.cshtml" />
+    <Content Include="Views\Specials\Specials.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

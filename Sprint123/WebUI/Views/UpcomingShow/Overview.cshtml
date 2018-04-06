@@ -5,7 +5,7 @@
 }
 <div class="text-center">
     <br />
-    <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Haal hier u Reservering op</button> <h2>Verwachte films:</h2>
+    <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Haal hier u Reservering op</button> <h2>Verwachte films:</h2>
 </div>
 <div class="align-content-center" style="color: brown">
     <div id="verwachtefilms" class="carousel slide" data-ride="carousel">
@@ -49,7 +49,7 @@
 </div>
 
 <h2>Deze Week in de bioscoop:</h2>
-<button class="btn btn-success" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
+<button class="btn btn-danger" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
 @*<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>*@
 <div class="container">
     <div class="row">
@@ -58,7 +58,7 @@
           {
             <p>
                 Zoek op film, genre, acteur of regisseur:@Html.TextBox("SearchString")
-                <input type="submit" class="btn btn-success" value="Zoek films" />
+                <input type="submit" class="btn btn-danger" value="Zoek films" />
             </p>
           }
         </div>
@@ -67,7 +67,7 @@
          {
             <p>
                 Zoek op datum: <br> @Html.TextBox("Start", null, new { @class = "date-picker" })
-                <input type="submit" class="btn btn-success" value="Zoek films" />
+                <input type="submit" class="btn btn-danger" value="Zoek films" />
             </p>
          }
         </div>   
@@ -80,7 +80,7 @@
                 @Html.RadioButton("Age", 6) <span>6</span>
                 @Html.RadioButton("Age", 12) <span>12</span>
                 @Html.RadioButton("Age", 16) <span>16+</span>
-                <input type="submit" class="btn btn-success" value="Zoek films" />
+                <input type="submit" class="btn btn-danger" value="Zoek films" />
             </p>
          }
        </div>
@@ -183,7 +183,7 @@
                         @Html.DisplayFor(modelItem => item.EndTime)
                     </td>
                     <td>
-                        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
+                        <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
                     </td>
                 </tr>
             }

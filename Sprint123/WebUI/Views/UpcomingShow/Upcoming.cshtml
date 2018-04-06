@@ -7,7 +7,7 @@
     <p>
         <h2>Het aanbod van eerstkomende films in @ViewBag.Location</h2>
         <h3>Tijd: @ViewBag.DayOfWeek  @ViewBag.HourOfDay:@ViewBag.MinuteOfDay</h3>
-        <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Reservering ophalen</button>
+        <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Reservering ophalen</button>
     <hr />
     </p>
 </div>
@@ -88,7 +88,7 @@
             <p>@ViewBag.endtime</p>
         </td>
         <td>
-            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = ViewBag.showid, secret = true}, null)'">Bestel</button>
+            <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = ViewBag.showid, secret = true}, null)'">Bestel</button>
         </td>
     </tr>
 @foreach (var item in Model) {
@@ -137,7 +137,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID, secret = false}, null)'">Bestel</button>
+            <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("OrderMovie", "UpcomingShow", new { id = item.ShowID, secret = false}, null)'">Bestel</button>
         </td>
     </tr>
 }

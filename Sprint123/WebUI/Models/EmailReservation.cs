@@ -17,6 +17,7 @@ namespace WebUI.Models
         public string EmailAdress { get; set; }
         public long ReservationID { get; set; }
         public bool Paid { get; set; }
+        public bool NewsLetter { get; set; }
 
     }
 }

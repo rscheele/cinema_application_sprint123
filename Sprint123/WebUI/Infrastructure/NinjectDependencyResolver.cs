@@ -31,6 +31,8 @@ namespace Sprint123.WebUI.Infrastructure
             kernel.Bind<ITempTicketRepository>().To<TempTicketRepository>();
             kernel.Bind<IShowSeatRepository>().To<ShowSeatRepository>();
             kernel.Bind<IRoomRepository>().To<RoomRepository>();
+            kernel.Bind<IEmailRepository>().To<EmailRepository>();
+
         }
     }
 }

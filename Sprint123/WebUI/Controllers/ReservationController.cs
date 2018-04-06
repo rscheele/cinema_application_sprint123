@@ -20,14 +20,16 @@ namespace WebUI.Controllers
         private ITicketRepository ticketRepository;
         private ITempTicketRepository tempTicketRepository;
         private IShowSeatRepository showSeatRepository;
+        private IEmailRepository emailRepository;
 
-        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository, IShowSeatRepository showSeatRepository)
+        public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository, IShowSeatRepository showSeatRepository, IEmailRepository emailRepository)
         {
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
             this.ticketRepository = ticketRepository;
             this.tempTicketRepository = tempTicketRepository;
             this.showSeatRepository = showSeatRepository;
+            this.emailRepository = emailRepository;
         }
 
         // GET: Reservation
@@ -194,6 +196,13 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (emailReservation.NewsLetter == true)
+                {
+                    EmailAdress emailAdress = new EmailAdress();
+                    emailAdress.Email = emailReservation.EmailAdress;
+                    emailRepository.SaveEmailAdress(emailAdress);
+                }
+
                 Email(emailReservation.ReservationID, emailReservation.EmailAdress);
 
                 List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(emailReservation.ReservationID).ToList();

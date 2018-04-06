@@ -26,5 +26,18 @@ namespace Domain.Concrete
                 context.SaveChanges();
             }
         }
+
+        public EmailAdress FindEmailAdress(string emailAdress)
+        {
+            EmailAdress dbEntry = context.EmailAdresses.Where(x => x.Email == emailAdress).FirstOrDefault();
+            return dbEntry;
+        }
+
+        public void DeleteEmailAdress(string emailAdress)
+        {
+            EmailAdress dbEntry = context.EmailAdresses.Where(x => x.Email == emailAdress).FirstOrDefault();
+            context.EmailAdresses.Remove(dbEntry);
+            context.SaveChanges();
+        }
     }
 }

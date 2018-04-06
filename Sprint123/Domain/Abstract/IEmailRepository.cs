@@ -11,5 +11,7 @@ namespace Domain.Abstract
     {
         IEnumerable<EmailAdress> GetAllEmailAdresses();
         void SaveEmailAdress(EmailAdress emailAdress);
+        EmailAdress FindEmailAdress(string emailAdress);
+        void DeleteEmailAdress(string emailAdress);
     }
 }

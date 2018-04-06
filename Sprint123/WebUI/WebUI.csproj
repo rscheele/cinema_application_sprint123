@@ -219,8 +219,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business_Logic\MovieOverview.cs" />
     <Compile Include="Business_Logic\MovieType.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PinController.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EmailReservation.cs" />
     <Compile Include="Models\PinViewModel.cs" />
     <Compile Include="Models\PrintTickets.cs" />
@@ -269,6 +271,9 @@
     <Content Include="Views\Reservation\DisplayTempReservation.cshtml" />
     <Content Include="Views\Reservation\EmailReservation.cshtml" />
     <Content Include="Views\UpcomingShow\NotAvailable.cshtml" />
+    <Content Include="Views\Email\Unsubscribe.cshtml" />
+    <Content Include="Views\Email\NoEmailFound.cshtml" />
+    <Content Include="Views\Email\EmailRemoved.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

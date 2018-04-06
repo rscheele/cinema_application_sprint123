@@ -1,0 +1,17 @@
+﻿@model WebUI.Models.EmailModel
+
+@{
+    ViewBag.Title = "Unsubscribe";
+}
+
+<body>
+    <br />
+    <p>Wat jammer dat je je wilt afmelden voor onze nieuwsbrief!</p>
+    <p>Voer hieronder je email adres in en klik op afmelden.</p>
+    @using (Html.BeginForm("Unsubscribe", "Email", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x => Model.EmailAdress) <br/><br />
+        <input class="btn btn-lg" type="submit" value="Afmelden!" />
+    }
+</body>
+

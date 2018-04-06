@@ -162,6 +162,9 @@
     <Content Include="Content\pieter-konijn.jpg" />
     <Content Include="Content\Red-Sparrow.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\socialmedia_facebook.png" />
+    <Content Include="Content\socialmedia_insta.png" />
+    <Content Include="Content\socialmedia_twitter.png" />
     <Content Include="Content\sprite-blue.png" />
     <Content Include="Content\sprite-purple.png" />
     <Content Include="Content\sprite-red.png" />

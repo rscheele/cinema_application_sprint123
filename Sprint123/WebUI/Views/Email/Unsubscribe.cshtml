@@ -10,8 +10,12 @@
     <p>Voer hieronder je email adres in en klik op afmelden.</p>
     @using (Html.BeginForm("Unsubscribe", "Email", FormMethod.Post))
     {
-        @Html.TextBoxFor(x => Model.EmailAdress) <br/><br />
+        @Html.ValidationSummary()
+        <div class="form-group">
+            @Html.TextBoxFor(x => Model.EmailAdress, new { @class = "formcontrol" }) 
+        </div>
+        <br />
         <input class="btn btn-lg" type="submit" value="Afmelden!" />
-    }
-</body>
+        }
+    </body>
 

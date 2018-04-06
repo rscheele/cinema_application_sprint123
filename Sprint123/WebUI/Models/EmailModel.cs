@@ -8,7 +8,7 @@ namespace WebUI.Models
 {
     public class EmailModel
     {
-        [Required(ErrorMessage = "Please enter your email address")]
+        [Required(ErrorMessage = "Voer een emailadres in")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Voer een geldig emailadres in")]
         public string EmailAdress { get; set; }
     }

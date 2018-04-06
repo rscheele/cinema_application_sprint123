@@ -28,15 +28,22 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Unsubscribe(EmailModel emailModel)
         {
-            EmailAdress emailAdress = emailRepository.FindEmailAdress(emailModel.EmailAdress);
-            if (emailAdress == null)
+            if (ModelState.IsValid)
             {
-                return View("NoEmailFound");
+                    EmailAdress emailAdress = emailRepository.FindEmailAdress(emailModel.EmailAdress);
+                if (emailAdress == null)
+                {
+                    return View("NoEmailFound");
+                }
+                else
+                {
+                    emailRepository.DeleteEmailAdress(emailAdress.Email);
+                    return View("EmailRemoved");
+                }
             }
             else
             {
-                emailRepository.DeleteEmailAdress(emailAdress.Email);
-                return View("EmailRemoved");
+                return View("Unsubscribe");
             }
         }
     }

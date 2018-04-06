@@ -281,6 +281,7 @@
     <Content Include="Views\Email\EmailRemoved.cshtml" />
     <Content Include="Views\Specials\Specials.cshtml" />
     <Content Include="Views\Specials\Ladies.cshtml" />
+    <Content Include="Views\Specials\LadiesOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

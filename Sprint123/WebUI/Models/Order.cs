@@ -14,6 +14,7 @@ namespace WebUI.Models
         public int childTickets { get; set; }
         public int studentTickets { get; set; }
         public int seniorTickets { get; set; }
+        public int ladiesTickets { get; set; }
         public long reservationID { get; set; }
         public int showID { get; set; }
     }

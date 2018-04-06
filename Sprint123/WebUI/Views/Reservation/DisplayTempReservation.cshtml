@@ -10,6 +10,10 @@
         <h2>Dit is jullie reservering!</h2><br />
         <p>
             Jullie hebben gereserveerd voor <b>@Html.DisplayFor(x => Model.First().Show.Movie.Name)</b><br />
+            @if (Model.FirstOrDefault().TicketType == "Ladies Night")
+            {
+                <div>Deze film is een Ladies Night special! (Ladies only!)</div><br />
+            }
             Op datum @Html.DisplayFor(x => Model.First().Show.BeginTime.DayOfWeek) @Html.DisplayFor(x => Model.First().Show.BeginTime.Day)-@Html.DisplayFor(x => Model.First().Show.BeginTime.Month)-@Html.DisplayFor(x => Model.First().Show.BeginTime.Year)<br />
             Deze film begint om @Html.DisplayFor(x => Model.First().Show.BeginTime.TimeOfDay)<br />
             En eindigt om @Html.DisplayFor(x => Model.First().Show.EndTime.TimeOfDay)<br />

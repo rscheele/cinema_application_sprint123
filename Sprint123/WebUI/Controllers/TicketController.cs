@@ -196,23 +196,41 @@ namespace WebUI.Controllers
         public ActionResult AddPopcorn(long reservationID)
         {
             List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
-            return View("AddPopcorn", tempTickets);
+            List<TempTicketModel> tempTicketModel = new List<TempTicketModel>();
+            foreach (var item in tempTickets)
+            {
+                TempTicketModel model = new TempTicketModel();
+                model.ReservationID = item.ReservationID;
+                model.Price = item.Price;
+                model.TicketType = item.TicketType;
+                tempTicketModel.Add(model);
+            }
+            return View("AddPopcorn", tempTicketModel);
         }
 
         [HttpPost]
-        public ActionResult AddPopcorn(List<TempTicket> tickets)
+        public ActionResult AddPopcorn(List<TempTicketModel> tickets)
         {
             List<TempTicket> ticketList = tempTicketRepository.GetTempTicketsReservation(tickets.FirstOrDefault().ReservationID).ToList();
             for (int i = 0; i < tickets.Count; i++)
             {
                 if (tickets[i].Popcorn == true)
                 {
-                    ticketList[i].Price = ticketList[i].Price + 5M;
+                    ticketList[i].Price = ticketList[i].Price + 5.00M;
                     ticketList[i].Popcorn = true;
                 }
                 else
                 {
                     ticketList[i].Popcorn = false;
+                }
+                if (tickets[i].Glasses == true)
+                {
+                    ticketList[i].Price = ticketList[i].Price + 2.00M;
+                    ticketList[i].Glasses = true;
+                }
+                else
+                {
+                    ticketList[i].Glasses = false;
                 }
             }
             tempTicketRepository.UpdateTempTickets(ticketList);

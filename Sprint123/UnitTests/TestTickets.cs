@@ -29,7 +29,7 @@ namespace UnitTests
             mockShowRepository.Setup(s => s.GetShows()).Returns(shows);
 
             // ShowSeat
-            List<ShowSeat> showSeats = new List<ShowSeat>();
+            /*List<ShowSeat> showSeats = new List<ShowSeat>();
             int id = 0;
             for (int i = 0; i < 12; i++)
             {
@@ -47,17 +47,17 @@ namespace UnitTests
             for (int i = 128; i < 134; i++)
             {
                 showSeats[i].IsTaken = true;
-            }
+            }*/
             Mock<IShowSeatRepository> mockShowSeatRepository = new Mock<IShowSeatRepository>();
-            mockShowSeatRepository.Setup(s => s.GetShowSeats()).Returns(showSeats);
+            //mockShowSeatRepository.Setup(s => s.GetShowSeats()).Returns(showSeats);
 
             // TempTicket
-            List<TempTicket> tempTickets = new List<TempTicket>
+            /*List<TempTicket> tempTickets = new List<TempTicket>
             {
                 new TempTicket{ID = 1, IsPaid = false, Popcorn = false, Price = 0, ReservationID = 1, RowNumber = 1, Seat = null, SeatID = 1, SeatNumber = 1, Show = showToAdd, ShowID = 1, TicketID = 1, TicketType = "", TimeAdded = DateTime.Now},
                 new TempTicket{ID = 1, IsPaid = false, Popcorn = false, Price = 0, ReservationID = 1, RowNumber = 1, Seat = null, SeatID = 1, SeatNumber = 2, Show = showToAdd, ShowID = 1, TicketID = 2, TicketType = "", TimeAdded = DateTime.Now}
 
-            };
+            };*/
             Mock<ITempTicketRepository> mockTempTicketRepository = new Mock<ITempTicketRepository>();
 
             // Ticket

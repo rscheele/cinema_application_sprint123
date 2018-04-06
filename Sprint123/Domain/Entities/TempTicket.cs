@@ -34,5 +34,6 @@ namespace Domain.Entities
         [ForeignKey("ShowID")]
         public virtual Show Show { get; set; }
         public bool Popcorn { get; set; }
+        public bool Glasses { get; set; }
     }
 }

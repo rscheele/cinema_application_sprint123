@@ -235,6 +235,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\SeatLayout.cs" />
+    <Compile Include="Models\TempTicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

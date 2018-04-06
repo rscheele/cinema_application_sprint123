@@ -165,6 +165,7 @@
     <Content Include="Content\socialmedia_facebook.png" />
     <Content Include="Content\socialmedia_insta.png" />
     <Content Include="Content\socialmedia_twitter.png" />
+    <Content Include="Content\special_ladies.png" />
     <Content Include="Content\sprite-blue.png" />
     <Content Include="Content\sprite-purple.png" />
     <Content Include="Content\sprite-red.png" />
@@ -279,6 +280,7 @@
     <Content Include="Views\Email\NoEmailFound.cshtml" />
     <Content Include="Views\Email\EmailRemoved.cshtml" />
     <Content Include="Views\Specials\Specials.cshtml" />
+    <Content Include="Views\Specials\Ladies.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

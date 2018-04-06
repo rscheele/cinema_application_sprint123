@@ -53,9 +53,6 @@ namespace UnitTests
                     EndTime   = show3Endtime,
                     MovieID = 1,
                     NumberofTickets = 20,
-                    ChildDiscount = false,
-                    StudentDiscount = true,
-                    SeniorDiscount = true,
                 },
                 new Show //second
                 {
@@ -64,9 +61,6 @@ namespace UnitTests
                     EndTime   = show2Endtime,
                     MovieID = 2,
                     NumberofTickets = 10,
-                    ChildDiscount = false,
-                    StudentDiscount = true,
-                    SeniorDiscount = true,
                 },
                 new Show //first
                 {
@@ -75,9 +69,6 @@ namespace UnitTests
                     EndTime   = show1Endtime,
                     MovieID = 3,
                     NumberofTickets = 10,
-                    ChildDiscount = false,
-                    StudentDiscount = true,
-                    SeniorDiscount = true,
 
                 }
             };

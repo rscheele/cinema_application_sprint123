@@ -9,9 +9,14 @@ namespace WebUI.Controllers
     public class SpecialsController : Controller
     {
         // GET: Specials
-        public ActionResult Index()
+        public ActionResult Specials()
         {
             return View();
+        }
+
+        public ActionResult Ladies()
+        {
+            return View("Ladies");
         }
     }
 }

@@ -25,7 +25,7 @@
             @Html.ValidationMessageFor(m => m.CVC)
         </div>
         @*<button type="submit">Bevestig</button>*@
-        <button type="button" id="oneclick" class="btn btn-dangers" onclick="location.href='@Url.Action("Finish", "Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
+        <button type="button" id="oneclick" class="btn btn-danger" onclick="location.href='@Url.Action("Finish", "Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
     </div>
 </div>
  }

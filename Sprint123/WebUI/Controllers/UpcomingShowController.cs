@@ -88,12 +88,12 @@ namespace WebUI.Controllers
 
             }
             //Three Expected shows --------BEGIN
-            string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
+            /*string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
             string y = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Trailer.ToString();
             string z = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(3).Movie.Trailer.ToString();
             ViewBag.trailer1 = x;
             ViewBag.trailer2 = y;
-            ViewBag.trailer3 = z;
+            ViewBag.trailer3 = z;*/
             //Three Expected shows --------END
             //return View(upcomingShows);
             return View(allShows);

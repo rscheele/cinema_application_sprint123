@@ -55,7 +55,7 @@
 </div>
     
     <h2>Deze Week in de bioscoop:</h2>
-    <button class="btn btn-success" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
+    <button class="btn btn-dangers" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
     @*<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>*@
     <div class="container">
         @using (Html.BeginForm())
@@ -74,7 +74,7 @@
                 @Html.RadioButton("Age", 6) <span>6</span>
                 @Html.RadioButton("Age", 12) <span>12</span>
                 @Html.RadioButton("Age", 16) <span>16+</span><br>
-                <input type="submit" class="btn btn-success" value="Zoek films" />
+                <input type="submit" class="btn btn-dangers" value="Zoek films" />
             </p>
         </div>
          }
@@ -176,7 +176,7 @@
                     @Html.DisplayFor(modelItem => item.EndTime)
                 </td>
                 <td>
-                    <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
+                    <button class="btn btn-dangers" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
                 </td>
             </tr>
         }

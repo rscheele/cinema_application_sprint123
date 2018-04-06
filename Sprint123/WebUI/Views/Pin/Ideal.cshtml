@@ -16,7 +16,7 @@
                 @Html.EnumDropDownListFor(b => b.Bank, Model.Bank)
             </div>
             @*<button type="submit">Bevestig</button>*@
-            <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("Finish","Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
+            <button type="button" id="oneclick" class="btn btn-dangers" onclick="location.href='@Url.Action("Finish","Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
         </div>
     </div>
 }

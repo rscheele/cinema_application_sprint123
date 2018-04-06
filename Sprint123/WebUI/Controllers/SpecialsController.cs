@@ -46,6 +46,12 @@ namespace WebUI.Controllers
             // Generating reservation ID with datetime and using this as our transaction session ID
             DateTime dateTime = DateTime.Now;
             DateTime minusDateTime = dateTime.Add(new TimeSpan(0, -25, 0));
+            string soldOut = (string)TempData["SoldOut"];
+            if (soldOut != null)
+            {
+                ViewBag.SoldOut = soldOut;
+            }
+
             if (minusDateTime > orderedShow.BeginTime)
             {
                 return RedirectToAction("NotAvailable");

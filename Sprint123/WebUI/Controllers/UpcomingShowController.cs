@@ -60,43 +60,99 @@ namespace WebUI.Controllers
             }
             upcomingShows = tempShowList;
             ViewBag.locid = 1;
+            //Three Expected shows --------BEGIN
+            if (allShows.Where(s => s.BeginTime > nextWednesday).Count() >= 3)
+            {
+                string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(0).Movie.Trailer.ToString();
+                byte[] x2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(0).Movie.Image;
+                string y = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
+                byte[] y2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Image;
+                string z = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Trailer.ToString();
+                byte[] z2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Image;
 
+                ViewBag.trailer1 = x;
+                ViewBag.image1 = x2;
+                ViewBag.trailer2 = y;
+                ViewBag.image2 = y2;
+                ViewBag.trailer3 = z;
+                ViewBag.image3 = z2;
+            }
+            //Three Expected shows --------END
             //--------------filters BEGIN  was allShows!!!!--------------------
-            if (!String.IsNullOrEmpty(searchString) | age.HasValue | start.HasValue)
+            if (start.HasValue == true)
+            {
+                DateTime selectedDate = (DateTime)start;
+                List<Show> filteredShows = allShows.ToList();
+
+                if (!String.IsNullOrEmpty(searchString) && age.HasValue == true)//1
+                {
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.Genre.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.SubActors.Contains(searchString)
+                            | s.Movie.Director.Contains(searchString)
+                           && s.Movie.Age == age
+                           && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
+                    return View(list);
+                }
+                else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//2
+                {
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.Genre.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.SubActors.Contains(searchString)
+                            | s.Movie.Director.Contains(searchString)
+                            && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
+                    return View(list);
+                }
+                else if (String.IsNullOrEmpty(searchString) && age.HasValue == true)//7
+                {
+                    List<Show> list = filteredShows.Where(s => s.Movie.Age == age
+                            && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
+                    return View(list);
+                }
+                else if (String.IsNullOrEmpty(searchString) && age.HasValue == false)//3
+                {
+                    List<Show> list = filteredShows.Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
+                    return View(list);
+                }
+            }
+
+            if (!String.IsNullOrEmpty(searchString) | age.HasValue == true)
             {
                 List<Show> filteredShows = allShows.ToList();
-                if (!String.IsNullOrEmpty(searchString)) {
-                    filteredShows     
-                    .Where(s => s.Movie.Name.Contains(searchString)
-                            || s.Movie.MainActors.Contains(searchString)
-                            || s.Movie.Genre.Contains(searchString)
-                            || s.Movie.MainActors.Contains(searchString)
-                            || s.Movie.SubActors.Contains(searchString)
-                            || s.Movie.Director.Contains(searchString))
-                        .ToList();
-                }
-                if(age != null && age>0 )
-                {
-                    filteredShows.Where(s => s.Movie.Age == age).ToList();
-                }
-                if(start.HasValue == true)
-                {
-                    DateTime selectedDate = (DateTime)start;
-                    filteredShows.Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
-                }
-                return View(filteredShows);
 
+                if (!String.IsNullOrEmpty(searchString) && age.HasValue == true){ //6
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.Genre.Contains(searchString)
+                            | s.Movie.MainActors.Contains(searchString)
+                            | s.Movie.SubActors.Contains(searchString)
+                            | s.Movie.Director.Contains(searchString)
+                            && s.Movie.Age == age).ToList();
+                    return View(list); 
+                }
+                else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//4
+                {
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
+                           | s.Movie.MainActors.Contains(searchString)
+                           | s.Movie.Genre.Contains(searchString)
+                           | s.Movie.MainActors.Contains(searchString)
+                           | s.Movie.SubActors.Contains(searchString)
+                           | s.Movie.Director.Contains(searchString)).ToList();
+                    return View(list);
+                }
+                else if(age.HasValue == true && String.IsNullOrEmpty(searchString))//5
+                {
+                    List<Show> list = filteredShows.Where(s => s.Movie.Age == age).ToList();
+                    return View(list);
+                }                   
             }
-            //Three Expected shows --------BEGIN
-            string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
-            string y = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Trailer.ToString();
-            string z = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(3).Movie.Trailer.ToString();
-            ViewBag.trailer1 = x;
-            ViewBag.trailer2 = y;
-            ViewBag.trailer3 = z;
-            //Three Expected shows --------END
+            //--------------filters END  was allShows!!!!--------------------
             //return View(upcomingShows);
-            return View(allShows);
+            return View(upcomingShows);
         }
 
         // GET: UpcomingShow

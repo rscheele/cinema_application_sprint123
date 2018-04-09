@@ -10,14 +10,14 @@ using System.Web.Hosting;
 namespace Domain.Concrete
 {
     // DropCreateDatabaseIfModelChanges VS DropCreateDatabaseAlways
-    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
+    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseAlways<EFDbContext>
     {
         byte[] uprising = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/pacific-rim-uprising.jpg"));
         byte[] hour = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/darkest-hour.jpg"));
         byte[] wish = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/death-wish.jpg"));
         byte[] zee = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/diep-in-de-zee.jpg"));
         byte[] panther = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/black-panther.jpg"));
-        byte[] verzet = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/bankier-van-het-verzet.jpg"));
+        byte[] verzet = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/bankier-van-het-verzet-2.jpg"));
         byte[] bob = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/bob-de-bouwer.jpg"));
         byte[] red = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/Red-Sparrow.jpg"));
         byte[] water = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/the-shape-of-water.jpg"));
@@ -1027,6 +1027,8 @@ namespace Domain.Concrete
             new Show{BeginTime=DateTime.Parse("2018-04-10 15:15:00.000"),EndTime=DateTime.Parse("2018-04-10 17:30:00.000"),MovieID=7,RoomID=2,NumberofTickets=0, ShowType=0},
             new Show{BeginTime=DateTime.Parse("2018-04-10 20:15:00.000"),EndTime=DateTime.Parse("2018-04-10 23:30:00.000"),MovieID=2,RoomID=3,NumberofTickets=0, ShowType=1},
             new Show{BeginTime=DateTime.Parse("2018-11-10 20:15:00.000"),EndTime=DateTime.Parse("2018-11-10 23:30:00.000"),MovieID=6,RoomID=3,NumberofTickets=0, ShowType=1},
+            new Show{BeginTime=DateTime.Parse("2018-11-11 20:15:00.000"),EndTime=DateTime.Parse("2018-11-11 23:30:00.000"),MovieID=11,RoomID=3,NumberofTickets=0, ShowType=1},
+            new Show{BeginTime=DateTime.Parse("2018-11-12 20:15:00.000"),EndTime=DateTime.Parse("2018-11-12 23:30:00.000"),MovieID=17,RoomID=3,NumberofTickets=0, ShowType=1},
 
             new Show{BeginTime=DateTime.Parse("2018-03-29 16:15:00.000"),EndTime=DateTime.Parse("2018-03-29 18:30:00.000"),MovieID=19,RoomID=2,NumberofTickets=0, ShowType=0},
             new Show{BeginTime=DateTime.Parse("2018-03-29 19:00:00.000"),EndTime=DateTime.Parse("2018-03-29 21:00:00.000"),MovieID=21,RoomID=1,NumberofTickets=0, ShowType=0},

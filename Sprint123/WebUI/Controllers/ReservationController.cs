@@ -40,10 +40,10 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reservation(string reservationID, string paytype)
+        public ActionResult Reservation(string reservationID/*, string paytype*/)
         {
             long resID = Convert.ToInt64(reservationID);
-            string payid = paytype;
+            //string payid = paytype;
             IEnumerable<Ticket> tickets = ticketRepository.GetTickets(resID);
 
             if (tickets.Count() > 0) { 
@@ -61,7 +61,7 @@ namespace WebUI.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Pay", "Pin", new { reservationID = resID , paytype = payid });
+                    return RedirectToAction("Pay", "Pin", new { reservationID = resID /*, paytype = payid */});
                 }
             }
             else
@@ -257,7 +257,7 @@ namespace WebUI.Controllers
 
         private void Email(long reservationID, string emailTo)
         {
-            var fromAddress = new MailAddress("avanscinema@gmail.com", "From Name");
+            var fromAddress = new MailAddress("avanscinema@gmail.com", "Avans Cinema");
             var toAddress = new MailAddress(emailTo, "To Name");
             const string fromPassword = "avans123";
             string subject = "Je AvansCinema ticket met ID " + reservationID.ToString();

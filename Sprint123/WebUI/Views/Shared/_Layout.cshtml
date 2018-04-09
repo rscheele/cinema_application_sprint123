@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Avans Cinema</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/footer-fixed.css" rel="stylesheet" type="text/css" />
@@ -80,12 +80,13 @@
     <!--Begin Avans nav bar-->
     <nav class="nav-avans", style="height: 60px;">
         <div class="container"}>
-            @Html.ActionLink("Avans Cinema", "Overview", "UpcomingShow", new { locationid = 1 }, new { @style = "color:black; padding: 10px; font-weight: bold;", @class = "navbar-brand" })
-            @Html.ActionLink("Contact", "Contact", "Contact")
+            @Html.ActionLink("Avans Cinema", "Overview", "UpcomingShow", new { locationid = 1 }, new { @style = "color:black; padding: 10px; font-weight: bold;", @class = "navbar-brand" })           
             @if (ViewContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath != "~/UpcomingShow/Overview" & ViewContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath != "~/Home/Index")
             {
                  <input action="action" class="btn btn-outline-light" style="float: right; padding:8px; margin-top:8px" type="button" value="Terug naar vorige scherm" onclick="window.history.go(-1); return false;" />
             }
+            <button class="btn btn-outline-light" type="button" style="float: right; padding:8px; margin-top:8px; margin-right:16px" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Uw reserving ophalen</button>            
+            <button class="btn btn-outline-light" type="button" style="float: right; padding:8px; margin-top:8px; margin-right:16px" onclick="location.href = '@Url.Action("Contact", "Contact")'">Contact</button>
             <button class="btn btn-outline-light" type="button" style="float: right; padding:8px; margin-top:8px; margin-right:16px" onclick="location.href = '@Url.Action("Specials", "Specials")'">Arrangementen en Specials</button>
             <ul class="global-links">
                 <li>

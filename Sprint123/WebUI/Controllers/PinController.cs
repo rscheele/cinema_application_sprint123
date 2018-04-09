@@ -28,25 +28,25 @@ namespace WebUI.Controllers
             
             if (paytype == "ideal")
             {
-                IdealModel model2 = (IdealModel)TempData["model2"];
-                if (model2 == null)
+                IdealModel idealModel = (IdealModel)TempData["idealModel"];
+                if (idealModel == null)
                 {
-                    model2 = new IdealModel();
+                    idealModel = new IdealModel();
                 }
-                model2.reservationID = reservationID;
-                TempData["model2"] = model2;
-                return View("Ideal", model2);
+                idealModel.reservationID = reservationID;
+                TempData["idealModel"] = idealModel;
+                return View("Ideal", idealModel);
             }
             if (paytype == "credit")
             {
-                CreditcardModel model4 = (CreditcardModel)TempData["model4"];
-                if (model4 == null)
+                CreditcardModel creditcardModel = (CreditcardModel)TempData["creditcardModel"];
+                if (creditcardModel == null)
                 {
-                    model4 = new CreditcardModel();
+                    creditcardModel = new CreditcardModel();
                 }
-                model4.reservationID = reservationID;
-                TempData["model4"] = model4;
-                return View("Creditcard", model4);
+                creditcardModel.reservationID = reservationID;
+                TempData["creditcardModel"] = creditcardModel;
+                return View("Creditcard", creditcardModel);
             }
             else
             {
@@ -84,39 +84,122 @@ namespace WebUI.Controllers
             return RedirectToAction("Pay", new { reservationID });
         }
 
-        //[HttpPost]
-        //ActionResult ValidateIdeal(long reservationID)
-        //{
-        //    IdealModel model = (IdealModel)TempData["model"];
-        //    TempData["model"] = model;
-        //    if (ModelState.IsValid)
-        //    {
-        //        return RedirectToAction("Finish", reservationID);
-        //    }
-        //    else
-        //    {
-        //        return View("Ideal", new { reservationID });
-        //    }
-        //}
-
-        //[HttpPost]
-        //ActionResult ValidateCredit(long reservationID)
-        //{
-        //    CreditcardModel model = (CreditcardModel)TempData["model"];
-        //    TempData["model"] = model;
-        //    if (ModelState.IsValid)
-        //    {
-        //        return RedirectToAction("Finish", reservationID);
-        //    }
-        //    else
-        //    {
-        //        return View("Creditcard", new { reservationID });
-        //    }
-        //}
-
-
-        public ActionResult Finish(long reservationID)
+        //[HttpGet]
+        public ActionResult FinishIdeal(long reservationID, string paytype, Bank bank)
         {
+            IdealModel idealModel = (IdealModel)TempData["idealModel"];
+            if (bank == 0)
+            {
+                idealModel.Bankerror = "Selecteer uw Bank";
+
+                TempData["idealModel"] = idealModel;
+                return RedirectToAction("Pay", "Pin", new { reservationID, paytype });
+            }
+            else
+            {
+                List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+                bool paid = true;
+                if (tempTickets.Count > 0)
+                {
+                    foreach (var i in tempTickets)
+                    {
+                        i.IsPaid = true;
+                    }
+                    tempTicketRepository.UpdateTempTickets(tempTickets);
+                    return RedirectToAction("EmailReservation", "Reservation", new { reservationID, paid });
+                }
+                else
+                {
+                    List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
+                    foreach (var i in tickets)
+                    {
+                        i.IsPaid = true;
+                    }
+                    ticketRepository.UpdateTickets(tickets);
+                    return RedirectToAction("PrintReservationTickets", "Reservation", new { reservationID });
+                }
+            }
+        }
+
+        //[HttpGet]
+        public ActionResult FinishCredit(long reservationID, string paytype, int? Creditcard, DateTime? ExpireDate, int? CVC)
+        {
+            CreditcardModel creditcardModel = (CreditcardModel)TempData["creditcardModel"];
+            DateTime now = DateTime.Today;
+            if (Creditcard < 10000000 | Creditcard > 99999999 || Creditcard.HasValue != true)
+            {
+                creditcardModel.Crediterror = "Vul een geldig Creditcard nummer in";
+                creditcardModel.Expireerror = "";
+                creditcardModel.CVCerror = "";
+                TempData["creditcardModel"] = creditcardModel;
+                return RedirectToAction("Pay", "Pin", new { reservationID, paytype });
+            }
+            if (CVC < 100 | CVC > 999 || CVC.HasValue != true)
+            {
+                creditcardModel.CVCerror = "Vul een geldige CVC code in";
+                creditcardModel.Expireerror = "";
+                creditcardModel.Crediterror = "";
+
+                TempData["creditcardModel"] = creditcardModel;
+                return RedirectToAction("Pay", "Pin", new { reservationID, paytype });
+            }
+            if (ExpireDate.HasValue != true || ExpireDate < now.Date)
+            {
+                creditcardModel.Expireerror = "Vul een geldige datum in";
+                creditcardModel.CVCerror = "";
+                creditcardModel.Crediterror = "";
+
+                TempData["creditcardModel"] = creditcardModel;
+                return RedirectToAction("Pay", "Pin", new { reservationID, paytype });
+            }
+            else
+            {
+                List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
+                bool paid = true;
+                if (tempTickets.Count > 0)
+                {
+                    foreach (var i in tempTickets)
+                    {
+                        i.IsPaid = true;
+                    }
+                    tempTicketRepository.UpdateTempTickets(tempTickets);
+                    return RedirectToAction("EmailReservation", "Reservation", new { reservationID, paid });
+                }
+                else
+                {
+                    List<Ticket> tickets = ticketRepository.GetTickets(reservationID).ToList();
+                    foreach (var i in tickets)
+                    {
+                        i.IsPaid = true;
+                    }
+                    ticketRepository.UpdateTickets(tickets);
+                    return RedirectToAction("PrintReservationTickets", "Reservation", new { reservationID });
+                }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult FinishPin(long reservationID)
+        {
+            PinViewModel model = (PinViewModel)TempData["model"];
+
+            if (model.PinValue == "" | model.PinValue == null)
+            {
+                model.IncorrectPinValue = "Vul pincode in";
+
+                TempData["model"] = model;
+                return RedirectToAction("Pay", "Pin", new { reservationID });
+            }
+
+            if (model.PinValue == "0000" | model.PinValue.Length <= 3)
+            {
+                model.IncorrectPinValue = "Vul een geldige pincode in";
+
+                TempData["model"] = model;
+                return RedirectToAction("Pay", "Pin", new {reservationID});
+            }
+            else
+            { 
             List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
             bool paid = true;
             if (tempTickets.Count > 0)
@@ -137,6 +220,7 @@ namespace WebUI.Controllers
                 }
                 ticketRepository.UpdateTickets(tickets);
                 return RedirectToAction("PrintReservationTickets", "Reservation", new { reservationID });
+            }
             }
         }
     }

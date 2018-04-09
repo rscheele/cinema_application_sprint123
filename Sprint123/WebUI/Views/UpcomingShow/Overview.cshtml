@@ -5,7 +5,7 @@
 }
 <div class="text-center">
     <br />
-    <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Haal hier uw reservering op</button> <h2>Verwachte films:</h2>
+    @*<button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Reservation", "Reservation")'">Haal hier uw reservering op</button> <h2>Verwachte films:</h2>*@
 </div>
 <div class="row">
     <div class="col-sm"></div>
@@ -13,38 +13,38 @@
         <div class="text-center" style="color: brown; max-width:550px;">
             <div id="verwachtefilms" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#verwachtefilms" data-slide-to="0" class="active"></li>
+                    <li data-target="#verwachtefilms" data-slide-to="1"></li>
+                    <li data-target="#verwachtefilms" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="@Html.Raw(ViewBag.trailer1)"><img class="d-block w-10" src="~/Content/pacific-rim-uprising.jpg" alt="First slide"></a>
+                        @if (ViewBag.trailer1 != null && ViewBag.image1 != null) {
+                        <a href="@Html.Raw(ViewBag.trailer1)"><img class="d-block w-10" src="data:image;base64,@System.Convert.ToBase64String(ViewBag.image1)" alt="First slide"></a>
+                         }
                         <div class="carousel-caption d-none d-md-block">
-                            <h5 style="color: ghostwhite; background-color: black;">Pacific Rim - Uprising</h5>
-                            <p style="color: ghostwhite; background-color: black;">De nieuwe spectaculaire 3D-actiefilm PACIFIC RIM UPRISING.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <a href="@Html.Raw(ViewBag.trailer2)"><img class="d-block w-10" src="~/Content/darkest-hour.jpg" alt="Second slide"></a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 style="color: ghostwhite; background-color: black;">Darkest Hour</h5>
-                            <p style="color: ghostwhite; background-color: black;">De nieuwe spectaculaire film over Churchill gespeeld door Gary Oldman.</p>
+                        @if (ViewBag.trailer2 != null && ViewBag.image2 != null) {
+                        <a href="@Html.Raw(ViewBag.trailer2)"><img class="d-block w-10" src="data:image;base64,@System.Convert.ToBase64String(ViewBag.image2)" alt="Second slide"></a>
+                         }
+                        <div class="carousel-caption d-none d-md-block">                             
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <a href="@Html.Raw(ViewBag.trailer3)"><img class="d-block w-10" src="~/Content/the-shape-of-water.jpg" alt="Third slide"></a>
+                        @if (ViewBag.trailer3 != null && ViewBag.image3 != null) {
+                        <a href="@Html.Raw(ViewBag.trailer3)"><img class="d-block w-10" src="data:image;base64,@System.Convert.ToBase64String(ViewBag.image3)" alt="Third slide"></a>
+                         }
                         <div class="carousel-caption d-none d-md-block">
-                            <h5 style="color: ghostwhite; background-color: black;">Pacific Rim - Uprising</h5>
-                            <p style="color: ghostwhite; background-color: black;">De oscarwinnende film over een magisch zeewezen.</p>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#verwachtefilms" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#verwachtefilms" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -53,9 +53,8 @@
     </div>
     <div class="col-sm"></div>
 </div>
-    
-    <h2>Deze Week in de bioscoop:</h2>
-    <button class="btn btn-success" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
+    <br />
+    <h2>Deze Week in de bioscoop:</h2><button class="btn btn-danger" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
     @*<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>*@
     <div class="container">
         @using (Html.BeginForm())
@@ -69,12 +68,12 @@
         <div class="row">
             <p>
                 Zoek op leeftijd:<br>
-                @Html.RadioButton("Age", 0) <span>AL</span>
-                @Html.RadioButton("Age", 4) <span>4</span>
+                @Html.RadioButton("Age", 4) <span>AL</span>
                 @Html.RadioButton("Age", 6) <span>6</span>
                 @Html.RadioButton("Age", 12) <span>12</span>
                 @Html.RadioButton("Age", 16) <span>16+</span><br>
-                <input type="submit" class="btn btn-success" value="Zoek films" />
+                <input type="submit" class="btn btn-danger" value="Zoek films" />
+                <input type="reset" class="btn btn-danger" value="Leeg zoekvelden" />
             </p>
         </div>
          }
@@ -176,7 +175,7 @@
                     @Html.DisplayFor(modelItem => item.EndTime)
                 </td>
                 <td>
-                    <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
+                    <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("ShowDetails", "UpcomingShow", new { id = item.ShowID}, null)'">Bekijk</button>
                 </td>
             </tr>
         }

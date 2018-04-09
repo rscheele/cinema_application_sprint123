@@ -8,8 +8,10 @@ namespace WebUI.Models
 {
     public class IdealModel
     {
-        [Required(ErrorMessage = "Selecteer u bank")]
+        [Required(ErrorMessage = "Selecteer uw bank")]
+        [Display(Name = "Selecteer uw bank")]
         public Bank Bank { get; set; }
+        public string Bankerror { get; set; }
         public long reservationID;
     }
 

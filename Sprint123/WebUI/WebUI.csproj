@@ -128,7 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bankier-van-het-verzet.jpg" />
+    <Content Include="Content\bankier-van-het-verzet-2.jpg" />
     <Content Include="Content\black-panther.jpg" />
     <Content Include="Content\bob-de-bouwer.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -143,6 +143,7 @@
     <Content Include="Content\diep-in-de-zee.jpg" />
     <Content Include="Content\footer-fixed.css" />
     <Content Include="Content\footer-logo90x30.png" />
+    <Content Include="Content\ideal.png" />
     <Content Include="Content\imdb_logo.png" />
     <Content Include="Content\kijkwijzer-12.png" />
     <Content Include="Content\kijkwijzer-16.png" />
@@ -155,6 +156,7 @@
     <Content Include="Content\kijkwijzer-groftaalgebruik.png" />
     <Content Include="Content\kijkwijzer-seks.png" />
     <Content Include="Content\kijkwijzer.png" />
+    <Content Include="Content\mastercard.png" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\my-javascript.js" />
     <Content Include="Content\pacific-rim-small.png" />
@@ -174,6 +176,7 @@
     <Content Include="Content\the-shape-of-water.jpg" />
     <Content Include="Content\three-billboards.jpg" />
     <Content Include="Content\tomb-raider.jpg" />
+    <Content Include="Content\visa.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

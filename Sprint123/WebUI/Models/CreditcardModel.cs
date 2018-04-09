@@ -11,33 +11,18 @@ namespace WebUI.Models
         [Required(ErrorMessage = "Voer een geldig creditcardnummer van 8 cijfers in")]
         [MaxLength(8)]
         [MinLength(8)]
-        public String Creditcard { get; set; }
-        [Required(ErrorMessage = "Voer een maand in")]
-        public Month Month { get; set; }
-        [Required(ErrorMessage = "Voer een geldig jaar in")]
-        [Range(2017, 2117)]
-        //[MaxLength(4)]
-        public int Year { get; set; }
+        public int Creditcard { get; set; }
+        public string Crediterror { get; set; }
+        [Required(ErrorMessage = "Geef de verloopdatum aan")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Verloopdatum kaart")]
+        public DateTime ExpireDate { get; set; }
+        public string Expireerror { get; set; }
         [Required(ErrorMessage = "Voer CVC code in(3 cijfers achterop de creditcard).")]
         [MaxLength(3)]
         [MinLength(3)]
         public int CVC { get; set; }
+        public string CVCerror { get; set; }
         public long reservationID;
-    }
-
-    public enum Month
-    {
-        januari = 1,
-        februari = 2,
-        maart = 3,
-        april = 4,
-        mei = 5,
-        juni = 6,
-        juli = 7,
-        augustus = 8,
-        september = 9,
-        oktober = 10,
-        november = 11,
-        december = 12
     }
 }

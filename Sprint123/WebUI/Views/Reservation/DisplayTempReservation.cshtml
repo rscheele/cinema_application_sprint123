@@ -70,10 +70,10 @@ else
             </tr>
             }
         </table>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = ""})'">Naar betalen met Pin</button>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "ideal"})'">Naar betalen met Ideal</button>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "credit" })'">Naar betalen met CreditCard</button>
-        <button class="btn btn-success" type="button" id="oneclick" onclick="location.href = '@Url.Action("EmailReservation", "Reservation", new { reservationID = Model.FirstOrDefault().ReservationID , Paid = false})'">Alleen reserveren</button>
+        <button class="btn btn-danger" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = ""})'">Naar betalen met Pin</button>
+        <button class="btn btn-danger" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "ideal"})'">Naar betalen met Ideal</button>
+        <button class="btn btn-danger" type="button" id="oneclick" onclick="location.href = '@Url.Action("Pay", "Pin", new { reservationID = Model.FirstOrDefault().ReservationID, paytype = "credit" })'">Naar betalen met CreditCard</button>
+        <button class="btn btn-danger" type="button" id="oneclick" onclick="location.href = '@Url.Action("EmailReservation", "Reservation", new { reservationID = Model.FirstOrDefault().ReservationID , Paid = false})'">Alleen reserveren</button>
     </div>
 </body>
 

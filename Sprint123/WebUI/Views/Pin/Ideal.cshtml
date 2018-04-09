@@ -3,20 +3,17 @@
 @{
     ViewBag.Title = "Ideal";
 }
-
-<h2>Ideal betaling</h2>
-@using (Html.BeginForm(@*"ValidateIdeal", "Pin", FormMethod.Post, new { reservationID = Model.reservationID }*@))
+<br />
+<h2><b>Ideal betaling</b></h2><img src="~/Content/ideal.png" alt="Ideal" />
+<br />
+@using (Html.BeginForm("FinishIdeal", "Pin", new { reservationID = Model.reservationID, paytype = "ideal" }))
 {
-    @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <div class="container">
-            <div class="form-group">
-                <label>Selecteer uw Bank: </label>
-                @Html.ValidationSummary()
-                @Html.EnumDropDownListFor(b => b.Bank, Model.Bank)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bank, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.EnumDropDownListFor(b => b.Bank, Model.Bank)&nbsp;<button type="submit" class="btn btn-danger">Bevestig</button>
             </div>
-            @*<button type="submit">Bevestig</button>*@
-            <button type="button" id="oneclick" class="btn btn-success" onclick="location.href='@Url.Action("Finish","Pin", new { reservationID = Model.reservationID })';disableButton(this)">Betaal &amp; Print Tickets</button>
         </div>
     </div>
-}
+ }

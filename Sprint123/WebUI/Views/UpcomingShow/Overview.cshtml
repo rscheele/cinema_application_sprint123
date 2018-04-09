@@ -53,8 +53,9 @@
     </div>
     <div class="col-sm"></div>
 </div>
-    <br />
-    <h2>Deze Week in de bioscoop:</h2><button class="btn btn-danger" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
+    
+    <h2>Deze Week in de bioscoop:</h2>
+    <button class="btn btn-danger" type='button' onclick="location.href = '@Url.Action("Overview", "UpcomingShow", new {locationid = ViewBag.locid}, null)'">Toon alle films</button>
     @*<div class="tooltip">genre<span class="tooltiptext">actie, misdaad, historisch...</span></div>*@
     <div class="container">
         @using (Html.BeginForm())

@@ -12,5 +12,6 @@ namespace WebUI.Models
         public string TicketType { get; set; }
         public bool Popcorn { get; set; }
         public bool Glasses { get; set; }
+        public bool Is3D { get; set; }
     }
 }

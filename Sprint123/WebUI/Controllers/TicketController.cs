@@ -203,12 +203,15 @@ namespace WebUI.Controllers
         {
             List<TempTicket> tempTickets = tempTicketRepository.GetTempTicketsReservation(reservationID).ToList();
             List<TempTicketModel> tempTicketModel = new List<TempTicketModel>();
+            Show selectedShow = showRepository.FindShow(tempTickets.FirstOrDefault().ShowID);
+
             foreach (var item in tempTickets)
             {
                 TempTicketModel model = new TempTicketModel();
                 model.ReservationID = item.ReservationID;
                 model.Price = item.Price;
                 model.TicketType = item.TicketType;
+                model.Is3D = selectedShow.Movie.Is3D;
                 tempTicketModel.Add(model);
             }
             return View("AddPopcorn", tempTicketModel);

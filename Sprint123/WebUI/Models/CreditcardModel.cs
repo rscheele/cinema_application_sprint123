@@ -8,10 +8,10 @@ namespace WebUI.Models
 {
     public class CreditcardModel
     {
-        [Required(ErrorMessage = "Voer een geldig creditcardnummer van 8 cijfers in")]
-        [MaxLength(8)]
-        [MinLength(8)]
-        public int Creditcard { get; set; }
+        [Required(ErrorMessage = "Voer een geldig creditcardnummer van 16 cijfers in")]
+        [MaxLength(16)]
+        [MinLength(16)]
+        public long Creditcard { get; set; }
         public string Crediterror { get; set; }
         [Required(ErrorMessage = "Geef de verloopdatum aan")]
         [DataType(DataType.Date)]

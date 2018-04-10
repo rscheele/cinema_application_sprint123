@@ -291,6 +291,7 @@
     <Content Include="Views\Specials\Specials.cshtml" />
     <Content Include="Views\Specials\Ladies.cshtml" />
     <Content Include="Views\Specials\LadiesOrder.cshtml" />
+    <Content Include="Views\UpcomingShow\Caroussel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

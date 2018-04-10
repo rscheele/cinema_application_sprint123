@@ -20,69 +20,13 @@ namespace WebUI.Controllers
             this.movieRepository = movieRepository;
             this.showRepository = showRepository;
         }
-
-        // GET: Overview
-        //[HttpGet]
-        public ActionResult Overview(int locationid, string searchString, int? age, DateTime? start)
+        [HttpPost]
+        public ActionResult Dofilter(string searchString, int? age, DateTime? start)
         {
-
-            int Locationid = locationid;
-            DateTime now = DateTime.Now;
-            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
-            int daysUntilWednesday = ((int)DayOfWeek.Wednesday - (int)now.DayOfWeek + 7) % 7;
-            DateTime nextWednesday = now.AddDays(daysUntilWednesday);
-
-            List<Show> allShows = showRepository.GetShows().ToList();
-            //Filter out shows from different location and shows that are not of type 0
-            List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid && s.ShowType == 0).ToList();
-
-            // Remove shows that start within 25 minutes (Or that are older for that matter)
-            DateTime currentDateTime = DateTime.Now;
-            DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -25, 0));
-            List<Show> tempShowList = new List<Show>();
-
-            //Filter out shows from the past
-            List<Show> ShowsFromNow = allThislocationShows.ToEnumerable()
-                .Where(s => s.BeginTime > now).ToList();
-            //Order by show date
-            List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
-                .OrderBy(s => s.BeginTime).ToList();
-            //take shows form current movie week
-            List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
-                .Where(s => s.EndTime < nextWednesday).ToList();
-
-            foreach (var i in upcomingShows)
-            {
-                if (i.BeginTime > minusDateTime)
-                {
-                    tempShowList.Add(i);
-                }
-            }
-            upcomingShows = tempShowList;
-            ViewBag.locid = 1;
-            //Three Expected shows --------BEGIN
-            if (allShows.Where(s => s.BeginTime > nextWednesday).Count() >= 3)
-            {
-                string x = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(0).Movie.Trailer.ToString();
-                byte[] x2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(0).Movie.Image;
-                string y = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Trailer.ToString();
-                byte[] y2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(1).Movie.Image;
-                string z = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Trailer.ToString();
-                byte[] z2 = allShows.Where(s => s.BeginTime > nextWednesday).ElementAt(2).Movie.Image;
-
-                ViewBag.trailer1 = x;
-                ViewBag.image1 = x2;
-                ViewBag.trailer2 = y;
-                ViewBag.image2 = y2;
-                ViewBag.trailer3 = z;
-                ViewBag.image3 = z2;
-            }
-            //Three Expected shows --------END
-            //--------------filters BEGIN  was allShows!!!!--------------------
             if (start.HasValue == true)
             {
                 DateTime selectedDate = (DateTime)start;
-                List<Show> filteredShows = allShows.ToList();
+                List<Show> filteredShows = showRepository.GetShows().ToList();
 
                 if (!String.IsNullOrEmpty(searchString) && age.HasValue == true)//1
                 {
@@ -94,7 +38,7 @@ namespace WebUI.Controllers
                             | s.Movie.Director.Contains(searchString)
                            && s.Movie.Age == age
                            && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
-                    return View(list);
+                    return View("Overview", list);
                 }
                 else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//2
                 {
@@ -105,26 +49,27 @@ namespace WebUI.Controllers
                             | s.Movie.SubActors.Contains(searchString)
                             | s.Movie.Director.Contains(searchString)
                             && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
-                    return View(list);
+                    return View("Overview", list);
                 }
                 else if (String.IsNullOrEmpty(searchString) && age.HasValue == true)//7
                 {
                     List<Show> list = filteredShows.Where(s => s.Movie.Age == age
                             && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
-                    return View(list);
+                    return View("Overview", list);
                 }
                 else if (String.IsNullOrEmpty(searchString) && age.HasValue == false)//3
                 {
                     List<Show> list = filteredShows.Where(s => s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
-                    return View(list);
+                    return View("Overview", list);
                 }
             }
 
             if (!String.IsNullOrEmpty(searchString) | age.HasValue == true)
             {
-                List<Show> filteredShows = allShows.ToList();
+                List<Show> filteredShows = showRepository.GetShows().ToList();
 
-                if (!String.IsNullOrEmpty(searchString) && age.HasValue == true){ //6
+                if (!String.IsNullOrEmpty(searchString) && age.HasValue == true)
+                { //6
                     List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
                             | s.Movie.MainActors.Contains(searchString)
                             | s.Movie.Genre.Contains(searchString)
@@ -132,7 +77,7 @@ namespace WebUI.Controllers
                             | s.Movie.SubActors.Contains(searchString)
                             | s.Movie.Director.Contains(searchString)
                             && s.Movie.Age == age).ToList();
-                    return View(list); 
+                    return View("Overview", list);
                 }
                 else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//4
                 {
@@ -142,19 +87,89 @@ namespace WebUI.Controllers
                            | s.Movie.MainActors.Contains(searchString)
                            | s.Movie.SubActors.Contains(searchString)
                            | s.Movie.Director.Contains(searchString)).ToList();
-                    return View(list);
+                    return View("Overview", list);
                 }
-                else if(age.HasValue == true && String.IsNullOrEmpty(searchString))//5
+                else if (age.HasValue == true && String.IsNullOrEmpty(searchString))//5
                 {
                     List<Show> list = filteredShows.Where(s => s.Movie.Age == age).ToList();
-                    return View(list);
-                }                   
+                    return View("Overview", list);
+                }
             }
-            //--------------filters END  was allShows!!!!--------------------
+            return RedirectToAction("Overview");
+        }
+        
+        // GET: Overview
+        //[HttpGet]
+        public ActionResult Overview()
+        {
+
+            //int Locationid = 1;//locationid
+            DateTime now = DateTime.Now;
+            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
+            int daysUntilWednesday = ((int)DayOfWeek.Wednesday - (int)now.DayOfWeek + 7) % 7;
+            DateTime nextWednesday = now.AddDays(daysUntilWednesday).Date;
+            DateTime NextWednesday = nextWednesday.Add(new TimeSpan(23, 59, 59));
+            List<Show> allShows = showRepository.GetShows().ToList();
+            //Filter out shows from different location and shows that are not of type 0
+            //List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid && s.ShowType == 0).ToList();
+
+            // Remove shows that start within 25 minutes (Or that are older for that matter)
+            DateTime currentDateTime = DateTime.Now;
+            DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -25, 0));
+            List<Show> tempShowList = new List<Show>();
+
+            //Filter out shows from the past
+            List<Show> ShowsFromNow = allShows.ToEnumerable()//was allThislocationShows
+                .Where(s => s.BeginTime > now).ToList();
+            //Order by show date
+            List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
+                .OrderBy(s => s.BeginTime).ToList();
+            //take shows form current movie week
+            List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
+                .Where(s => s.EndTime < NextWednesday).ToList();
+
+            foreach (var i in upcomingShows)
+            {
+                if (i.BeginTime > minusDateTime)
+                {
+                    tempShowList.Add(i);
+                }
+            }
+            upcomingShows = tempShowList;
+            ViewBag.locid = 1;
             //return View(upcomingShows);
             return View(upcomingShows);
         }
 
+        [ChildActionOnly]
+        public ActionResult Expected()
+        {
+            List<Show> allShows = showRepository.GetShows().ToList();
+            DateTime now = DateTime.Now;
+            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
+            int daysUntilWednesday = ((int)DayOfWeek.Wednesday - (int)now.DayOfWeek + 7) % 7;
+            DateTime nextWednesday = now.AddDays(daysUntilWednesday).Date;
+            DateTime NextWednesday = nextWednesday.Add(new TimeSpan(23, 59, 59));
+            //Three Expected shows --------BEGIN
+            if (allShows.Where(s => s.BeginTime > nextWednesday).Count() >= 3)
+            {
+                string x = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(0).Movie.Trailer.ToString();
+                byte[] x2 = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(0).Movie.Image;
+                string y = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(1).Movie.Trailer.ToString();
+                byte[] y2 = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(1).Movie.Image;
+                string z = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(2).Movie.Trailer.ToString();
+                byte[] z2 = allShows.Where(s => s.BeginTime > NextWednesday).ElementAt(2).Movie.Image;
+
+                ViewBag.trailer1 = x;
+                ViewBag.image1 = x2;
+                ViewBag.trailer2 = y;
+                ViewBag.image2 = y2;
+                ViewBag.trailer3 = z;
+                ViewBag.image3 = z2;
+            }
+            //Three Expected shows --------END
+            return PartialView("Caroussel");
+        }
         // GET: UpcomingShow
         [HttpGet]
         public ActionResult Upcoming(int locationid)

@@ -122,11 +122,11 @@ namespace WebUI.Controllers
         }
 
         //[HttpGet]
-        public ActionResult FinishCredit(long reservationID, string paytype, int? Creditcard, DateTime? ExpireDate, int? CVC)
+        public ActionResult FinishCredit(long reservationID, string paytype, long? Creditcard, DateTime? ExpireDate, int? CVC)
         {
             CreditcardModel creditcardModel = (CreditcardModel)TempData["creditcardModel"];
             DateTime now = DateTime.Today;
-            if (Creditcard < 10000000 | Creditcard > 99999999 || Creditcard.HasValue != true)
+            if (Creditcard < 1000000000000000 | Creditcard > 9999999999999999 || Creditcard.HasValue != true)
             {
                 creditcardModel.Crediterror = "Vul een geldig Creditcard nummer in";
                 creditcardModel.Expireerror = "";

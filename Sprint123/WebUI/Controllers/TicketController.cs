@@ -106,6 +106,12 @@ namespace WebUI.Controllers
             }
             TempData["Show"] = selectedShow;
 
+            List<TempTicket> existingTempTickets = tempTicketRepository.GetTempTicketsReservation(order.ReservationID).ToList();
+            if (existingTempTickets != null)
+            {
+                tempTicketRepository.DeleteTempTickets(existingTempTickets);
+            }
+
             //TempData["Order"] = order;
             // Check if there are tickets available
             int ticketcount = order.StudentTickets + order.SeniorTickets + order.NormalTickets + order.ChildTickets;

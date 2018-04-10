@@ -9,7 +9,7 @@
         <br />
         <h2>Je bestelt nu tickets voor @ViewBag.MovieName voor het kinderfeestje arrangement!</h2><br />
         <p>Selecteer het aantal gewenste tickets.</p>
-        <b>Let op:</b><p>Bestel minimaal 1 en maximaal 20 tickets!</p>
+        <b>Let op:</b><p>Bestel minimaal 1 en maximaal 10 tickets!</p>
         <p style="color:red"><b>@ViewBag.SoldOut</b></p>
         @*</p>*@
         @using (Html.BeginForm())
@@ -24,7 +24,7 @@
                 <tr>
                     <td>Kinderen</td>
                     <td>€14,45</td>
-                    <td>@Html.TextBox("KidsTickets", 0, new { @type = "number", @min = "0", @max = "20", @style = "width:50px" })</td>
+                    <td>@Html.TextBox("KidsTickets", 0, new { @type = "number", @min = "0", @max = "10", @style = "width:50px" })</td>
                 </tr>
             </table>
             <input class="btn btn-danger" type="submit" value="Bestellen" />

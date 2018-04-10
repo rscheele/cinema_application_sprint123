@@ -107,11 +107,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestPdf.cs" />
+    <Compile Include="TestPopcorn.cs" />
     <Compile Include="TestReservation.cs" />
     <Compile Include="TestUpcomingShows.cs" />
     <Compile Include="TestSecretShow.cs" />
     <Compile Include="TestLocation.cs" />
-    <Compile Include="TestTickets.cs" />
+    <Compile Include="TestTicketPrices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

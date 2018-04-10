@@ -69,7 +69,7 @@
                     <img src="~/Content/sprite-blue.png">
                 </td>
                 <td>
-                    Gereserveerde stoelen
+                    Tijdelijk bezette stoelen
                 </td>
             </tr>
             <tr>
@@ -85,4 +85,5 @@
         <br />
         <button type="button" id="oneclick" class="btn btn-danger" onclick="location.href='@Url.Action("ChooseSeats", "SeatSelection", new { reservationID = Model.tickets.FirstOrDefault().ReservationID })'">Naar bevestigen</button>
     </div>
+    <br /><br />
 </body>

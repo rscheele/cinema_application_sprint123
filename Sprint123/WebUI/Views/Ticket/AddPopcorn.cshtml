@@ -19,9 +19,7 @@
                 <th scope="col">Prijs</th>
                 <th scope="col">Type</th>
                 <th scope="col">Met popcorn</th>
-                <th scope="col">Prijs</th>
                 <th scope="col">Met 3D bril</th>
-                <th scope="col">Prijs</th>
             </tr>
             @{ int j = 0;}
             @for (int i = 0; i < Model.Count; i++)
@@ -38,16 +36,10 @@
                     @Html.DisplayFor(x => Model[i].TicketType)
                 </td>
                 <td>
-                    @Html.CheckBoxFor(x => Model[i].Popcorn)
+                    @Html.CheckBoxFor(x => Model[i].Popcorn) + €5,-
                 </td>
                 <td>
-                    + €5,-
-                </td>
-                <td>
-                    @Html.CheckBoxFor(x => Model[i].Glasses)
-                </td>
-                <td>
-                    + €2,-
+                    @Html.CheckBoxFor(x => Model[i].Glasses) + €2,-
                 </td>
             </tr>
             }

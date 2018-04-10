@@ -10,12 +10,13 @@ namespace WebUI.Models
     {
         [Key]
         public int ID { get; set; }
-        public int normalTickets { get; set; }
-        public int childTickets { get; set; }
-        public int studentTickets { get; set; }
-        public int seniorTickets { get; set; }
-        public int ladiesTickets { get; set; }
-        public long reservationID { get; set; }
-        public int showID { get; set; }
+        public int NormalTickets { get; set; }
+        public int ChildTickets { get; set; }
+        public int StudentTickets { get; set; }
+        public int SeniorTickets { get; set; }
+        public int LadiesTickets { get; set; }
+        public int KidsTickets { get; set; }
+        public long ReservationID { get; set; }
+        public int ShowID { get; set; }
     }
 }

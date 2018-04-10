@@ -59,8 +59,8 @@ namespace WebUI.Controllers
 
             // Set reservation ID for order
             Order order = new Order();
-            order.showID = showID;
-            order.reservationID = reservationID;
+            order.ShowID = showID;
+            order.ReservationID = reservationID;
 
             //hide name if movie is secret ----BEGIN
             //Boolean IsSecret = (Boolean)TempData["Secret"];
@@ -91,7 +91,7 @@ namespace WebUI.Controllers
         public ActionResult OrderTickets(Order order)
         {
             // Add a maximum of tickets that can be ordered based on database
-            Show selectedShow = showRepository.FindShow(order.showID);
+            Show selectedShow = showRepository.FindShow(order.ShowID);
             List<TempTicket> tempTickets = new List<TempTicket>();
             int bookedTickets = ticketRepository.GetShowTickets(selectedShow.ShowID).Count();
             int reservedTickets = tempTicketRepository.GetTempTicketsShow(selectedShow.ShowID).Count();
@@ -108,31 +108,31 @@ namespace WebUI.Controllers
 
             //TempData["Order"] = order;
             // Check if there are tickets available
-            int ticketcount = order.studentTickets + order.seniorTickets + order.normalTickets + order.childTickets;
+            int ticketcount = order.StudentTickets + order.SeniorTickets + order.NormalTickets + order.ChildTickets;
             if (max == 0)
             {
                 TempData["SoldOut"] = "De show is helaas uitverkocht. Er zijn geen tickets meer beschikbaar.";
-                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID});
+                return RedirectToAction("OrderTickets", new { order.ReservationID , selectedShow.ShowID});
             }
             else if (ticketcount <= 0 | ticketcount > 10)
             {
-                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID });
+                return RedirectToAction("OrderTickets", new { order.ReservationID , selectedShow.ShowID });
             }
             else if (ticketcount > max)
             {
                 TempData["SoldOut"] = "De show is bijna uitverkocht, er zijn nog maar " + max + " tickets beschikbaar!";
-                return RedirectToAction("OrderTickets", new { order.reservationID , selectedShow.ShowID });
+                return RedirectToAction("OrderTickets", new { order.ReservationID , selectedShow.ShowID });
             }
             else
             {
                 List<decimal> tarrifs = calculatePrices(selectedShow);
                 // Add normal tickets
-                for (int i = 0; i < order.normalTickets; i++)
+                for (int i = 0; i < order.NormalTickets; i++)
                 {
                     TempTicket tempTicket = new TempTicket();
                     tempTicket.Price = tarrifs[0];
                     tempTicket.TicketType = "Standaard";
-                    tempTicket.ReservationID = order.reservationID;
+                    tempTicket.ReservationID = order.ReservationID;
                     tempTicket.ShowID = selectedShow.ShowID;
                     tempTicket.TimeAdded = DateTime.Now;
                     tempTicket.Show = selectedShow;
@@ -142,12 +142,12 @@ namespace WebUI.Controllers
                     numberoftickets++;
                 }
                 // Add child tickets
-                for (int i = 0; i < order.childTickets; i++)
+                for (int i = 0; i < order.ChildTickets; i++)
                 {
                     TempTicket tempTicket = new TempTicket();
                     tempTicket.Price = tarrifs[1];
                     tempTicket.TicketType = "Kind";
-                    tempTicket.ReservationID = order.reservationID;
+                    tempTicket.ReservationID = order.ReservationID;
                     tempTicket.ShowID = selectedShow.ShowID;
                     tempTicket.TimeAdded = DateTime.Now;
                     tempTicket.Show = selectedShow;
@@ -157,12 +157,12 @@ namespace WebUI.Controllers
                     numberoftickets++;
                 }
                 // Add student tickets
-                for (int i = 0; i < order.studentTickets; i++)
+                for (int i = 0; i < order.StudentTickets; i++)
                 {
                     TempTicket tempTicket = new TempTicket();
                     tempTicket.Price = tarrifs[2];
                     tempTicket.TicketType = "Student";
-                    tempTicket.ReservationID = order.reservationID;
+                    tempTicket.ReservationID = order.ReservationID;
                     tempTicket.ShowID = selectedShow.ShowID;
                     tempTicket.TimeAdded = DateTime.Now;
                     tempTicket.Show = selectedShow;
@@ -172,12 +172,12 @@ namespace WebUI.Controllers
                     numberoftickets++;
                 }
                 // Add senior tickets
-                for (int i = 0; i < order.seniorTickets; i++)
+                for (int i = 0; i < order.SeniorTickets; i++)
                 {
                     TempTicket tempTicket = new TempTicket();
                     tempTicket.Price = tarrifs[3];
                     tempTicket.TicketType = "Senior";
-                    tempTicket.ReservationID = order.reservationID;
+                    tempTicket.ReservationID = order.ReservationID;
                     tempTicket.ShowID = selectedShow.ShowID;
                     tempTicket.TimeAdded = DateTime.Now;
                     tempTicket.Show = selectedShow;
@@ -188,7 +188,7 @@ namespace WebUI.Controllers
                 }
                 selectedShow.NumberofTickets = selectedShow.NumberofTickets + numberoftickets;
                 tempTicketRepository.SaveTempTickets(tempTickets);
-                return RedirectToAction("AddPopcorn", new { order.reservationID });
+                return RedirectToAction("AddPopcorn", new { order.ReservationID });
             }
         }
 

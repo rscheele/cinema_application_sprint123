@@ -21,6 +21,7 @@ namespace WebUI.Controllers
         private ITempTicketRepository tempTicketRepository;
         private IShowSeatRepository showSeatRepository;
         private IEmailRepository emailRepository;
+        private decimal TotalPrice = 0;
 
         public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository, IShowSeatRepository showSeatRepository, IEmailRepository emailRepository)
         {
@@ -31,7 +32,13 @@ namespace WebUI.Controllers
             this.showSeatRepository = showSeatRepository;
             this.emailRepository = emailRepository;
         }
-
+        /*public decimal CalculateTotalPrice(IEnumerable<Ticket> ticket) {
+            foreach (var item in ticket)
+            {
+                return TotalPrice + item.Price;
+            }
+            return TotalPrice;
+        }*/
         // GET: Reservation
         [HttpGet]
         public ActionResult Reservation()
@@ -43,7 +50,6 @@ namespace WebUI.Controllers
         public ActionResult Reservation(string reservationID/*, string paytype*/)
         {
             long resID = Convert.ToInt64(reservationID);
-            //string payid = paytype;
             IEnumerable<Ticket> tickets = ticketRepository.GetTickets(resID);
 
             if (tickets.Count() > 0) { 
@@ -61,6 +67,8 @@ namespace WebUI.Controllers
                 }
                 else
                 {
+                    //CalculateTotalPrice(tickets);
+                    //ViewBag.price = TotalPrice;
                     return RedirectToAction("Pay", "Pin", new { reservationID = resID /*, paytype = payid */});
                 }
             }

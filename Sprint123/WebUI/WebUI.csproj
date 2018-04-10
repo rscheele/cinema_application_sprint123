@@ -296,6 +296,7 @@
     <Content Include="Views\Specials\KidsOverview.cshtml" />
     <Content Include="Views\Specials\KidsDetails.cshtml" />
     <Content Include="Views\Specials\KidsOrder.cshtml" />
+    <Content Include="Views\UpcomingShow\Caroussel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

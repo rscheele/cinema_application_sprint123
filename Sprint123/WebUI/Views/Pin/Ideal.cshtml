@@ -10,7 +10,7 @@
 {
     <div class="form-horizontal">
         <div class="form-group">
-            @Html.LabelFor(model => model.Bank, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bank, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-7">
                 @Html.EnumDropDownListFor(b => b.Bank, Model.Bank)&nbsp;<button type="submit" class="btn btn-danger">Bevestig</button>
             </div>

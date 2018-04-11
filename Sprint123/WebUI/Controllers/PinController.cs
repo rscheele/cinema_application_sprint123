@@ -128,7 +128,7 @@ namespace WebUI.Controllers
             DateTime now = DateTime.Today;
             if (Creditcard < 1000000000000000 | Creditcard > 9999999999999999 || Creditcard.HasValue != true)
             {
-                creditcardModel.Crediterror = "Vul een geldig Creditcard nummer in";
+                creditcardModel.Crediterror = "Vul een geldig creditcardnummer(16 cijfers) in.";
                 creditcardModel.Expireerror = "";
                 creditcardModel.CVCerror = "";
                 TempData["creditcardModel"] = creditcardModel;
@@ -136,7 +136,7 @@ namespace WebUI.Controllers
             }
             if (CVC < 100 | CVC > 999 || CVC.HasValue != true)
             {
-                creditcardModel.CVCerror = "Vul een geldige CVC code in";
+                creditcardModel.CVCerror = "Vul een geldige CVC code in van 3 cijfers.";
                 creditcardModel.Expireerror = "";
                 creditcardModel.Crediterror = "";
 
@@ -145,7 +145,7 @@ namespace WebUI.Controllers
             }
             if (ExpireDate.HasValue != true || ExpireDate < now.Date)
             {
-                creditcardModel.Expireerror = "Vul een geldige datum in";
+                creditcardModel.Expireerror = "Vul een geldige en niet verlopen datum in.";
                 creditcardModel.CVCerror = "";
                 creditcardModel.Crediterror = "";
 

@@ -21,7 +21,7 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
         }
         [HttpPost]
-        public ActionResult Dofilter(string searchString, int? age, DateTime? start)
+        public ActionResult Dofilter(string searchString, string Genre, int? age, DateTime? start)
         {
             if (start.HasValue == true)
             {
@@ -30,24 +30,24 @@ namespace WebUI.Controllers
 
                 if (!String.IsNullOrEmpty(searchString) && age.HasValue == true)//1
                 {
-                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.Genre.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.SubActors.Contains(searchString)
-                            | s.Movie.Director.Contains(searchString)
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Genre.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.SubActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Director.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
                            && s.Movie.Age == age
                            && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
                     return View("Overview", list);
                 }
                 else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//2
                 {
-                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.Genre.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.SubActors.Contains(searchString)
-                            | s.Movie.Director.Contains(searchString)
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Genre.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.SubActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Director.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
                             && s.BeginTime.DayOfYear == selectedDate.DayOfYear).ToList();
                     return View("Overview", list);
                 }
@@ -70,23 +70,21 @@ namespace WebUI.Controllers
 
                 if (!String.IsNullOrEmpty(searchString) && age.HasValue == true)
                 { //6
-                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.Genre.Contains(searchString)
-                            | s.Movie.MainActors.Contains(searchString)
-                            | s.Movie.SubActors.Contains(searchString)
-                            | s.Movie.Director.Contains(searchString)
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Genre.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.SubActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                            | s.Movie.Director.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
                             && s.Movie.Age == age).ToList();
                     return View("Overview", list);
                 }
                 else if (!String.IsNullOrEmpty(searchString) && age.HasValue == false)//4
                 {
-                    List<Show> list = filteredShows.Where(s => s.Movie.Name.Contains(searchString)
-                           | s.Movie.MainActors.Contains(searchString)
-                           | s.Movie.Genre.Contains(searchString)
-                           | s.Movie.MainActors.Contains(searchString)
-                           | s.Movie.SubActors.Contains(searchString)
-                           | s.Movie.Director.Contains(searchString)).ToList();
+                    List<Show> list = filteredShows.Where(s => s.Movie.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                           | s.Movie.MainActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                           | s.Movie.Genre.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                           | s.Movie.SubActors.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                           | s.Movie.Director.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
                     return View("Overview", list);
                 }
                 else if (age.HasValue == true && String.IsNullOrEmpty(searchString))//5

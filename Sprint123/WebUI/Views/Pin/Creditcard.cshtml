@@ -11,13 +11,13 @@
  {
 <div class="form-horizontal">
  <div class="form-group">
-        <label>Creditcardnummer: </label>
+        <label>Creditcardnummer: </label><br>
         @Html.EditorFor(m => m.Creditcard)
         <p>@Model.Crediterror</p>
-        <label>Verloopdatum: </label>
+        <label>Verloopdatum: </label><br>
         @Html.EditorFor(m => m.ExpireDate, Model.ExpireDate)
         <p>@Model.Expireerror</p>
-        <label>CVC: </label>
+        <label>CVC: </label><br>
         @Html.EditorFor(m => m.CVC)
         <p>@Model.CVCerror</p>
     </div>

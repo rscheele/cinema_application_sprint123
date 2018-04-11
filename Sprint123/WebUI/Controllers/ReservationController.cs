@@ -21,7 +21,6 @@ namespace WebUI.Controllers
         private ITempTicketRepository tempTicketRepository;
         private IShowSeatRepository showSeatRepository;
         private IEmailRepository emailRepository;
-        private decimal TotalPrice = 0;
 
         public ReservationController(IMovieOverviewRepository movieRepository, IShowRepository showRepository, ITicketRepository ticketRepository, ITempTicketRepository tempTicketRepository, IShowSeatRepository showSeatRepository, IEmailRepository emailRepository)
         {

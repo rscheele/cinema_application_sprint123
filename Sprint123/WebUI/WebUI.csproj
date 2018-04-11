@@ -141,6 +141,7 @@
     <Content Include="Content\darkest-hour.jpg" />
     <Content Include="Content\death-wish.jpg" />
     <Content Include="Content\diep-in-de-zee.jpg" />
+    <Content Include="Content\favicon.64.png" />
     <Content Include="Content\footer-fixed.css" />
     <Content Include="Content\footer-logo90x30.png" />
     <Content Include="Content\ideal.png" />

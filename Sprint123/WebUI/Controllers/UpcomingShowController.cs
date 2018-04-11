@@ -112,31 +112,20 @@ namespace WebUI.Controllers
             List<Show> allShows = showRepository.GetShows().ToList();
             //Filter out shows from different location and shows that are not of type 0
             //List<Show> allThislocationShows = allShows.ToEnumerable().Where(s => s.Movie.LocationID == Locationid && s.ShowType == 0).ToList();
-
-            // Remove shows that start within 25 minutes (Or that are older for that matter)
             DateTime currentDateTime = DateTime.Now;
-            DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, -25, 0));
+            DateTime minusDateTime = currentDateTime.Add(new TimeSpan(0, 25, 0));
             List<Show> tempShowList = new List<Show>();
 
-            //Filter out shows from the past
+            //Filter out shows from the past or start within 25 minutes and shows that are not of type 0
             List<Show> ShowsFromNow = allShows.ToEnumerable()//was allThislocationShows
-                .Where(s => s.BeginTime > now).ToList();
+                .Where(s => s.BeginTime > minusDateTime && s.ShowType == 0).ToList();
             //Order by show date
             List<Show> ShowsFromNowOrderedByDate = ShowsFromNow.ToEnumerable()
                 .OrderBy(s => s.BeginTime).ToList();
             //take shows form current movie week
             List<Show> upcomingShows = ShowsFromNowOrderedByDate.ToEnumerable()
                 .Where(s => s.EndTime < NextWednesday).ToList();
-
-            foreach (var i in upcomingShows)
-            {
-                if (i.BeginTime > minusDateTime)
-                {
-                    tempShowList.Add(i);
-                }
-            }
-            upcomingShows = tempShowList;
-            ViewBag.locid = 1;
+                ViewBag.locid = 1;
             //return View(upcomingShows);
             return View(upcomingShows);
         }
@@ -244,6 +233,12 @@ namespace WebUI.Controllers
         {
             List<Show> allShows = showRepository.GetShows().ToList();
             Show orderedShow = allShows.Find(r => r.ShowID == id);
+            DateTime dateTime = DateTime.Now;
+            DateTime minusDateTime = dateTime.Add(new TimeSpan(0, 25, 0));
+            if (minusDateTime > orderedShow.BeginTime)
+            {
+                return RedirectToAction("NotAvailable");
+            }
             return View("ShowDetails", orderedShow);
 
         }

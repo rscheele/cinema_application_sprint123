@@ -10,7 +10,7 @@ using System.Web.Hosting;
 namespace Domain.Concrete
 {
     // DropCreateDatabaseIfModelChanges VS DropCreateDatabaseAlways
-    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseAlways<EFDbContext>
+    public class CinemaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EFDbContext>
     {
         byte[] uprising = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/pacific-rim-uprising.jpg"));
         byte[] hour = File.ReadAllBytes(HostingEnvironment.MapPath("~/Content/darkest-hour.jpg"));
@@ -1020,19 +1020,19 @@ namespace Domain.Concrete
 
             /* -----------start of table creation------------ */
             var shows = new List<Show>
-            { new Show{BeginTime=DateTime.Parse("2018-04-11 14:40:00.000"),EndTime=DateTime.Parse("2018-04-11 16:10:00.000"),MovieID=9,RoomID=2,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 14:25:00.000"),EndTime=DateTime.Parse("2018-04-11 16:25:00.000"),MovieID=1,RoomID=1,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 14:35:00.000"),EndTime=DateTime.Parse("2018-04-11 16:45:00.000"),MovieID=2,RoomID=2,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 14:45:00.000"),EndTime=DateTime.Parse("2018-04-11 16:55:00.000"),MovieID=3,RoomID=3,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 19:11:00.000"),EndTime=DateTime.Parse("2018-04-11 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 19:00:00.000"),EndTime=DateTime.Parse("2018-04-11 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 19:00:00.000"),EndTime=DateTime.Parse("2018-04-11 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 21:15:00.000"),EndTime=DateTime.Parse("2018-04-11 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 18:15:00.000"),EndTime=DateTime.Parse("2018-04-11 20:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 21:15:00.000"),EndTime=DateTime.Parse("2018-04-11 22:30:00.000"),MovieID=5,RoomID=5,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 14:15:00.000"),EndTime=DateTime.Parse("2018-04-11 16:30:00.000"),MovieID=6,RoomID=1,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 15:15:00.000"),EndTime=DateTime.Parse("2018-04-11 17:30:00.000"),MovieID=7,RoomID=2,NumberofTickets=0, ShowType=0},
-            new Show{BeginTime=DateTime.Parse("2018-04-11 20:15:00.000"),EndTime=DateTime.Parse("2018-04-11 23:30:00.000"),MovieID=2,RoomID=3,NumberofTickets=0, ShowType=1},
+            { new Show{BeginTime=DateTime.Parse("2018-04-12 14:40:00.000"),EndTime=DateTime.Parse("2018-04-12 16:10:00.000"),MovieID=9,RoomID=2,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-12 14:25:00.000"),EndTime=DateTime.Parse("2018-04-12 16:25:00.000"),MovieID=1,RoomID=1,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-12 14:35:00.000"),EndTime=DateTime.Parse("2018-04-12 16:45:00.000"),MovieID=2,RoomID=2,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-12 14:45:00.000"),EndTime=DateTime.Parse("2018-04-12 16:55:00.000"),MovieID=3,RoomID=3,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-12 19:11:00.000"),EndTime=DateTime.Parse("2018-04-12 21:11:00.000"),MovieID=4,RoomID=4,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-13 19:00:00.000"),EndTime=DateTime.Parse("2018-04-13 21:00:00.000"),MovieID=5,RoomID=5,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-13 19:00:00.000"),EndTime=DateTime.Parse("2018-04-13 21:00:00.000"),MovieID=6,RoomID=6,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-13 21:15:00.000"),EndTime=DateTime.Parse("2018-04-13 23:15:00.000"),MovieID=7,RoomID=1,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-13 18:15:00.000"),EndTime=DateTime.Parse("2018-04-13 20:30:00.000"),MovieID=8,RoomID=2,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-14 21:15:00.000"),EndTime=DateTime.Parse("2018-04-14 22:30:00.000"),MovieID=5,RoomID=5,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-14 14:15:00.000"),EndTime=DateTime.Parse("2018-04-14 16:30:00.000"),MovieID=6,RoomID=1,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-14 15:15:00.000"),EndTime=DateTime.Parse("2018-04-14 17:30:00.000"),MovieID=7,RoomID=2,NumberofTickets=0, ShowType=0},
+            new Show{BeginTime=DateTime.Parse("2018-04-14 20:15:00.000"),EndTime=DateTime.Parse("2018-04-14 23:30:00.000"),MovieID=2,RoomID=3,NumberofTickets=0, ShowType=1},
             new Show{BeginTime=DateTime.Parse("2018-11-10 20:15:00.000"),EndTime=DateTime.Parse("2018-11-10 23:30:00.000"),MovieID=28,RoomID=3,NumberofTickets=0, ShowType=1},
             new Show{BeginTime=DateTime.Parse("2018-11-11 20:15:00.000"),EndTime=DateTime.Parse("2018-11-11 23:30:00.000"),MovieID=29,RoomID=3,NumberofTickets=0, ShowType=1},
             new Show{BeginTime=DateTime.Parse("2018-11-12 20:15:00.000"),EndTime=DateTime.Parse("2018-11-12 23:30:00.000"),MovieID=30,RoomID=3,NumberofTickets=0, ShowType=1},

@@ -21,7 +21,7 @@ namespace WebUI.Controllers
             this.showRepository = showRepository;
         }
         [HttpPost]
-        public ActionResult Dofilter(string searchString, string Genre, int? age, DateTime? start)
+        public ActionResult Dofilter(string searchString, int? age, DateTime? start)
         {
             if (start.HasValue == true)
             {
